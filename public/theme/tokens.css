@@ -1,0 +1,32 @@
+:root {
+  --cv-bg: #f5f4ef;
+  --cv-surface: #ffffff;
+  --cv-raised: #f1f0ea;
+  --cv-inset: #f4f3ee;
+  --cv-selected: #e5f0e9;
+  --cv-border: #e3e0d7;
+  --cv-border-strong: #cfcabd;
+  --cv-text: #1c2721;
+  --cv-text-2: #35433b;
+  --cv-muted: #5a6960;
+  --cv-subtle: #6c7a72;
+  --cv-accent: #1f6b55;
+  --cv-accent-hover: #185a47;
+  --cv-accent-ink: #ffffff;
+  --cv-accent-soft: #e5f0e9;
+  --cv-accent-border: #a8ccb8;
+  --cv-success: #2c774a;
+  --cv-success-soft: #e7f3eb;
+  --cv-warning: #8f5710;
+  --cv-warning-soft: #fbf2e1;
+  --cv-warning-border: #ecd3a6;
+  --cv-danger: #b03f38;
+  --cv-danger-soft: #fbeae7;
+  --cv-font: 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+  --cv-mono: Consolas, ui-monospace, monospace;
+  --cv-radius-panel: 12px;
+  --cv-radius-control: 8px;
+  --cv-shadow-sm: 0 1px 2px #1c27210f, 0 2px 6px #1c27210a;
+  --cv-shadow: 0 12px 32px #1c272117;
+  color-scheme: light;
+}

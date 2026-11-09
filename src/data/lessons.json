@@ -1,0 +1,594 @@
+[
+  {
+    "slug": "haber-step",
+    "subject": "chem",
+    "title": "合成氨工业",
+    "type": "工业流程",
+    "question": "怎样把空气里的氮又快、又多、又省地变成氨？",
+    "textbook": [
+      "选择性必修1 化学反应原理 · 第二章 化学反应速率与化学平衡 · 第四节 化学反应的调控",
+      "必修第二册 · 第五章 化工生产中的重要非金属元素 · 第二节 氮及其化合物"
+    ],
+    "steps": [
+      "为什么建厂",
+      "为什么净化",
+      "为什么加压",
+      "为什么高温",
+      "塔内什么样",
+      "为什么要循环",
+      "考核 · 当班长"
+    ],
+    "file": "courses/haber-step.html",
+    "cover": "covers/haber-step.webp",
+    "online": "https://lab.tongjiang.app/c/haber-step/"
+  },
+  {
+    "slug": "rate-step",
+    "subject": "chem",
+    "title": "化学反应速率的影响因素",
+    "type": "原理与现象",
+    "question": "同样两个反应，为什么有的几秒就完、有的等半天？快慢到底由什么决定？",
+    "textbook": [
+      "必修第二册 · 第六章 化学反应与能量 · 实验活动7 化学反应速率的影响因素",
+      "选择性必修1 化学反应原理 · 第二章 化学反应速率与化学平衡 · 第一节 化学反应速率"
+    ],
+    "steps": [
+      "认识实验台",
+      "浓度",
+      "温度",
+      "催化剂",
+      "定量测速率",
+      "看进去",
+      "误差与错误操作",
+      "考核 · 当实验员"
+    ],
+    "file": "courses/rate-step.html",
+    "cover": "covers/rate-step.webp",
+    "online": "https://lab.tongjiang.app/c/rate-step/"
+  },
+  {
+    "slug": "ball-stick-step",
+    "subject": "chem",
+    "title": "搭建球棍模型认识有机化合物分子结构",
+    "type": "原理与现象模拟",
+    "question": "分子画在纸上是平的，真实的三维形状到底是什么样？搭一座球棍模型能看出什么？",
+    "textbook": [
+      "必修第二册 · 第七章 有机化合物 · 实验活动8 搭建球棍模型认识有机化合物分子结构"
+    ],
+    "steps": [
+      "零件盒",
+      "甲烷",
+      "二氯甲烷",
+      "单键能转",
+      "碳链",
+      "同分异构",
+      "乙烯与乙炔",
+      "苯",
+      "考核"
+    ],
+    "file": "courses/ball-stick-step.html",
+    "cover": "covers/ball-stick-step.webp",
+    "online": "https://lab.tongjiang.app/c/ball-stick-step/"
+  },
+  {
+    "slug": "titration-step",
+    "subject": "chem",
+    "title": "强酸与强碱的中和滴定",
+    "type": "原理与现象",
+    "question": "前面加了 20 多毫升几乎看不出变化，为什么最后半滴颜色就全变了？",
+    "textbook": [
+      "选择性必修1 化学反应原理 · 第三章 水溶液中的离子反应与平衡 · 第二节 水的电离和溶液的pH · 酸碱中和滴定 · 实验活动2"
+    ],
+    "steps": [
+      "认识滴定装置",
+      "润洗与赶气泡",
+      "取液与加指示剂",
+      "逐滴加入",
+      "半滴到终点",
+      "读数与计算",
+      "看进去",
+      "误差与错误操作",
+      "考核 · 当滴定员"
+    ],
+    "file": "courses/titration-step.html",
+    "cover": "covers/titration-step.webp",
+    "online": "https://lab.tongjiang.app/c/titration-step/"
+  },
+  {
+    "slug": "chlorine-step",
+    "subject": "chem",
+    "title": "氯气的制备及性质",
+    "type": "原理与现象",
+    "question": "要一瓶干燥、纯净的氯气，装置里每一段各管什么？少一段会怎样？",
+    "textbook": [
+      "必修第一册 · 第二章 海水中的重要元素——钠和氯 · 第二节 氯及其化合物"
+    ],
+    "steps": [
+      "认识装置",
+      "为什么加热",
+      "为什么要浓盐酸",
+      "第一瓶洗什么",
+      "第二瓶洗什么",
+      "怎么收集",
+      "多余的氯气去哪",
+      "氯水里有什么",
+      "考核 · 当实验员"
+    ],
+    "file": "courses/chlorine-step.html",
+    "cover": "covers/chlorine-step.webp",
+    "online": "https://lab.tongjiang.app/c/chlorine-step/"
+  },
+  {
+    "slug": "blast-furnace-step",
+    "subject": "chem",
+    "title": "高炉炼铁",
+    "type": "工业流程",
+    "question": "一堆矿石从炉顶倒下去，怎么几小时后就变成一股铁水，还越省越好？",
+    "textbook": [
+      "必修第二册 · 第八章 化学与可持续发展 · 第一节 自然资源的开发利用 · 金属矿物的开发利用"
+    ],
+    "steps": [
+      "矿石变铁",
+      "分层布料",
+      "剖开看层",
+      "风口烧焦",
+      "逐级还原",
+      "石灰石造渣",
+      "风温的账",
+      "值班考核"
+    ],
+    "file": "courses/blast-furnace-step.html",
+    "cover": "covers/blast-furnace-step.webp",
+    "online": "https://lab.tongjiang.app/c/blast-furnace-step/"
+  },
+  {
+    "slug": "smelting-step",
+    "subject": "chem",
+    "title": "金属冶炼：电解熔融盐 + 铝热",
+    "type": "工业流程",
+    "question": "为什么铝只能靠电「拆」出来，而铁能被铝「换」出来？",
+    "textbook": [
+      "必修第二册 · 第八章 化学与可持续发展 · 第一节 自然资源的开发利用 · 金属矿物的开发利用"
+    ],
+    "steps": [
+      "三处台子",
+      "只能电解",
+      "剖开槽",
+      "谁往哪走",
+      "掺冰晶石",
+      "电耗的账",
+      "铝热",
+      "值班考核"
+    ],
+    "file": "courses/smelting-step.html",
+    "cover": "covers/smelting-step.webp",
+    "online": "https://lab.tongjiang.app/c/smelting-step/"
+  },
+  {
+    "slug": "coal-gas-step",
+    "subject": "chem",
+    "title": "煤的综合利用：以煤的气化为主线",
+    "type": "工业流程",
+    "question": "煤只能烧吗？怎么把煤变成能造化肥、造甲醇的气？",
+    "textbook": [
+      "必修第二册 · 第八章 化学与可持续发展 · 第一节 自然资源的开发利用 · 煤的综合利用"
+    ],
+    "steps": [
+      "为什么气化",
+      "供热还是供气",
+      "炉子里长什么样",
+      "蒸汽多好还是少好",
+      "变换调比例",
+      "为什么要脱硫",
+      "变成什么",
+      "考核"
+    ],
+    "file": "courses/coal-gas-step.html",
+    "cover": "covers/coal-gas-step.webp",
+    "online": "https://lab.tongjiang.app/c/coal-gas-step/"
+  },
+  {
+    "slug": "sulfuric-step",
+    "subject": "chem",
+    "title": "接触法制硫酸",
+    "type": "工业流程",
+    "question": "怎样把矿石里的硫，又快、又多、又省、又干净地变成硫酸？",
+    "textbook": [
+      "必修第二册 · 第五章 化工生产中的重要非金属元素 · 第一节 硫及其化合物 · 工业制硫酸"
+    ],
+    "steps": [
+      "为什么分五段",
+      "为什么先净化",
+      "为什么这个温度",
+      "为什么要常压",
+      "塔内什么样",
+      "为什么用浓硫酸",
+      "考核 · 当班长"
+    ],
+    "file": "courses/sulfuric-step.html",
+    "cover": "covers/sulfuric-step.webp",
+    "online": "https://lab.tongjiang.app/c/sulfuric-step/"
+  },
+  {
+    "slug": "hydrolysis-step",
+    "subject": "chem",
+    "title": "盐类的水解及其应用",
+    "type": "原理与现象",
+    "question": "盐电离出来的离子看上去「既不酸也不碱」，凭什么能让溶液显出酸碱性？",
+    "textbook": [
+      "选择性必修1 化学反应原理 · 第三章 水溶液中的离子反应与平衡 · 第三节 盐类的水解 · 实验活动3 盐类水解的应用"
+    ],
+    "steps": [
+      "认识实验",
+      "盐的类型",
+      "看进去",
+      "浓度",
+      "温度",
+      "加酸抑制",
+      "净水",
+      "煮沸与蒸干",
+      "考核 · 配溶液"
+    ],
+    "file": "courses/hydrolysis-step.html",
+    "cover": "covers/hydrolysis-step.webp",
+    "online": "https://lab.tongjiang.app/c/hydrolysis-step/"
+  },
+  {
+    "slug": "cement-step",
+    "subject": "chem",
+    "title": "工业制水泥",
+    "type": "工业流程",
+    "question": "一车石头和土，凭什么磨一磨、烧一烧、再磨一磨，就变成能撑起大坝的水泥？",
+    "textbook": [
+      "必修第二册 · 第五章 化工生产中的重要非金属元素 · 第三节 无机非金属材料"
+    ],
+    "steps": [
+      "看全厂",
+      "备生料",
+      "预热分解",
+      "窑里走",
+      "烧成带",
+      "急冷",
+      "加石膏",
+      "值班考核"
+    ],
+    "file": "courses/cement-step.html",
+    "cover": "covers/cement-step.webp",
+    "online": "https://lab.tongjiang.app/c/cement-step/"
+  },
+  {
+    "slug": "iron-step",
+    "subject": "chem",
+    "title": "铁及其化合物：铁的价态转化",
+    "type": "原理与现象",
+    "question": "同一个铁元素，为什么在试管里一会儿是 +2 价、一会儿是 +3 价，我们凭什么知道它是哪一个？",
+    "textbook": [
+      "必修第一册 · 第三章 铁 金属材料 · 第一节 铁及其化合物"
+    ],
+    "steps": [
+      "认识实验",
+      "白色沉淀",
+      "隔绝空气",
+      "KSCN 检验",
+      "价态降下来",
+      "价态升回去",
+      "看进去",
+      "检铁站",
+      "考核 · 压到 +2 价"
+    ],
+    "file": "courses/iron-step.html",
+    "cover": "covers/iron-step.webp",
+    "online": "https://lab.tongjiang.app/c/iron-step/"
+  },
+  {
+    "slug": "electrolysis-step",
+    "subject": "chem",
+    "title": "电解原理：电解氯化铜溶液与饱和食盐水",
+    "type": "原理与现象",
+    "question": "同一个直流电源，为什么电解氯化铜溶液得到铜和氯气，电解饱和食盐水却得到氢气、氯气和氢氧化钠？",
+    "textbook": [
+      "选择性必修1 化学反应原理 · 第四章 化学反应与电能 · 第二节 电解池 · 电解氯化铜溶液 · 电解饱和食盐水"
+    ],
+    "steps": [
+      "认识实验",
+      "接通电源",
+      "通得更久",
+      "看进去",
+      "换食盐水",
+      "阴极区变红",
+      "放电顺序",
+      "铜作阳极",
+      "考核 · 出 29.6 mg 铜"
+    ],
+    "file": "courses/electrolysis-step.html",
+    "cover": "covers/electrolysis-step.webp",
+    "online": "https://lab.tongjiang.app/c/electrolysis-step/"
+  },
+  {
+    "slug": "ammonia-step",
+    "subject": "chem",
+    "title": "氨的制备与性质（含喷泉实验）",
+    "type": "原理与现象",
+    "question": "一瓶氨气，凭什么能把烧杯里的水自己「吸」到瓶子里去？",
+    "textbook": [
+      "必修第二册 · 第五章 化工生产中的重要非金属元素 · 第二节 氮及其化合物 · 氨和铵盐"
+    ],
+    "steps": [
+      "整套装置",
+      "管口朝哪边",
+      "干燥剂选谁",
+      "怎么收集",
+      "收多久",
+      "验满与白烟",
+      "做喷泉",
+      "看进去",
+      "考核 · 做喷泉"
+    ],
+    "file": "courses/ammonia-step.html",
+    "cover": "covers/ammonia-step.webp",
+    "online": "https://lab.tongjiang.app/c/ammonia-step/"
+  },
+  {
+    "slug": "equilibrium-step",
+    "subject": "chem",
+    "title": "探究影响化学平衡移动的因素",
+    "type": "原理与实验",
+    "question": "改变一个条件，凭什么说平衡「往哪边移」？",
+    "textbook": [
+      "选择性必修1 化学反应原理 · 第二章 化学反应速率与化学平衡 · 实验活动1 探究影响化学平衡移动的因素"
+    ],
+    "steps": [
+      "认识实验台",
+      "铁管加料",
+      "铁粉减料",
+      "铬管加碱",
+      "铬管加酸",
+      "冷热两盆",
+      "看进去",
+      "误差 · 读数",
+      "考核"
+    ],
+    "file": "courses/equilibrium-step.html",
+    "cover": "covers/equilibrium-step.webp",
+    "online": "https://lab.tongjiang.app/c/equilibrium-step/"
+  },
+  {
+    "slug": "flame-step",
+    "subject": "chem",
+    "title": "焰色试验与原子光谱",
+    "type": "原理与现象",
+    "question": "金属在火焰里为什么各有各的颜色，这点颜色凭什么能当成「化验报告」？",
+    "textbook": [
+      "必修第一册 · 第二章 海水中的重要元素——钠和氯 · 第一节 钠及其化合物 · 焰色试验",
+      "选择性必修2 物质结构与性质 · 第一章 原子结构与性质 · 第一节 原子结构 · 原子光谱"
+    ],
+    "steps": [
+      "认识实验",
+      "洗净铂丝",
+      "钠双线",
+      "钾与钴玻璃",
+      "能量与波长",
+      "发射与吸收",
+      "六种金属",
+      "考核 · 验出钾"
+    ],
+    "file": "courses/flame-step.html",
+    "cover": "covers/flame-step.webp",
+    "online": "https://lab.tongjiang.app/c/flame-step/"
+  },
+  {
+    "slug": "galvanic-step",
+    "subject": "chem",
+    "title": "原电池：单液到双液",
+    "type": "原理与现象",
+    "question": "同一杯稀硫酸里已经有电流了，为什么还要换成两杯、再加一根盐桥？",
+    "textbook": [
+      "必修第二册 · 第六章 化学反应与能量 · 第一节 化学反应与能量变化 · 实验活动6 化学能转化成电能",
+      "选择性必修1 化学反应原理 · 第四章 化学反应与电能 · 第一节 原电池"
+    ],
+    "steps": [
+      "两台装置",
+      "接通导线",
+      "谁在流",
+      "单液的代价",
+      "换成双液",
+      "拔出盐桥",
+      "看进去",
+      "浓度",
+      "考核 · 组装"
+    ],
+    "file": "courses/galvanic-step.html",
+    "cover": "covers/galvanic-step.webp",
+    "online": "https://lab.tongjiang.app/c/galvanic-step/"
+  },
+  {
+    "slug": "conductivity-step",
+    "subject": "chem",
+    "title": "电解质的电离与溶液导电性、离子反应的实质",
+    "type": "原理与现象",
+    "question": "干手、湿手都是同一只手，为什么湿了反而容易触电？",
+    "textbook": [
+      "必修第一册 · 第一章 物质及其变化 · 第二节 离子反应",
+      "选择性必修1 化学反应原理 · 第三章 水溶液中的离子反应与平衡 · 第一节 电离平衡 · 强电解质和弱电解质"
+    ],
+    "steps": [
+      "认识台面",
+      "干燥与熔融",
+      "溶于水",
+      "水与蔗糖",
+      "强与弱",
+      "滴加稀硫酸",
+      "看进去",
+      "换错滴定剂",
+      "考核 · 找终点"
+    ],
+    "file": "courses/conductivity-step.html",
+    "cover": "covers/conductivity-step.webp",
+    "online": "https://lab.tongjiang.app/c/conductivity-step/"
+  },
+  {
+    "slug": "nitric-lab-step",
+    "subject": "chem",
+    "title": "浓、稀硝酸的性质与氮氧化物的转化",
+    "type": "原理与现象",
+    "question": "同样是铜和硝酸，为什么一瓶冒红棕色气体、另一瓶什么颜色都没有？",
+    "textbook": [
+      "必修第二册 · 第五章 化工生产中的重要非金属元素 · 第二节 氮及其化合物 · 一氧化氮和二氧化氮、硝酸"
+    ],
+    "steps": [
+      "整套装置",
+      "铜丝插进去",
+      "换成稀硝酸",
+      "换成铁片",
+      "尾气去哪了",
+      "棕色瓶的道理",
+      "通入空气",
+      "振荡与看进去",
+      "考核 · 转化掉它"
+    ],
+    "file": "courses/nitric-lab-step.html",
+    "cover": "covers/nitric-lab-step.webp",
+    "online": "https://lab.tongjiang.app/c/nitric-lab-step/"
+  },
+  {
+    "slug": "bromine-step",
+    "subject": "chem",
+    "title": "海水提溴：空气吹出法",
+    "type": "工业流程",
+    "question": "海水里的溴只有 65 mg/L，怎么把它变成一瓶液溴？",
+    "textbook": [
+      "必修第二册 · 第八章 化学与可持续发展 · 第一节 自然资源的开发利用 · 海水资源的开发利用"
+    ],
+    "steps": [
+      "全场",
+      "酸化",
+      "氧化",
+      "吹出",
+      "吸收",
+      "提纯",
+      "考核"
+    ],
+    "file": "courses/bromine-step.html",
+    "cover": "covers/bromine-step.webp",
+    "online": "https://lab.tongjiang.app/c/bromine-step/"
+  },
+  {
+    "slug": "sodium-step",
+    "subject": "chem",
+    "title": "金属钠的性质（含钠着火扑救）",
+    "type": "原理与现象",
+    "question": "一块银白色的小金属，为什么必须泡在煤油里，着火时连水都不能浇？",
+    "textbook": [
+      "必修第一册 · 第二章 海水中的重要元素——钠和氯 · 第一节 钠及其化合物 · 活泼的金属单质——钠"
+    ],
+    "steps": [
+      "认识实验",
+      "银白变暗",
+      "泡在煤油里",
+      "加热燃烧",
+      "浮熔游响红",
+      "钠块大小",
+      "看进去",
+      "着火扑救",
+      "考核"
+    ],
+    "file": "courses/sodium-step.html",
+    "cover": "covers/sodium-step.webp",
+    "online": "https://lab.tongjiang.app/c/sodium-step/"
+  },
+  {
+    "slug": "sulfur-step",
+    "subject": "chem",
+    "title": "硫、二氧化硫、浓硫酸的性质与不同价态含硫物质的转化",
+    "type": "原理与现象",
+    "question": "同样是硫，为什么有时它是黄色固体、有时让品红褪成无色、有时又跑进铁粉里？",
+    "textbook": [
+      "必修第二册 · 第五章 化工生产中的重要非金属元素 · 第一节 硫及其化合物",
+      "必修第二册 · 第五章 化工生产中的重要非金属元素 · 实验活动5 不同价态含硫物质的转化"
+    ],
+    "steps": [
+      "整套装置",
+      "硫粉 + 铁粉",
+      "浓硫酸与铜",
+      "浓还是稀",
+      "加热复原",
+      "三支检验管与棉团",
+      "归中到零价",
+      "看进去 · 价态电梯",
+      "考核 · 漂白到底"
+    ],
+    "file": "courses/sulfur-step.html",
+    "cover": "covers/sulfur-step.webp",
+    "online": "https://lab.tongjiang.app/c/sulfur-step/"
+  },
+  {
+    "slug": "corrosion-step",
+    "subject": "chem",
+    "title": "吸氧腐蚀与暖贴的设计",
+    "type": "原理与现象",
+    "question": "铁生锈这么慢的事，凭什么能做出一个 45 ℃ 以上的暖贴？又凭什么反过来用它保护铁不生锈？",
+    "textbook": [
+      "选择性必修1 化学反应原理 · 第四章 化学反应与电能 · 第三节 金属的腐蚀与防护 · 研究与实践：暖贴的设计与制作"
+    ],
+    "steps": [
+      "台面四站",
+      "液柱为什么升",
+      "碳粉的角色",
+      "换成酸性",
+      "看进去",
+      "暖贴发热",
+      "捂住的代价",
+      "让锌替它锈",
+      "考核 · 设计暖贴"
+    ],
+    "file": "courses/corrosion-step.html",
+    "cover": "covers/corrosion-step.webp",
+    "online": "https://lab.tongjiang.app/c/corrosion-step/"
+  },
+  {
+    "slug": "chlor-alkali-step",
+    "subject": "chem",
+    "title": "氯碱工业",
+    "type": "工业流程",
+    "question": "同样的电，怎样换来更多烧碱、更少电耗，又不出事故？",
+    "textbook": [
+      "选择性必修1 化学反应原理 · 第四章 化学反应与电能 · 第二节 电解池 · 电解饱和食盐水"
+    ],
+    "steps": [
+      "三样产品",
+      "先洗盐",
+      "剖开槽",
+      "膜里看",
+      "多加电",
+      "调槽温",
+      "拆掉膜",
+      "值班考核"
+    ],
+    "file": "courses/chlor-alkali-step.html",
+    "cover": "covers/chlor-alkali-step.webp",
+    "online": "https://lab.tongjiang.app/c/chlor-alkali-step/"
+  },
+  {
+    "slug": "hou-soda-step",
+    "subject": "chem",
+    "title": "侯氏制碱",
+    "type": "工业流程",
+    "question": "怎样用食盐和氨造出纯碱，还顺手拿到氮肥？",
+    "textbook": [
+      "必修第一册 · 第二章 海水中的重要元素——钠和氯 · 第一节 钠及其化合物 · 情境素材：侯氏制碱法"
+    ],
+    "steps": [
+      "从盐到碱",
+      "先氨后碳",
+      "为什么它自己析出",
+      "碳化温度",
+      "过滤分两路",
+      "煅烧成碱",
+      "母液与循环",
+      "你来当班长"
+    ],
+    "file": "courses/hou-soda-step.html",
+    "cover": "covers/hou-soda-step.webp",
+    "online": "https://lab.tongjiang.app/c/hou-soda-step/"
+  }
+]
