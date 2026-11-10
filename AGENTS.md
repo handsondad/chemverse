@@ -14,7 +14,7 @@
    - **首页 `#home`**：标题「化学奇遇记」，先是「小念和爸爸探索化学的奥秘」——3D 小星球上的两人（与 bodyverse 同一个 CC0 模型、同一套卡通着色和镜头；WebGL 不可用时退回 SVG 头像），两人的气泡对话点一下换一个问题，「听爸爸讲完 →」直达文章；再是 8 张主题卡。
    - **主题 `#topic/<unit>`**：主题就是 8 章 `units`（每题只属于一个主题）：`foundations` → `periodic` → `structure` → `substances` → `reactions` → `solutions` → `energy` → `industry`。页首小念和爸爸各说一句（`kidHook`、`dadLens`），问题按「入门 / 进阶 / 综合」分组，底部「换一个主题」。
    - **问题 `#q/<slug>`**：每个问题都是同一种「小念 × 爸爸」图文聊天文章，结尾「小念还想问」和「👨‍👩‍👧 给大人」。**左问答、右动画、有声音**（和 bodyverse 一样）：爸爸的回答里直接配图（`figure`），讲解动画（`film`）放在右栏，一轮问答配一到三场戏，点「看动画」播这一轮。动画默认带**语音讲解**：小念和爸爸把每一句读出来，动画按声音长度放慢，读到谁谁的气泡亮起来；播放条上的 🔊/🔇 可以关掉（记在 `localStorage`），关掉就是原速无声版。**除 `periodic`（元素周期表）主题外，每篇文章都要有讲解动画**（`tests/stories.test.ts` 会查）；周期表那几题是一栏图文，不要硬塞空右栏。**文章里不放实验台入口**（没有「🧪」按钮、没有实验台面板）。
- - **🧪 3D 实验台 `#labs`**：首页 8 张主题卡后面的第 9 张卡。**只放真正有 3D 课件（形态 C）的课**，按主题分组；揭秘卡、周期表这些不是 3D 交互的不要放进来。每个实验单独一页 `#lab/<slug>`（可在「看懂原理 / 自由实验台」间切换，下方「分段看」跳到任意一段），页首「📖 先听爸爸讲」回到对应文章。没有 3D 课件的课，旧的 `#lab/<slug>` 链接直接打开文章。
+ - **🧪 3D 实验台 `#labs`**：首页 8 张主题卡后面的第 9 张卡。**只放真正有 3D 课件（形态 C）的课**，按主题分组；揭秘卡、周期表这些不是 3D 交互的不要放进来。每个实验单独一页 `#lab/<slug>`（可在「看懂原理 / 自由实验台」间切换，下方「分段看」跳到任意一段），页首「📖 先听爸爸讲」回到对应文章。「看懂原理」和文章一样由小念、爸爸配音（同一个声音开关）；「自由实验台」是给孩子动手的简洁版——只留步骤条、这一步要做的事、几个旋钮开关和一个大读数，曲线点开才看；「独立打开 ↗」仍是完整的原版课件。没有 3D 课件的课，旧的 `#lab/<slug>` 链接直接打开文章。
    - **元素周期表**是 `periodic` 主题下的一组问题：总览题 `periodic-table` 把真正的周期表直接嵌在文章里（旧的 `#elements` 链接也跳到这里），其余各题（为什么叫周期表、同族一家人、原子大小、金属与非金属的分界线……）用小图讲，配图下的「🔍 …」一点，在文章上方弹出切好热力图 / 类别的真周期表（这是放大配图，不是实验台）。旧的 `#lesson/<slug>`、`#unit/<id>` 链接仍可用；5 个生活主题 `themes` 只保留为数据，不在界面上出现。
 3. **每节课必须从「生活中的化学（`hook`）」出发**
    - 任何课程都不能一上来堆砌考纲定义。必须先用一个日常可见的悬念提问（如“为什么牛奶要放冰箱？”、“为什么洁厕灵绝不能和 84 消毒液混用？”、“暖宝宝和铁生锈是一个原理吗？”）引导用户进入探索。
@@ -35,13 +35,13 @@
 - `src/learning/crystal.ts`：`crystal` 配图的模型与画法（金刚石晶胞 18 个碳；石墨三层 AB 错开、层间距 = 层内键长 × 2.36；石墨烯一层；食盐 3×3×3）。正交投影 + 轻透视、远的先画越远越淡，挑一个原子把它的键画成橙色；`mountCrystals(root)` 只在看得见时自转、可拖动和用方向键转，返回清理函数（`lesson.ts` 离开文章时调用）。
 - `src/learning/periodic.ts`：元素周期表只有一份 DOM（`#elements-view`），它在文章里的 `live` 图、「🔍」弹出的放大表和隐藏的 `#periodic-host` 之间搬来搬去；`applyTableLink` 切换模式与类别。
 - `src/learning/film/`：**讲解动画引擎**（纯 TS + SVG，1200×900 空白画布；`engine.ts` 时间线与缓动、`stage.ts` 把一场戏在 t 秒时画成 SVG、`player.ts` 播放器：进入视口自动播一次、可暂停拖动、按场跳转，并通过 `onTurn(turn, who)` 让对话高亮正在讲的那一轮和正在说话的人；`narration.ts` 配音版时间线：按每句话的长度把整场戏等比例拉长——出现消失、移动、液面、变色、数字、镜头都放慢，流动、脉冲这些循环动作保持原速——有声音时播放器的时钟跟着音频走，同一时间只有一部动画出声）。
-- **语音讲解**：`src/learning/voice.ts`（两人的声音与「身体奇遇记」相同：小念 `zh-CN-YunxiaNeural`，爸爸 `zh-CN-YunxiNeural` −5%；`speakable()` 把 Fe³⁺、+4 价、℃ 这些写法换成念法）、`scripts/voice.ts`（`npm run voice` 用 edge-tts + ffmpeg 生成）、音频在 `public/voice/<slug>/<轮次>-<nian|dad>.mp3`、时长和指纹在 `src/data/voice-manifest.json`。只有带动画的文章配音。
+- **语音讲解**：`src/learning/voice.ts`（两人的声音与「身体奇遇记」相同：小念 `zh-CN-YunxiaNeural`，爸爸 `zh-CN-YunxiNeural` −5%；`speakable()` 把 Fe³⁺、+4 价、℃ 这些写法换成念法）、`scripts/voice.ts`（`npm run voice` 用 edge-tts + ffmpeg 生成）、音频在 `public/voice/<slug>/<轮次>-<nian|dad>.mp3`、时长和指纹在 `src/data/voice-manifest.json`。只有带动画的文章配音。3D 实验台「看懂原理」每一段也配：小念念问题、爸爸念「你看…」「所以…」，文字取自 `course-dialogues.json`，用 `labSpeakable()` 把化学式、单位、比较号、科学记数法换成念法，音频在 `public/voice/lab/<课件>/<段>-<q|seen|concl>-<fnv1a 指纹>.mp3`、清单在 `src/data/lab-voice-manifest.json`（不进网站包）。指纹算的是课件原文，`lesson-adapter.js` 用同一个 `fnv1a` 拼出文件名，对不上就退回无声。声音开关和文章共用 `chemverse-film-voice`，默认开。
 - `scripts/`：写文章的工具，都用 vite-node 跑、直接读课程数据。`story.ts`（`story:todo` / `story:new` / `story:check` / `story:frames`）、`voice.ts` 与 `voice-clips.ts`（配音与指纹）、`import-lessons.mjs`（`node scripts/import-lessons.mjs <tongjiang-lab 目录>`：从第三方仓库复制 25 节化学 3D 课件、封面和许可文件到 `public/lessons/tongjiang/`，只在 `</head>` 前注入主题适配，并写 `lessons.json`）。`story:frames` 的联系表和截图写在 `.story-preview/`（已忽略，不提交）。临时脚本也放 `scripts/` 下（vite-node 不能跑 `-e`，也跑不了系统临时目录里的文件），用完删掉。
 - `src/learning/article.ts`：把每个问题统一成文章 `Article`（标题、`trigger`、`turns` 小念/爸爸一问一答、`tip`、可选 `film`）。有 `story` 的用 `storyArticle`；还没写 `story` 的用 `autoArticle` 把 `dialogue` 交给小念和爸爸来说，并补一轮「能用一句话总结吗？」由爸爸念出 `takeaway`。
 - `src/learning/catalog.ts`：将 `curriculum.ts`、`lessons.json`、`stories/` 与 `dialogue.ts` 合并成 `lessons`（每课带 `article`），提供按主题取题、`labName` 与「小念还想问」推荐。
 - `src/learning/pages/`：四个页面。`home.ts` 首页（3D 小星球上的小念和爸爸 + 8 张主题卡 + 「🧪 3D 实验台」卡）、`topic.ts` 主题下的问题列表（有动画的题标「🎬 有讲解动画」，只有配图的标「🖼️ 图解」）、`lesson.ts` 问题文章：有动画时宽屏左聊天右动画（吸附）、窄屏动画在上，点「看动画」播这一轮的戏；没有动画就是一栏 780px 的图文聊天；配图的「🔍 …」弹出放大的周期表（Esc 关闭）。`lab.ts` 是实验台：`#labs` 按主题分组的实验卡，`#lab/<slug>` 单个实验（3D 课件 iframe 与 `postMessage` 联动）。外壳 `app.ts` 没有顶栏，只有正文和页脚。
 - `public/theme/tokens.css`：**全站唯一颜色与设计变量源**（与 bodyverse 同一套暖色：奶油底 `#fff8f0` + 白卡片 + 浅橙描边、`'Comic Neue', 'Ma Shan Zheng'` 手写体，化学保留深绿强调色 `#1f6b55`）。`src/css/styles.css` 给所有元素设了雅黑，`learning.css` 让文章继承手写体，只有周期表的小格子仍用雅黑。
-- `public/theme/lesson.css` & `public/theme/lesson-adapter.js`：注入到独立 3D 课件 iframe 中的浅色主题适配与「看懂原理」自动演示控制器。和网站一个样子：标题、按钮、步骤条用手写体（控制台里的密集数字仍用雅黑），「看懂原理」的说明卡是小念提问、爸爸指着实验台讲的两个气泡（头像由 `lab.ts` 在 `chemverse:ready` 后用 `chemverse:avatars` 传进去，独立打开时显示「念 / 爸」），课件文案里给老师看的教材引注用和 `dialogue.ts` 同一个 `readable()` 清掉；三维场景的天空球（`side` 为背面的着色器材质）和雾在运行时刷成暖色奶油调。
+- `public/theme/lesson.css` & `public/theme/lesson-adapter.js`：注入到独立 3D 课件 iframe 中的浅色主题适配与「看懂原理」自动演示控制器。和网站一个样子：标题、按钮、步骤条用手写体（控制台里的密集数字仍用雅黑），「看懂原理」的说明卡是小念提问、爸爸指着实验台讲的两个气泡（头像由 `lab.ts` 在 `chemverse:ready` 后用 `chemverse:avatars` 传进去，独立打开时显示「念 / 爸」），课件文案里给老师看的教材引注用和 `dialogue.ts` 同一个 `readable()` 清掉；三维场景的天空球（`side` 为背面的着色器材质）和雾在运行时刷成暖色奶油调。网站里打开（URL 带 `cv-mode`）时根节点加 `cv-simple`：「自由实验台」藏起顶栏、因果链、方程式横幅、副读数、风险条、教材量程和底栏说明，左栏改叫「🧪 动手试试」（做完才露出「应该看到」），右栏改叫「🎛️ 调一调」，全部换成手写体、白卡片、浅橙描边、大圆角；窄屏是「看实验 / 调一调 / 试试看」三个页签。
 - `src/learning/element-theme.css` & `src/modules/`：元素周期表、热力图防遮挡数值胶囊（`formatTileValue`）及全浅色立体 3D 电子云弹窗。
 
 ---
@@ -121,7 +121,7 @@
 - `npm run story:new -- <slug>`：生成草稿（预填课件的对话、方程式和实验台跳转）并登记；
 - `npm run story:check -- [slug...]`：逐条检查下面的规矩，用中文指出第几轮差在哪；另用 ⚠️ 提醒哪几句配音过期、哪句里有念不顺的符号；
 - `npm run story:frames -- <slug>`：把动画每场切三帧排成联系表（`.story-preview/<slug>-frames.html`，找得到 Edge / Chrome 再出 PNG），查重叠、出框、漏出场；
-- `npm run voice -- [slug...]`：给改过或新写的句子配音（只生成新的或改过的句子，删掉的句子连音频一起清掉；要联网，需要 `python -m pip install edge-tts` 和 PATH 里的 ffmpeg / ffprobe）。**改了对话的字就要重跑**，`tests/voice.test.ts` 会查每一句的配音是不是读的现在的文字。对话里新出现的化学式、符号要念得出来，在 `voice.ts` 的 `speakable()` 里补读法。
+- `npm run voice -- [slug...]`（实验台用 `lab` 或 `lab:<课件>`）：给改过或新写的句子配音（只生成新的或改过的句子，删掉的句子连音频一起清掉；要联网，需要 `python -m pip install edge-tts` 和 PATH 里的 ffmpeg / ffprobe）。**改了对话的字就要重跑**，`tests/voice.test.ts` 会查每一句的配音是不是读的现在的文字。对话里新出现的化学式、符号要念得出来，在 `voice.ts` 的 `speakable()` 里补读法。
 
 规矩写在 `src/learning/stories/rules.ts`，`tests/stories.test.ts` 和 `story:check` 共用这一份：
 1. **标题**用小念的口吻提问，带「？」；`trigger` 一句话写小念刚遇到的那件事。

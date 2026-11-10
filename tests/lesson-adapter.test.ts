@@ -2,6 +2,7 @@ import { readFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
+import { labClipKey } from '../src/learning/voice';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const adapter = readFileSync(resolve(root, 'public', 'theme', 'lesson-adapter.js'), 'utf8');
@@ -69,7 +70,7 @@ describe('lesson adapter watch mode', () => {
       <nav id="steps"></nav>
       <aside id="left"><div class="pbody"></div></aside>
       <aside id="right"><div class="pbody"><div class="kpi"><div class="lb">浑浊时间</div><div class="vv">20.0 s</div></div></div></aside>
-      <footer id="foot"><span class="note">示意</span></footer>`;
+      <footer id="foot"><div class="nav"></div><span class="note">示意</span></footer>`;
     lab = fakeLab();
     (window as unknown as { __lab: unknown }).__lab = lab;
   });
@@ -79,12 +80,13 @@ describe('lesson adapter watch mode', () => {
     vi.clearAllTimers();
     vi.useRealTimers();
     vi.restoreAllMocks();
-    for (const key of ['speechSynthesis', 'SpeechSynthesisUtterance', '__lab']) Reflect.deleteProperty(window, key);
+    Reflect.deleteProperty(window, '__lab');
+    document.documentElement.classList.remove('cv-simple', 'cv-show-chart', 'cv-compact');
     Object.defineProperty(window, 'parent', parentDescriptor);
   });
 
   it('plays each authored step with its own start state, demo value, observation and conclusion', async () => {
-    await load('?cv-mode=watch');
+    await load('?cv-mode=watch&cv-narration=0');
     const html = document.documentElement;
     expect(html.dataset.cvMode).toBe('watch');
     expect(card().querySelectorAll('.cvw-dot')).toHaveLength(3);
@@ -135,12 +137,12 @@ describe('lesson adapter watch mode', () => {
     const parent = host.contentWindow!;
     const post = vi.spyOn(parent, 'postMessage').mockImplementation(() => {});
     Object.defineProperty(window, 'parent', { value: parent, configurable: true });
-    const speak = vi.fn();
-    const cancel = vi.fn();
-    Object.assign(window, {
-      speechSynthesis: { getVoices: () => [{ lang: 'zh-CN' }], speak, cancel, addEventListener() {} },
-      SpeechSynthesisUtterance: class { constructor(public text: string) {} },
+    const played: HTMLMediaElement[] = [];
+    vi.spyOn(HTMLMediaElement.prototype, 'play').mockImplementation(function (this: HTMLMediaElement) {
+      played.push(this);
+      return Promise.resolve();
     });
+    vi.spyOn(HTMLMediaElement.prototype, 'pause').mockImplementation(() => undefined);
 
     await load('?cv-mode=watch&cv-narration=1');
     expect(post).toHaveBeenCalledWith({ type: 'chemverse:ready' }, '*');
@@ -149,10 +151,27 @@ describe('lesson adapter watch mode', () => {
     expect(card().querySelector('.cvw-avatar svg')).toBeNull();
     window.dispatchEvent(new MessageEvent('message', { data: avatars, source: parent }));
     expect(card().querySelectorAll('.cvw-avatar.has-art svg')).toHaveLength(2);
-    expect(speak).toHaveBeenCalledWith(expect.objectContaining({ text: '台面上有什么？' }));
-    expect(action('朗读').getAttribute('aria-pressed')).toBe('true');
 
-    action('朗读').click();
+    // 小念先问：念的是 npm run voice 配好的那一句，文件名的指纹和配音脚本一致
+    expect(played).toHaveLength(1);
+    expect(played[0].src).toMatch(new RegExp(`/voice/${labClipKey('lesson', 0, 'q', '台面上有什么？')}\\.mp3$`));
+    expect(text('.cvw-line.is-nian').classList.contains('is-speaking')).toBe(true);
+    await vi.advanceTimersByTimeAsync(5000);
+    expect(lab.set).not.toHaveBeenCalledWith('V', 1);
+    played[0].dispatchEvent(new Event('ended'));
+    await vi.advanceTimersByTimeAsync(0);
+    expect(text('.cvw-line.is-nian').classList.contains('is-speaking')).toBe(false);
+    await vi.advanceTimersByTimeAsync(1500);
+    expect(played.at(-1)!.src).toMatch(new RegExp(`/voice/${labClipKey('lesson', 0, 'seen', '四站都在（教材 p.34 的注意框）')}\\.mp3$`));
+    expect(text('.cvw-line.is-dad').classList.contains('is-speaking')).toBe(true);
+    played.at(-1)!.dispatchEvent(new Event('error'));
+    await vi.advanceTimersByTimeAsync(2300);
+    expect(text('.cvw-concl').hidden).toBe(false);
+    expect(played.at(-1)!.src).toContain('/0-concl-');
+
+    expect(action('讲解').getAttribute('aria-pressed')).toBe('true');
+    action('讲解').click();
+    expect(action('讲解').textContent).toBe('🔇 讲解');
     expect(post).toHaveBeenCalledWith({ type: 'chemverse:narration', on: false }, '*');
 
     action('我想自己动手').click();
@@ -187,8 +206,39 @@ describe('lesson adapter watch mode', () => {
   it('leaves standalone lessons as the original lab bench', async () => {
     await load('');
     expect(document.documentElement.dataset.cvMode).toBeUndefined();
+    expect(document.documentElement.classList.contains('cv-simple')).toBe(false);
     expect(document.getElementById('cv-watch')).toBeNull();
     expect(document.getElementById('cv-to-watch')).toBeNull();
     expect(lab.goto).not.toHaveBeenCalled();
+  });
+
+  it('opens the free lab inside the site as a simple bench: friendly headings and the chart folded away', async () => {
+    document.querySelector('#left')!.insertAdjacentHTML('afterbegin', '<div class="phead"><h2>本步</h2></div>');
+    document.querySelector('#left .pbody')!.innerHTML = '<b class="cq">教材只给了用品，怎么填？</b><p class="ctxt">变量控制（教材原话）</p>';
+    document.querySelector('#right')!.insertAdjacentHTML('afterbegin', '<div class="phead"><h2>中控台</h2></div>');
+    document.querySelector('#right .pbody')!.insertAdjacentHTML('beforeend', '<div class="chartwrap"><canvas></canvas></div>');
+    const resize = vi.fn();
+    window.addEventListener('resize', resize);
+    await load('?cv-mode=lab&cv-narration=0');
+    const html = document.documentElement;
+    expect(html.dataset.cvMode).toBeUndefined();
+    expect(html.classList.contains('cv-simple')).toBe(true);
+    expect(document.querySelector('#left h2')!.textContent).toBe('🧪 动手试试');
+    expect(document.querySelector('#right h2')!.textContent).toBe('🎛️ 调一调');
+    expect(document.querySelector('#left .cq')!.textContent).toBe('实验台上只摆了用品，怎么填？');
+    expect(document.querySelector('#left .ctxt')!.textContent).toBe('变量控制');
+    document.querySelector('#left .ctxt')!.textContent = '浓度减半（教材 p.35）';
+    await vi.advanceTimersByTimeAsync(0);
+    expect(document.querySelector('#left .ctxt')!.textContent).toBe('浓度减半');
+    expect([...document.querySelectorAll('#cv-views button')].map(button => button.textContent)).toEqual(['看实验', '调一调', '试试看']);
+    const toggle = document.querySelector<HTMLButtonElement>('.cv-chart-toggle')!;
+    expect(toggle.nextElementSibling!.classList.contains('chartwrap')).toBe(true);
+    expect(toggle.getAttribute('aria-expanded')).toBe('false');
+    resize.mockClear();
+    toggle.click();
+    expect(html.classList.contains('cv-show-chart')).toBe(true);
+    expect(toggle.textContent).toBe('📈 收起曲线');
+    expect(resize).toHaveBeenCalled();
+    expect(document.querySelector('#foot #cv-to-watch')).not.toBeNull();
   });
 });

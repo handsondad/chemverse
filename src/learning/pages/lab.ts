@@ -4,6 +4,7 @@ import { html, setHtml, type SafeHtml } from '../html';
 import { icon } from '../visuals';
 import { getElement } from '../../utils/dom';
 import { avatar } from '../../series/avatar';
+import { readVoicePreference, saveVoicePreference } from '../film/player';
 
 /**
  * 「🧪 3D 实验台」：只放真正的 3D 课件，按 8 个主题分组。
@@ -11,7 +12,6 @@ import { avatar } from '../../series/avatar';
  */
 
 const READY_TIMEOUT = 25000;
-const NARRATION_KEY = 'chemverse.narration';
 const MODES = [['watch', '看懂原理'], ['lab', '自由实验台']] as const;
 type LabMode = typeof MODES[number][0];
 const READY_STATUS: Record<LabMode, string> = {
@@ -43,23 +43,6 @@ function isMode(value: unknown): value is LabMode {
   return MODES.some(([mode]) => mode === value);
 }
 
-function narrationEnabled(): boolean {
-  try {
-    return localStorage.getItem(NARRATION_KEY) === '1';
-  } catch {
-    return false;
-  }
-}
-
-function saveNarration(on: boolean): void {
-  try {
-    if (on) localStorage.setItem(NARRATION_KEY, '1');
-    else localStorage.removeItem(NARRATION_KEY);
-  } catch {
-    // Narration then stays a per-visit choice.
-  }
-}
-
 export function handleLabMessage(event: MessageEvent<unknown>): void {
   const frame = document.querySelector<HTMLIFrameElement>('#lesson-player iframe');
   if (!frame || event.source !== frame.contentWindow || !event.data || typeof event.data !== 'object') return;
@@ -86,7 +69,7 @@ export function handleLabMessage(event: MessageEvent<unknown>): void {
   }
   if (data.type === 'chemverse:mode' && 'mode' in data && isMode(data.mode)) activePlayer?.showMode(data.mode);
   if (data.type === 'chemverse:go-check' && currentLab) location.hash = `q/${currentLab.slug}`;
-  if (data.type === 'chemverse:narration' && 'on' in data && typeof data.on === 'boolean') saveNarration(data.on);
+  if (data.type === 'chemverse:narration' && 'on' in data && typeof data.on === 'boolean') saveVoicePreference(data.on);
   if (data.type === 'chemverse:error') {
     clearTimeout(frameTimeout);
     getElement('player-status').textContent = '实验启动失败，请重新开始或独立打开，并检查浏览器 WebGL 2 支持。';
@@ -215,8 +198,9 @@ export function renderLab(content: HTMLElement, lesson: Lesson): void {
     const iframe = document.createElement('iframe');
     iframe.title = `${lesson.title} · 交互式三维课件`;
     iframe.setAttribute('sandbox', 'allow-scripts');
+    iframe.setAttribute('allow', 'autoplay; fullscreen');
     iframe.allowFullscreen = true;
-    iframe.src = `${lessonAsset(file)}?cv-mode=${state.mode}${narrationEnabled() ? '&cv-narration=1' : ''}`;
+    iframe.src = `${lessonAsset(file)}?cv-mode=${state.mode}&cv-narration=${readVoicePreference() ? '1' : '0'}`;
     iframe.addEventListener('error', () => { status.textContent = '实验页面加载失败，请重新开始或独立打开。'; });
     player.append(iframe);
     frameTimeout = setTimeout(() => {

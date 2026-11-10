@@ -147,7 +147,7 @@ const NATIVE_DIALOGUES: Record<string, DialogueTurn[]> = {
 };
 
 /** Courseware copy cites the textbook for teachers (「（教材原话）」「教材 p.35：」); readers of an article don't need it. */
-function readable(text: string): string {
+export function readable(text: string): string {
   return text
     .replace(/（[^（）]*教材[^（）]*）/g, '')
     .replace(/（p\.\s*\d+）/g, '')

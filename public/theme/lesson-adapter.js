@@ -85,10 +85,17 @@
       details.append(summary, paragraph);
       left.append(details);
     }
+    // 网站里打开（带 cv-mode）时，「自由实验台」只留孩子动手要用的：步骤、这一步做什么、几个旋钮和主读数。
+    // 独立打开的完整课件不受影响。
+    const simple = watchEnabled;
+    if (simple) simplify(left, right);
     const nav = document.createElement('nav');
     nav.id = 'cv-views';
     nav.setAttribute('aria-label', '实验视图');
-    for (const [view, title] of [['scene', '场景'], ['controls', '操作'], ['guide', '讲解']]) {
+    const viewTitles = simple
+      ? [['scene', '看实验'], ['controls', '调一调'], ['guide', '试试看']]
+      : [['scene', '场景'], ['controls', '操作'], ['guide', '讲解']];
+    for (const [view, title] of viewTitles) {
       const button = document.createElement('button');
       button.type = 'button';
       button.dataset.view = view;
@@ -101,7 +108,8 @@
     const label = document.createElement('span');
     label.textContent = '探索步骤';
     const score = document.querySelector('.hud .score');
-    if (score) {
+    if (simple) label.textContent = '第几步';
+    else if (score) {
       const syncScore = () => { label.textContent = `步骤 · ${score.textContent.trim()}`; };
       new MutationObserver(syncScore).observe(score, { childList: true, subtree: true, characterData: true });
       syncScore();
@@ -195,6 +203,45 @@
     if (watchEnabled) installWatch(lab, syncPanels);
   }
 
+  function simplify(left, right) {
+    document.documentElement.classList.add('cv-simple');
+    const rename = (panel, text) => {
+      const heading = panel.querySelector('.phead h2');
+      if (heading) heading.textContent = text;
+    };
+    rename(left, '🧪 动手试试');
+    rename(right, '🎛️ 调一调');
+    // 左栏的问题、要做的事和结论也去掉给老师看的教材引注；课件换步骤会重写这几处，所以一直看着
+    const tidy = () => {
+      for (const node of left.querySelectorAll('.cq, .atxt, .ev, .ctxt')) {
+        if (node.childElementCount) continue;
+        const clean = readable(node.textContent);
+        if (clean !== node.textContent) node.textContent = clean;
+      }
+    };
+    new MutationObserver(tidy).observe(left, { childList: true, subtree: true, characterData: true });
+    tidy();
+    // 曲线默认收起，想看再点开；画布从隐藏变出来要重新量一次尺寸
+    const chart = right.querySelector('.chartwrap');
+    if (chart) {
+      const toggle = document.createElement('button');
+      toggle.type = 'button';
+      toggle.className = 'cv-chart-toggle';
+      const sync = () => {
+        const open = document.documentElement.classList.contains('cv-show-chart');
+        toggle.textContent = open ? '📈 收起曲线' : '📈 看曲线';
+        toggle.setAttribute('aria-expanded', String(open));
+      };
+      toggle.addEventListener('click', () => {
+        document.documentElement.classList.toggle('cv-show-chart');
+        sync();
+        window.dispatchEvent(new Event('resize'));
+      });
+      sync();
+      chart.before(toggle);
+    }
+  }
+
   /**
    * "看懂原理" mode: plays each step's own authored demo (start state, demo
    * value, expected observation and conclusion) without the console panels.
@@ -212,9 +259,23 @@
     }
     const watching = () => root.dataset.cvMode === 'watch';
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const speech = 'speechSynthesis' in window ? window.speechSynthesis : null;
-    let narrate = params.get('cv-narration') === '1';
-    let voice = null;
+    // 和文章一样的两个声音：npm run voice 预先把每一段念好，文件名带着原文的指纹；
+    // 对不上（课件改了字、还没配音）就退回无声，按原来的节奏停顿。
+    const slug = location.pathname.match(/([\w-]+)\.html$/)?.[1] ?? '';
+    const fnv1a = text => {
+      let hash = 0x811c9dc5;
+      for (let i = 0; i < text.length; i++) {
+        hash ^= text.charCodeAt(i);
+        hash = Math.imul(hash, 0x01000193) >>> 0;
+      }
+      return hash.toString(16).padStart(8, '0');
+    };
+    const clipUrl = (segment, part, raw) =>
+      new URL(`../../../voice/lab/${slug}/${segment}-${part}-${fnv1a(raw)}.mp3`, location.href).href;
+    const audio = new Audio();
+    audio.preload = 'auto';
+    let narrate = params.get('cv-narration') !== '0';
+    let hush = null;
     let current = 0;
     let run = 0;
 
@@ -232,14 +293,13 @@
 
     const progress = element('span', { className: 'cvw-progress' });
     const dots = element('div', { className: 'cvw-dots' });
-    const voiceButton = button('朗读', 'cvw-voice', () => {
+    const voiceButton = button('', 'cvw-voice', () => {
       narrate = !narrate;
       syncVoice();
       post({ type: 'chemverse:narration', on: narrate });
-      if (narrate) say(segments[current].step.q);
-      else speech?.cancel();
+      if (narrate) play(current);
+      else hush?.();
     });
-    voiceButton.hidden = true;
     const question = element('h2', { className: 'cvw-question' });
     const equation = element('p', { className: 'cvw-eq' });
     const readingLabel = element('span');
@@ -256,9 +316,11 @@
     const line = (who, name, ...children) => element('div', { className: `cvw-line is-${who}` },
       avatars[who],
       element('div', { className: 'cvw-bubble' }, element('span', { className: 'cvw-name', textContent: name }), ...children));
-    const body = element('div', { className: 'cvw-body' },
-      line('nian', '小念', question),
-      line('dad', '爸爸', equation, reading, status, seen, conclusion));
+    const lines = {
+      nian: line('nian', '小念', question),
+      dad: line('dad', '爸爸', equation, reading, status, seen, conclusion),
+    };
+    const body = element('div', { className: 'cvw-body' }, lines.nian, lines.dad);
     body.setAttribute('aria-live', 'polite');
     const previous = button('← 上一段', 'cvw-btn', () => play(current - 1));
     const replay = button('↻ 再看一遍', 'cvw-btn', () => play(current));
@@ -279,7 +341,9 @@
     });
     const toWatch = element('button', { type: 'button', className: 'btn', id: 'cv-to-watch', textContent: '看懂原理' });
     toWatch.addEventListener('click', () => setMode('watch', true));
-    document.querySelector('.hud')?.prepend(toWatch);
+    // 网站外面有「看懂原理 / 自由实验台」开关；单独打开时顶栏藏起来了，按钮放到底栏
+    if (root.classList.contains('cv-simple') && !embedded) document.querySelector('#foot .nav')?.append(toWatch);
+    else document.querySelector('.hud')?.prepend(toWatch);
     document.body.append(card);
 
     // The live main reading sits in the hidden console; mirror it on the card.
@@ -300,23 +364,50 @@
     syncReading();
 
     function syncVoice() {
-      voiceButton.textContent = narrate ? '朗读：开' : '朗读：关';
+      voiceButton.textContent = narrate ? '🔊 讲解' : '🔇 讲解';
+      voiceButton.title = narrate ? '关掉小念和爸爸的声音' : '听小念和爸爸讲';
       voiceButton.setAttribute('aria-pressed', String(narrate));
     }
-    function pickVoice() {
-      const voices = speech?.getVoices() ?? [];
-      voice = voices.find(v => /^zh[-_]CN/i.test(v.lang)) ?? voices.find(v => /^zh/i.test(v.lang)) ?? null;
-      voiceButton.hidden = !voice;
-    }
-    speech?.addEventListener?.('voiceschanged', pickVoice);
-    pickVoice();
     syncVoice();
-    function say(text) {
-      if (!narrate || !voice || !text) return;
-      const utterance = new SpeechSynthesisUtterance(text.replace(/→/g, '，'));
-      utterance.voice = voice;
-      utterance.lang = voice.lang;
-      speech.speak(utterance);
+    /** 念完（或没法念）才 resolve：true 表示真的念了，false 时调用方自己停顿一会儿 */
+    function speak(part, raw, who, token) {
+      hush?.();
+      if (!narrate || !raw || token !== run) return Promise.resolve(false);
+      return new Promise(resolve => {
+        let settled = false;
+        let timer = 0;
+        const finish = spoken => {
+          if (settled) return;
+          settled = true;
+          clearTimeout(timer);
+          hush = null;
+          audio.onended = audio.onerror = audio.onloadedmetadata = null;
+          lines[who].classList.remove('is-speaking');
+          resolve(spoken && token === run);
+        };
+        hush = () => { audio.pause(); finish(false); };
+        // 迟迟加载不出来、或者念完了却没等到 ended，都别让演示卡住
+        const giveUp = ms => {
+          clearTimeout(timer);
+          timer = setTimeout(hush, ms);
+        };
+        giveUp(8000);
+        audio.onloadedmetadata = () => giveUp((Number.isFinite(audio.duration) ? audio.duration : 30) * 1000 + 2000);
+        audio.onended = () => finish(true);
+        audio.onerror = () => finish(false);
+        audio.src = clipUrl(current, part, raw);
+        lines[who].classList.add('is-speaking');
+        let playing;
+        try { playing = audio.play(); } catch (error) { playing = Promise.reject(error); }
+        Promise.resolve(playing).catch(error => {
+          // 浏览器不让自动出声：先无声演示，点一下 🔊 就能听
+          if (error?.name === 'NotAllowedError') {
+            narrate = false;
+            syncVoice();
+          }
+          finish(false);
+        });
+      });
     }
 
     const pause = (ms, token) => new Promise(resolve => setTimeout(() => resolve(token === run), ms));
@@ -366,7 +457,7 @@
       const token = ++run;
       current = index;
       post({ type: 'chemverse:step', step: index });
-      speech?.cancel();
+      hush?.();
       const { step } = segments[index];
       progress.textContent = `第 ${index + 1} / ${segments.length} 段 · ${step.tag}`;
       dots.querySelectorAll('button').forEach((dot, i) => {
@@ -385,32 +476,36 @@
       next.textContent = index < segments.length - 1 ? '下一段 →' : embedded ? '小念还想问 →' : '演示结束';
       next.disabled = index === segments.length - 1 && !embedded;
       lab.goto(segments[index].index);
-      say(readable(step.q));
-      if (!(await pause(1000, token))) return;
+      if (!(await speak('q', step.q, 'nian', token)) && !(await pause(1000, token))) return;
+      if (token !== run) return;
       settleStart(step.start);
       if (!(await demonstrate(step.act, token))) return;
       if (!(await pause(1400, token))) return;
-      const expected = readable(step.expect?.text);
+      const expectedRaw = step.expect?.text ?? '';
+      const expected = readable(expectedRaw);
       if (expected) {
         seen.replaceChildren(element('strong', { textContent: '👀 你看到' }), expected);
         seen.hidden = false;
         status.hidden = true;
-        say(expected);
-        if (!(await pause(2200, token))) return;
+        if (!(await speak('seen', expectedRaw, 'dad', token)) && !(await pause(2200, token))) return;
+        if (token !== run) return;
       }
-      const concl = readable(conclusionText(step.concl));
+      const conclRaw = conclusionText(step.concl);
+      const concl = readable(conclRaw);
       if (concl) {
         lab.reveal?.();
         conclusion.replaceChildren(element('strong', { textContent: '💡 所以' }), concl);
         conclusion.hidden = false;
-        say(concl);
+        status.hidden = true;
+        replay.disabled = false;
+        await speak('concl', conclRaw, 'dad', token);
       }
       status.hidden = true;
       replay.disabled = false;
     }
     function stop() {
       run++;
-      speech?.cancel();
+      hush?.();
     }
     function setMode(mode, announce) {
       if (mode === (watching() ? 'watch' : 'lab')) return;

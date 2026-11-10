@@ -419,10 +419,12 @@ describe('learning workspace', () => {
   });
 
   it('starts simulation lessons in the guided watch mode and keeps the lab bench one switch away', async () => {
+    localStorage.removeItem('chemverse-film-voice');
     await start();
     navigate('#lab/rate-step');
     const frame = document.querySelector('iframe')!;
-    expect(frame.getAttribute('src')).toMatch(/rate-step\.html\?cv-mode=watch$/);
+    expect(frame.getAttribute('src')).toMatch(/rate-step\.html\?cv-mode=watch&cv-narration=1$/);
+    expect(frame.getAttribute('allow')).toContain('autoplay');
     const [watch, lab] = document.querySelectorAll<HTMLButtonElement>('.mode-switch button');
     expect(watch.getAttribute('aria-pressed')).toBe('true');
     const post = vi.spyOn(frame.contentWindow!, 'postMessage');
@@ -436,6 +438,9 @@ describe('learning workspace', () => {
     window.dispatchEvent(new MessageEvent('message', { data: { type: 'chemverse:ready' }, source: frame.contentWindow }));
     expect(document.getElementById('player-status')?.textContent).toContain('说明卡');
 
+    // 实验台和文章的讲解动画共用一个声音开关
+    window.dispatchEvent(new MessageEvent('message', { data: { type: 'chemverse:narration', on: false }, source: frame.contentWindow }));
+    expect(localStorage.getItem('chemverse-film-voice')).toBe('off');
     window.dispatchEvent(new MessageEvent('message', { data: { type: 'chemverse:narration', on: true }, source: frame.contentWindow }));
     document.getElementById('reload-lesson')?.click();
     const reloaded = document.querySelector('iframe')!;

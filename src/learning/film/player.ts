@@ -22,11 +22,20 @@ type Options = {
 
 const VOICE_KEY = 'chemverse-film-voice';
 
-function readVoicePreference(): boolean {
+/** 文章的讲解动画和 3D 实验台共用这一个声音开关，默认开 */
+export function readVoicePreference(): boolean {
   try {
     return localStorage.getItem(VOICE_KEY) !== 'off';
   } catch {
     return true;
+  }
+}
+
+export function saveVoicePreference(on: boolean): void {
+  try {
+    localStorage.setItem(VOICE_KEY, on ? 'on' : 'off');
+  } catch (error) {
+    console.error('声音开关保存失败', error);
   }
 }
 
@@ -239,11 +248,7 @@ export function mountFilm(host: HTMLElement, film: Film, options: Options = {}):
   const toggleVoice = (): void => {
     if (!narrated) return;
     voiceOn = !voiceOn;
-    try {
-      localStorage.setItem(VOICE_KEY, voiceOn ? 'on' : 'off');
-    } catch (error) {
-      console.error('声音开关保存失败', error);
-    }
+    saveVoicePreference(voiceOn);
     const { index, local } = sceneAt(active, now);
     const target = voiceOn ? narrated.film : film;
     const at = sceneStart(target, index) + local * (target.scenes[index].duration / active.scenes[index].duration);

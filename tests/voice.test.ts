@@ -1,12 +1,12 @@
 import { existsSync, readFileSync } from 'node:fs';
 import { join } from 'node:path';
 import { describe, expect, it, vi } from 'vitest';
-import { clipHash, wantedClips } from '../scripts/voice-clips';
+import { clipHash, wantedClips, wantedLabClips } from '../scripts/voice-clips';
 import { lineAt, narrateFilm, narrationGaps, stretchScene } from '../src/learning/film/narration';
 import { mountFilm } from '../src/learning/film/player';
 import { stories } from '../src/learning/stories';
 import type { Cue, Film, FilmScene } from '../src/learning/stories/types';
-import { clipKey, speakable, type FilmVoice, type VoiceManifest } from '../src/learning/voice';
+import { clipKey, fnv1a, labSpeakable, speakable, type FilmVoice, type VoiceManifest } from '../src/learning/voice';
 
 const root = process.cwd();
 const manifest = JSON.parse(readFileSync(join(root, 'src/data/voice-manifest.json'), 'utf8')) as VoiceManifest;
@@ -32,6 +32,33 @@ describe('小念和爸爸的配音', () => {
       else if (!existsSync(join(root, 'public/voice', `${key}.mp3`))) problems.push(`${key} 缺音频文件`);
     }
     expect(problems.slice(0, 10), `共 ${problems.length} 句要重新配音：npm run voice`).toEqual([]);
+  });
+
+  it('voices every 3D lab segment the same two characters, reading the current courseware text', () => {
+    const labManifest = JSON.parse(readFileSync(join(root, 'src/data/lab-voice-manifest.json'), 'utf8')) as VoiceManifest;
+    expect(labManifest.voices).toEqual(manifest.voices);
+    const wanted = wantedLabClips();
+    expect(wanted.size).toBeGreaterThan(500);
+    const problems: string[] = [];
+    for (const [key, clip] of wanted) {
+      expect(clip.who).toBe(key.includes('-q-') ? 'nian' : 'dad');
+      const saved = labManifest.clips[key];
+      if (!saved) problems.push(`${key} 没有配音`);
+      else if (saved.hash !== clipHash(clip.who, clip.text)) problems.push(`${key} 文字改过了`);
+      else if (!existsSync(join(root, 'public/voice', `${key}.mp3`))) problems.push(`${key} 缺音频文件`);
+    }
+    expect(problems.slice(0, 10), `共 ${problems.length} 段要重新配音：npm run voice -- lab`).toEqual([]);
+  });
+
+  it('reads the lab bench notation aloud: formulas by name, units, comparisons and powers of ten', () => {
+    expect(labSpeakable('收集 10 mL H₂ 的时间由 64.0 s 变成 16.0 s（教材图 2-1）')).toBe('收集 10毫升氢气的时间由 64.0秒变成 16.0秒');
+    expect(labSpeakable('2Br⁻ + Cl₂ = Br₂ + 2Cl⁻')).toBe('2溴离子和氯气，生成溴和2氯离子');
+    expect(labSpeakable('2Cl⁻ − 2e⁻ = Cl₂↑')).toBe('2氯离子失去2个电子，生成氯气');
+    expect(labSpeakable('V(HCl) = 21.04 mL；Q = 26 < K = 146')).toBe('氯化氢的体积等于21.04毫升；Q等于26小于K等于146');
+    expect(labSpeakable('浓度 1.1×10⁻⁵ mmol/L，速率 8×')).toBe('浓度 1.1乘10的负5次方毫摩尔每升，速率 8倍');
+    expect(labSpeakable('① 浓度对比 → ② 温度对比')).toBe('一、浓度对比，变成二、温度对比');
+    expect(labSpeakable('钾还有 4s 轨道，维生素 C 有还原性')).toBe('钾还有 4s 轨道，维生素Ｃ 有还原性');
+    expect(fnv1a('台面上有什么？')).toMatch(/^[0-9a-f]{8}$/);
   });
 
   it('reads chemistry notation the way a parent would say it', () => {

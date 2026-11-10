@@ -77,7 +77,7 @@ description: >-
 | `npm run story:new -- <slug>` | 生成草稿（预填课件的对话、方程式和实验台跳转），并登记到 `stories/index.ts` |
 | `npm run story:check -- [slug...]` | 逐条检查写作规矩，用中文指出第几轮 / 第几场差在哪；不写 slug 就查全部。❌ 是没过；⚠️ 是提醒：哪几句配音过期、哪句里有念不顺的符号（下标、上标、英文字母串） |
 | `npm run story:frames -- <slug>` | 把动画每场切三帧（开头不久、中间、快结束）排成联系表 `.story-preview/<slug>-frames.html`，找得到 Edge / Chrome（或设了 `CHROME_PATH`）就再出一张 PNG。用来查元素重叠、字出框、该出现的没出现 |
-| `npm run voice -- [slug...]` | 用 edge-tts 给新写或改过的句子配音（`public/voice/`、`src/data/voice-manifest.json`）；化学式的念法在 `src/learning/voice.ts` 的 `speakable()` |
+| `npm run voice -- [slug...]` | 用 edge-tts 给新写或改过的句子配音（`public/voice/`、`src/data/voice-manifest.json`）；化学式的念法在 `src/learning/voice.ts` 的 `speakable()`。`npm run voice -- lab`（或 `lab:<课件>`）给 3D 实验台「看懂原理」配音，念法在 `labSpeakable()`，清单是 `src/data/lab-voice-manifest.json` |
 
 规则本身在 `src/learning/stories/rules.ts`，`tests/stories.test.ts` 用的是同一份。改规矩时只改那里，并同步本 skill 和 `AGENTS.md`。工具都在 `scripts/story.ts`（`story:*`）和 `scripts/voice.ts`；加新工具时登记到 `package.json` 和上面这张表。
 

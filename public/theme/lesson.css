@@ -171,6 +171,84 @@ body #cv-startup-error { position: fixed; inset: 20px 20px auto; z-index: 999; p
   .cv-compact body :is(#left,#right) { top: 194px; }
 }
 
+/* 「自由实验台」（网站里打开时）：孩子听完原理自己动手，只留步骤条、这一步要做的事、
+   几个旋钮开关和一个大读数；字和卡片跟网站一样是手写体、白卡片、浅橙描边、大圆角。
+   顶栏、因果链、方程式横幅、副读数、风险条、教材量程和底栏说明都收起来。 */
+.cv-simple:not([data-cv-mode]) {
+  --font: var(--cv-font) !important;
+  --top-h: 0px !important;
+  --steps-h: 52px !important;
+  --foot-h: 54px !important;
+  --panelw-l: clamp(250px, 24vw, 300px) !important;
+  --panelw-r: clamp(240px, 23vw, 290px) !important;
+}
+.cv-simple:not([data-cv-mode]) body :is(#top, #eqb, #cv-model-note) { display: none !important; }
+.cv-simple:not([data-cv-mode]) body :is(#steps, #left, #right, #foot) {
+  background: var(--cv-surface); border: 2px solid var(--cv-border); box-shadow: var(--cv-shadow-sm);
+  backdrop-filter: none; -webkit-backdrop-filter: none;
+}
+.cv-simple:not([data-cv-mode]) body :is(#left, #right) { border-radius: 20px; }
+.cv-simple:not([data-cv-mode]) body :is(#steps, #foot) { border-radius: 999px; }
+.cv-simple:not([data-cv-mode]) body #steps .sb { display: none; }
+.cv-simple:not([data-cv-mode]) body #steps .chip { font: 700 13.5px var(--cv-font); }
+.cv-simple:not([data-cv-mode]) body #steps .chip .node { font-family: var(--cv-font); }
+.cv-simple:not([data-cv-mode]) body #steps .chip.on .node { background: #ff9f43; box-shadow: 0 0 0 4px #ffe3c4; }
+.cv-simple:not([data-cv-mode]) body #steps .chip.on .nm { color: var(--cv-text); }
+.cv-simple:not([data-cv-mode]) body .phead { border-bottom: 2px dashed var(--cv-border); }
+.cv-simple:not([data-cv-mode]) body .phead h2 { font: 700 17px var(--cv-font); color: var(--cv-text); }
+.cv-simple:not([data-cv-mode]) body .phead .sub { display: none; }
+.cv-simple:not([data-cv-mode]) body .btn {
+  font: 700 13.5px var(--cv-font); border: 2px solid var(--cv-border); border-radius: 999px; background: var(--cv-surface); color: var(--cv-text-2);
+}
+.cv-simple:not([data-cv-mode]) body .btn:hover:not(:disabled) { border-color: #ffc58f; }
+.cv-simple:not([data-cv-mode]) body .btn.pri { background: var(--cv-accent); border-color: var(--cv-accent); color: var(--cv-accent-ink); }
+.cv-simple:not([data-cv-mode]) body .btn.pri:hover:not(:disabled) { background: var(--cv-accent-hover); border-color: var(--cv-accent-hover); }
+/* 左边「动手试试」：问题、要做的事、做完才出现的「应该看到」、揭示后的一句结论 */
+.cv-simple:not([data-cv-mode]) body #left :is(.csub, .tagrow, .crumb, .ref, .ptslb, .pts, .whybox) { display: none !important; }
+.cv-simple:not([data-cv-mode]) body #left .block.act:has(.exbadge.todo) .etxt { display: none; }
+.cv-simple:not([data-cv-mode]) body #left .pbody { gap: 12px; padding: 14px; }
+.cv-simple:not([data-cv-mode]) body #left .cardhead .cno { background: #ff9f43; color: #fff; font-family: var(--cv-font); }
+.cv-simple:not([data-cv-mode]) body #left .cardhead .cq { font: 700 17px/1.55 var(--cv-font); color: var(--cv-text); }
+.cv-simple:not([data-cv-mode]) body #left .block.act {
+  padding: 10px 12px; border: 2px solid #ffd7a8; border-radius: 16px; background: #fff7e6;
+}
+.cv-simple:not([data-cv-mode]) body #left .block.act .lb { font-size: 13px; color: #a8501a; }
+.cv-simple:not([data-cv-mode]) body #left .block.act .atxt { font-size: 15px; line-height: 1.65; color: var(--cv-text); }
+.cv-simple:not([data-cv-mode]) body #left .block.act .etxt { font-size: 13.5px; line-height: 1.6; border-top-color: #ffd7a8; }
+.cv-simple:not([data-cv-mode]) body #left .conclbox { padding: 10px 12px; border-radius: 16px; background: var(--cv-accent-soft); border: 0; }
+.cv-simple:not([data-cv-mode]) body #left .conclbox .ctxt { font-size: 14.5px; line-height: 1.7; color: var(--cv-text); }
+/* 右边「调一调」：一个大读数 + 旋钮 + 开关；曲线点开才看 */
+.cv-simple:not([data-cv-mode]) body #right :is(.subs, .risk, .kpi .cal, .slx:not(.ticks)) { display: none !important; }
+.cv-simple:not([data-cv-mode]) body #right .chartwrap { display: none; }
+.cv-simple.cv-show-chart:not([data-cv-mode]) body #right .chartwrap { display: block; }
+.cv-simple:not([data-cv-mode]) body #right .pbody { gap: 12px; padding: 14px; }
+.cv-simple:not([data-cv-mode]) body #right .kpi { padding: 10px 14px; border: 0; border-radius: 16px; background: var(--cv-inset); }
+.cv-simple:not([data-cv-mode]) body #right .kpi .lb { font-size: 13px; color: var(--cv-muted); }
+.cv-simple:not([data-cv-mode]) body #right .kpi .vv { font-size: 34px; line-height: 1.2; color: var(--cv-text); }
+.cv-simple:not([data-cv-mode]) body #right :is(.sl, .sw) { font-size: 14px; border-radius: 14px; }
+.cv-simple:not([data-cv-mode]) body #right .slx.ticks { font-size: 12px; }
+.cv-simple:not([data-cv-mode]) body #right .slh b { font: 700 15px var(--cv-mono); color: var(--cv-accent); }
+.cv-chart-toggle { display: none; }
+.cv-simple:not([data-cv-mode]) body .cv-chart-toggle {
+  display: block; align-self: flex-start; padding: 4px 12px; border: 2px dashed var(--cv-border-strong); border-radius: 999px;
+  background: none; color: var(--cv-text-2); font: 700 13px var(--cv-font); cursor: pointer;
+}
+.cv-simple:not([data-cv-mode]) body .cv-chart-toggle:hover { border-color: #ffc58f; border-style: solid; }
+/* 底栏只留上一步 / 第几步 / 下一步 */
+.cv-simple:not([data-cv-mode]) body #foot { padding: 6px 10px; }
+.cv-simple:not([data-cv-mode]) body #foot .foot2 { display: none; }
+.cv-simple:not([data-cv-mode]) body #foot .nav:has(#cv-to-watch) { grid-template-columns: 1fr auto 1fr auto; gap: 8px; }
+.cv-simple:not([data-cv-mode]) body #foot .cur { font: 700 14px var(--cv-font); color: var(--cv-muted); }
+/* 窄屏：没有顶栏，「第几步」选择框和「看实验 / 调一调 / 试试看」直接贴在上面 */
+.cv-compact.cv-simple:not([data-cv-mode]) { --top-h: 0px !important; --panelw-l: 0px !important; --panelw-r: 0px !important; }
+.cv-compact.cv-simple:not([data-cv-mode]) body #steps { top: 8px; height: 82px; }
+.cv-compact.cv-simple:not([data-cv-mode]) body #cv-step-picker { top: 8px; border: 2px solid var(--cv-border); border-radius: 999px; padding: 0 14px; font-size: 13px; }
+.cv-compact.cv-simple:not([data-cv-mode]) body #cv-step-picker select { font: 700 13px var(--cv-font); }
+.cv-compact.cv-simple:not([data-cv-mode]) body #cv-views { top: 52px; border: 2px solid var(--cv-border); border-radius: 999px; }
+.cv-compact.cv-simple:not([data-cv-mode]) body #cv-views button { font: 700 13px var(--cv-font); }
+.cv-compact.cv-simple:not([data-cv-mode]) body :is(#left, #right) { top: 98px; bottom: 70px; }
+.cv-compact.cv-simple:not([data-cv-mode]) body #foot { height: 54px; }
+
 /* "看懂原理": the console stays in the DOM (the camera's free rectangle reads
    #steps and #foot), but only the scene and the explanation card are shown. */
 body #cv-watch { display: none; }
@@ -216,6 +294,9 @@ body #cv-to-watch[hidden], #cv-watch [hidden] { display: none !important; }
 #cv-watch .cvw-bubble { flex: 1; min-width: 0; padding: 7px 13px 10px; border: 2px solid; box-shadow: var(--cv-shadow-sm); }
 #cv-watch .is-nian .cvw-bubble { background: #fff7e6; border-color: #ffd7a8; border-radius: 16px 4px 16px 16px; }
 #cv-watch .is-dad .cvw-bubble { background: var(--cv-surface); border-color: #cfe0f7; border-radius: 4px 16px 16px 16px; }
+/* 和文章一样：谁在说话，谁的气泡亮一圈橙色 */
+#cv-watch .cvw-line.is-speaking .cvw-bubble { box-shadow: 0 0 0 3px #ff9f43, var(--cv-shadow-sm); }
+#cv-watch .cvw-line.is-speaking .cvw-avatar { border-color: #ff9f43; }
 #cv-watch .cvw-name { display: block; font-size: 11.5px; font-weight: 700; letter-spacing: .3px; }
 #cv-watch .is-nian .cvw-name { color: #c2621c; }
 #cv-watch .is-dad .cvw-name { color: #2f63ad; }
