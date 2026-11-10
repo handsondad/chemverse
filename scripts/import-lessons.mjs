@@ -3,12 +3,16 @@ import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 const source = process.argv[2];
-if (!source) throw new Error('Usage: node scripts/import-lessons.mjs <tongjiang-lab directory>');
+if (!source) throw new Error('Usage: node scripts/import-lessons.mjs <upstream lab directory>');
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 const catalog = JSON.parse(readFileSync(join(source, 'catalog.json'), 'utf8'))
-  .filter(course => course.subject === 'chem');
+  .filter(course => course.subject === 'chem')
+  .map(course => {
+    delete course.online;
+    return course;
+  });
 if (catalog.length !== 25) throw new Error('Expected the reviewed catalog of 25 chemistry lessons.');
-const destination = join(root, 'public', 'lessons', 'tongjiang');
+const destination = join(root, 'public', 'lessons');
 mkdirSync(destination, { recursive: true });
 for (const course of catalog) {
   for (const asset of [course.file, course.cover]) {
@@ -20,7 +24,7 @@ for (const course of catalog) {
     if (asset.endsWith('.html')) {
       const original = readFileSync(join(source, asset), 'utf8');
       if (!original.includes('</head>')) throw new Error(`Missing lesson head: ${asset}`);
-      const theme = '<!-- ChemVerse adaptation: shared theme and responsive view adapter; original simulation bundle unchanged. -->\n<link rel="stylesheet" href="../../../theme/lesson.css">\n<script defer src="../../../theme/lesson-adapter.js"></script>\n';
+      const theme = '<!-- ChemVerse adaptation: shared theme and responsive view adapter; original simulation bundle unchanged. -->\n<link rel="stylesheet" href="../../theme/lesson.css">\n<script defer src="../../theme/lesson-adapter.js"></script>\n';
       writeFileSync(target, original.replace('</head>', `${theme}</head>`));
     } else {
       copyFileSync(join(source, asset), target);
@@ -34,7 +38,7 @@ writeFileSync(join(root, 'src', 'data', 'lessons.json'), `${JSON.stringify(catal
 const escapeHtml = text => text.replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
 const directory = `<!doctype html>
 <html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>化学课件目录 · ChemVerse</title><link rel="stylesheet" href="../../../theme/tokens.css"><style>
+<title>化学课件目录 · ChemVerse</title><link rel="stylesheet" href="../../theme/tokens.css"><style>
 *{box-sizing:border-box}body{margin:0;padding:30px;background:var(--cv-bg);color:var(--cv-text);font:14px/1.8 var(--cv-font)}
 h1{font-size:26px}p,footer{color:#a7bdaf}main{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin:25px 0}
 a{color:#c3eed1}main a{display:block;border:1px solid #3b5745;border-radius:10px;overflow:hidden;text-decoration:none;background:#1a2a20}

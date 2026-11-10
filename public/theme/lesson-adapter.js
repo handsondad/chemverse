@@ -271,7 +271,7 @@
       return hash.toString(16).padStart(8, '0');
     };
     const clipUrl = (segment, part, raw) =>
-      new URL(`../../../voice/lab/${slug}/${segment}-${part}-${fnv1a(raw)}.mp3`, location.href).href;
+      new URL(`../../voice/lab/${slug}/${segment}-${part}-${fnv1a(raw)}.mp3`, location.href).href;
     const audio = new Audio();
     audio.preload = 'auto';
     let narrate = params.get('cv-narration') !== '0';

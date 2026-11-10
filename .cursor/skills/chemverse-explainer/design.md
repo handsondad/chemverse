@@ -35,7 +35,7 @@
 
 ## 第三方课件
 
-`public/lessons/tongjiang/` 下的 3D 课件是 CC BY-NC 4.0，原文件不许改；样式和交互适配只在 `public/theme/lesson.css` 和 `public/theme/lesson-adapter.js` 里做。
+`public/lessons/` 下的 3D 课件是 CC BY-NC 4.0，原文件不许改；样式和交互适配只在 `public/theme/lesson.css` 和 `public/theme/lesson-adapter.js` 里做。
 
 实验台要和文章看起来是一家：「看懂原理」说明卡也是小念问、爸爸答的两个气泡（同样的气泡色、头像、手写体），说明卡里不出现给老师看的教材引注；天空和雾刷成奶油暖色。改说明卡时只动这两个文件和 `src/learning/pages/lab.ts`，别把课件里会变色的东西（火焰、指示剂、溶液）也调色，颜色本身就是现象。
 

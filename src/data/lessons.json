@@ -19,8 +19,7 @@
       "考核 · 当班长"
     ],
     "file": "courses/haber-step.html",
-    "cover": "covers/haber-step.webp",
-    "online": "https://lab.tongjiang.app/c/haber-step/"
+    "cover": "covers/haber-step.webp"
   },
   {
     "slug": "rate-step",
@@ -43,8 +42,7 @@
       "考核 · 当实验员"
     ],
     "file": "courses/rate-step.html",
-    "cover": "covers/rate-step.webp",
-    "online": "https://lab.tongjiang.app/c/rate-step/"
+    "cover": "covers/rate-step.webp"
   },
   {
     "slug": "ball-stick-step",
@@ -67,8 +65,7 @@
       "考核"
     ],
     "file": "courses/ball-stick-step.html",
-    "cover": "covers/ball-stick-step.webp",
-    "online": "https://lab.tongjiang.app/c/ball-stick-step/"
+    "cover": "covers/ball-stick-step.webp"
   },
   {
     "slug": "titration-step",
@@ -91,8 +88,7 @@
       "考核 · 当滴定员"
     ],
     "file": "courses/titration-step.html",
-    "cover": "covers/titration-step.webp",
-    "online": "https://lab.tongjiang.app/c/titration-step/"
+    "cover": "covers/titration-step.webp"
   },
   {
     "slug": "chlorine-step",
@@ -115,8 +111,7 @@
       "考核 · 当实验员"
     ],
     "file": "courses/chlorine-step.html",
-    "cover": "covers/chlorine-step.webp",
-    "online": "https://lab.tongjiang.app/c/chlorine-step/"
+    "cover": "covers/chlorine-step.webp"
   },
   {
     "slug": "blast-furnace-step",
@@ -138,8 +133,7 @@
       "值班考核"
     ],
     "file": "courses/blast-furnace-step.html",
-    "cover": "covers/blast-furnace-step.webp",
-    "online": "https://lab.tongjiang.app/c/blast-furnace-step/"
+    "cover": "covers/blast-furnace-step.webp"
   },
   {
     "slug": "smelting-step",
@@ -161,8 +155,7 @@
       "值班考核"
     ],
     "file": "courses/smelting-step.html",
-    "cover": "covers/smelting-step.webp",
-    "online": "https://lab.tongjiang.app/c/smelting-step/"
+    "cover": "covers/smelting-step.webp"
   },
   {
     "slug": "coal-gas-step",
@@ -184,8 +177,7 @@
       "考核"
     ],
     "file": "courses/coal-gas-step.html",
-    "cover": "covers/coal-gas-step.webp",
-    "online": "https://lab.tongjiang.app/c/coal-gas-step/"
+    "cover": "covers/coal-gas-step.webp"
   },
   {
     "slug": "sulfuric-step",
@@ -206,8 +198,7 @@
       "考核 · 当班长"
     ],
     "file": "courses/sulfuric-step.html",
-    "cover": "covers/sulfuric-step.webp",
-    "online": "https://lab.tongjiang.app/c/sulfuric-step/"
+    "cover": "covers/sulfuric-step.webp"
   },
   {
     "slug": "hydrolysis-step",
@@ -230,8 +221,7 @@
       "考核 · 配溶液"
     ],
     "file": "courses/hydrolysis-step.html",
-    "cover": "covers/hydrolysis-step.webp",
-    "online": "https://lab.tongjiang.app/c/hydrolysis-step/"
+    "cover": "covers/hydrolysis-step.webp"
   },
   {
     "slug": "cement-step",
@@ -253,8 +243,7 @@
       "值班考核"
     ],
     "file": "courses/cement-step.html",
-    "cover": "covers/cement-step.webp",
-    "online": "https://lab.tongjiang.app/c/cement-step/"
+    "cover": "covers/cement-step.webp"
   },
   {
     "slug": "iron-step",
@@ -277,8 +266,7 @@
       "考核 · 压到 +2 价"
     ],
     "file": "courses/iron-step.html",
-    "cover": "covers/iron-step.webp",
-    "online": "https://lab.tongjiang.app/c/iron-step/"
+    "cover": "covers/iron-step.webp"
   },
   {
     "slug": "electrolysis-step",
@@ -301,8 +289,7 @@
       "考核 · 出 29.6 mg 铜"
     ],
     "file": "courses/electrolysis-step.html",
-    "cover": "covers/electrolysis-step.webp",
-    "online": "https://lab.tongjiang.app/c/electrolysis-step/"
+    "cover": "covers/electrolysis-step.webp"
   },
   {
     "slug": "ammonia-step",
@@ -325,8 +312,7 @@
       "考核 · 做喷泉"
     ],
     "file": "courses/ammonia-step.html",
-    "cover": "covers/ammonia-step.webp",
-    "online": "https://lab.tongjiang.app/c/ammonia-step/"
+    "cover": "covers/ammonia-step.webp"
   },
   {
     "slug": "equilibrium-step",
@@ -349,8 +335,7 @@
       "考核"
     ],
     "file": "courses/equilibrium-step.html",
-    "cover": "covers/equilibrium-step.webp",
-    "online": "https://lab.tongjiang.app/c/equilibrium-step/"
+    "cover": "covers/equilibrium-step.webp"
   },
   {
     "slug": "flame-step",
@@ -373,8 +358,7 @@
       "考核 · 验出钾"
     ],
     "file": "courses/flame-step.html",
-    "cover": "covers/flame-step.webp",
-    "online": "https://lab.tongjiang.app/c/flame-step/"
+    "cover": "covers/flame-step.webp"
   },
   {
     "slug": "galvanic-step",
@@ -398,8 +382,7 @@
       "考核 · 组装"
     ],
     "file": "courses/galvanic-step.html",
-    "cover": "covers/galvanic-step.webp",
-    "online": "https://lab.tongjiang.app/c/galvanic-step/"
+    "cover": "covers/galvanic-step.webp"
   },
   {
     "slug": "conductivity-step",
@@ -423,8 +406,7 @@
       "考核 · 找终点"
     ],
     "file": "courses/conductivity-step.html",
-    "cover": "covers/conductivity-step.webp",
-    "online": "https://lab.tongjiang.app/c/conductivity-step/"
+    "cover": "covers/conductivity-step.webp"
   },
   {
     "slug": "nitric-lab-step",
@@ -447,8 +429,7 @@
       "考核 · 转化掉它"
     ],
     "file": "courses/nitric-lab-step.html",
-    "cover": "covers/nitric-lab-step.webp",
-    "online": "https://lab.tongjiang.app/c/nitric-lab-step/"
+    "cover": "covers/nitric-lab-step.webp"
   },
   {
     "slug": "bromine-step",
@@ -469,8 +450,7 @@
       "考核"
     ],
     "file": "courses/bromine-step.html",
-    "cover": "covers/bromine-step.webp",
-    "online": "https://lab.tongjiang.app/c/bromine-step/"
+    "cover": "covers/bromine-step.webp"
   },
   {
     "slug": "sodium-step",
@@ -493,8 +473,7 @@
       "考核"
     ],
     "file": "courses/sodium-step.html",
-    "cover": "covers/sodium-step.webp",
-    "online": "https://lab.tongjiang.app/c/sodium-step/"
+    "cover": "covers/sodium-step.webp"
   },
   {
     "slug": "sulfur-step",
@@ -518,8 +497,7 @@
       "考核 · 漂白到底"
     ],
     "file": "courses/sulfur-step.html",
-    "cover": "covers/sulfur-step.webp",
-    "online": "https://lab.tongjiang.app/c/sulfur-step/"
+    "cover": "covers/sulfur-step.webp"
   },
   {
     "slug": "corrosion-step",
@@ -542,8 +520,7 @@
       "考核 · 设计暖贴"
     ],
     "file": "courses/corrosion-step.html",
-    "cover": "covers/corrosion-step.webp",
-    "online": "https://lab.tongjiang.app/c/corrosion-step/"
+    "cover": "covers/corrosion-step.webp"
   },
   {
     "slug": "chlor-alkali-step",
@@ -565,8 +542,7 @@
       "值班考核"
     ],
     "file": "courses/chlor-alkali-step.html",
-    "cover": "covers/chlor-alkali-step.webp",
-    "online": "https://lab.tongjiang.app/c/chlor-alkali-step/"
+    "cover": "covers/chlor-alkali-step.webp"
   },
   {
     "slug": "hou-soda-step",
@@ -588,7 +564,6 @@
       "你来当班长"
     ],
     "file": "courses/hou-soda-step.html",
-    "cover": "covers/hou-soda-step.webp",
-    "online": "https://lab.tongjiang.app/c/hou-soda-step/"
+    "cover": "covers/hou-soda-step.webp"
   }
 ]

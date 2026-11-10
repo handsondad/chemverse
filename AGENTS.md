@@ -36,7 +36,7 @@
 - `src/learning/periodic.ts`：元素周期表只有一份 DOM（`#elements-view`），它在文章里的 `live` 图、「🔍」弹出的放大表和隐藏的 `#periodic-host` 之间搬来搬去；`applyTableLink` 切换模式与类别。
 - `src/learning/film/`：**讲解动画引擎**（纯 TS + SVG，1200×900 空白画布；`engine.ts` 时间线与缓动、`stage.ts` 把一场戏在 t 秒时画成 SVG、`player.ts` 播放器：进入视口自动播一次、可暂停拖动、按场跳转，并通过 `onTurn(turn, who)` 让对话高亮正在讲的那一轮和正在说话的人；`narration.ts` 配音版时间线：按每句话的长度把整场戏等比例拉长——出现消失、移动、液面、变色、数字、镜头都放慢，流动、脉冲这些循环动作保持原速——有声音时播放器的时钟跟着音频走，同一时间只有一部动画出声）。
 - **语音讲解**：`src/learning/voice.ts`（两人的声音与「身体奇遇记」相同：小念 `zh-CN-YunxiaNeural`，爸爸 `zh-CN-YunxiNeural` −5%；`speakable()` 把 Fe³⁺、+4 价、℃ 这些写法换成念法）、`scripts/voice.ts`（`npm run voice` 用 edge-tts + ffmpeg 生成）、音频在 `public/voice/<slug>/<轮次>-<nian|dad>.mp3`、时长和指纹在 `src/data/voice-manifest.json`。只有带动画的文章配音。3D 实验台「看懂原理」每一段也配：小念念问题、爸爸念「你看…」「所以…」，文字取自 `course-dialogues.json`，用 `labSpeakable()` 把化学式、单位、比较号、科学记数法换成念法，音频在 `public/voice/lab/<课件>/<段>-<q|seen|concl>-<fnv1a 指纹>.mp3`、清单在 `src/data/lab-voice-manifest.json`（不进网站包）。指纹算的是课件原文，`lesson-adapter.js` 用同一个 `fnv1a` 拼出文件名，对不上就退回无声。声音开关和文章共用 `chemverse-film-voice`，默认开。
-- `scripts/`：写文章的工具，都用 vite-node 跑、直接读课程数据。`story.ts`（`story:todo` / `story:new` / `story:check` / `story:frames`）、`voice.ts` 与 `voice-clips.ts`（配音与指纹）、`import-lessons.mjs`（`node scripts/import-lessons.mjs <tongjiang-lab 目录>`：从第三方仓库复制 25 节化学 3D 课件、封面和许可文件到 `public/lessons/tongjiang/`，只在 `</head>` 前注入主题适配，并写 `lessons.json`）。`story:frames` 的联系表和截图写在 `.story-preview/`（已忽略，不提交）。临时脚本也放 `scripts/` 下（vite-node 不能跑 `-e`，也跑不了系统临时目录里的文件），用完删掉。
+- `scripts/`：写文章的工具，都用 vite-node 跑、直接读课程数据。`story.ts`（`story:todo` / `story:new` / `story:check` / `story:frames`）、`voice.ts` 与 `voice-clips.ts`（配音与指纹）、`import-lessons.mjs`（`node scripts/import-lessons.mjs <上游课件目录>`：从第三方仓库复制 25 节化学 3D 课件、封面和许可文件到 `public/lessons/`，只在 `</head>` 前注入主题适配，并写 `lessons.json`）。`story:frames` 的联系表和截图写在 `.story-preview/`（已忽略，不提交）。临时脚本也放 `scripts/` 下（vite-node 不能跑 `-e`，也跑不了系统临时目录里的文件），用完删掉。
 - `src/learning/article.ts`：把每个问题统一成文章 `Article`（标题、`trigger`、`turns` 小念/爸爸一问一答、`tip`、可选 `film`）。有 `story` 的用 `storyArticle`；还没写 `story` 的用 `autoArticle` 把 `dialogue` 交给小念和爸爸来说，并补一轮「能用一句话总结吗？」由爸爸念出 `takeaway`。
 - `src/learning/catalog.ts`：将 `curriculum.ts`、`lessons.json`、`stories/` 与 `dialogue.ts` 合并成 `lessons`（每课带 `article`），提供按主题取题、`labName` 与「小念还想问」推荐。
 - `src/learning/pages/`：四个页面。`home.ts` 首页（3D 小星球上的小念和爸爸 + 8 张主题卡 + 「🧪 3D 实验台」卡）、`topic.ts` 主题下的问题列表（有动画的题标「🎬 有讲解动画」，只有配图的标「🖼️ 图解」）、`lesson.ts` 问题文章：有动画时宽屏左聊天右动画（吸附）、窄屏动画在上，点「看动画」播这一轮的戏；没有动画就是一栏 780px 的图文聊天；配图的「🔍 …」弹出放大的周期表（Esc 关闭）。`lab.ts` 是实验台：`#labs` 按主题分组的实验卡，`#lab/<slug>` 单个实验（3D 课件 iframe 与 `postMessage` 联动）。外壳 `app.ts` 没有顶栏，只有正文和页脚。
@@ -101,14 +101,14 @@
 ```
 
 ### 形态 C：新增「3D 互动实验课件」（独立 HTML 课件）
-1. 将课件 HTML 放入 `public/lessons/tongjiang/courses/<slug>.html`，封面放入 `public/lessons/tongjiang/covers/<slug>.webp`。
+1. 将课件 HTML 放入 `public/lessons/courses/<slug>.html`，封面放入 `public/lessons/covers/<slug>.webp`。
 2. 在课件 `</head>` 前注入共享主题与适配器：
    ```html
-   <link rel="stylesheet" href="../../../theme/lesson.css">
-   <script defer src="../../../theme/lesson-adapter.js"></script>
+   <link rel="stylesheet" href="../../theme/lesson.css">
+   <script defer src="../../theme/lesson-adapter.js"></script>
    ```
 3. 在 `src/learning/curriculum.ts` 中添加条目（可直接通过 `file: 'courses/<slug>.html'` 和 `cover: 'covers/<slug>.webp'` 指定资源路径，或在 `src/data/lessons.json` 中登记）。
-4. **版权红线**：`public/lessons/tongjiang/` 下的第三方原始课件脚本与许可文件（CC BY-NC 4.0）严禁篡改，所有样式与交互适配统一在 `public/theme/lesson.css` 和 `public/theme/lesson-adapter.js` 中完成。
+4. **版权红线**：`public/lessons/` 下的第三方原始课件脚本与许可文件（CC BY-NC 4.0）严禁篡改，所有样式与交互适配统一在 `public/theme/lesson.css` 和 `public/theme/lesson-adapter.js` 中完成。目录名和代码里不用上游项目名；来源、署名与改动说明只写在 `README.md` 的「参考与致谢」，`public/lessons/LICENSE` 和 `THIRD_PARTY_NOTICES.md` 要一直跟着课件走。
 
 ### 选题与资料（新题都要走一遍）
 - 题目从孩子真遇到过的事出发，一个题只回答一个「为什么」，放进最贴的主题；新条目插在同主题最后一篇后面，先修课排在前面。

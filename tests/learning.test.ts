@@ -1,4 +1,4 @@
-﻿import { readFileSync, existsSync } from 'node:fs';
+import { readFileSync, existsSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -24,22 +24,22 @@ describe('chemistry lesson collection', () => {
     expect(simulations.length).toBeGreaterThanOrEqual(25);
     expect(lessons.filter(lesson => lesson.kind === 'native').length).toBeGreaterThanOrEqual(3);
     for (const lesson of simulations) {
-      expect(existsSync(resolve(root, 'public', 'lessons', 'tongjiang', lesson.file!))).toBe(true);
-      expect(existsSync(resolve(root, 'public', 'lessons', 'tongjiang', lesson.cover!))).toBe(true);
+      expect(existsSync(resolve(root, 'public', 'lessons', lesson.file!))).toBe(true);
+      expect(existsSync(resolve(root, 'public', 'lessons', lesson.cover!))).toBe(true);
       expect(lesson.steps.length).toBeGreaterThan(0);
-      const source = readFileSync(resolve(root, 'public', 'lessons', 'tongjiang', lesson.file!), 'utf8');
+      const source = readFileSync(resolve(root, 'public', 'lessons', lesson.file!), 'utf8');
       expect(source).toContain('<canvas');
       expect(source).toContain('<script type="module">');
-      expect(source).toContain('<link rel="stylesheet" href="../../../theme/lesson.css">');
-      expect(source).toContain('<script defer src="../../../theme/lesson-adapter.js"></script>');
+      expect(source).toContain('<link rel="stylesheet" href="../../theme/lesson.css">');
+      expect(source).toContain('<script defer src="../../theme/lesson-adapter.js"></script>');
       expect(existsSync(resolve(root, 'public', 'theme', 'lesson.css'))).toBe(true);
       expect(existsSync(resolve(root, 'public', 'theme', 'lesson-adapter.js'))).toBe(true);
     }
-    expect(readFileSync(resolve(root, 'public', 'lessons', 'tongjiang', 'LICENSE'), 'utf8')).toContain('CC BY-NC 4.0');
-    expect(existsSync(resolve(root, 'public', 'lessons', 'tongjiang', 'THIRD_PARTY_NOTICES.md'))).toBe(true);
-    const directory = readFileSync(resolve(root, 'public', 'lessons', 'tongjiang', 'courses', 'index.html'), 'utf8');
+    expect(readFileSync(resolve(root, 'public', 'lessons', 'LICENSE'), 'utf8')).toContain('CC BY-NC 4.0');
+    expect(existsSync(resolve(root, 'public', 'lessons', 'THIRD_PARTY_NOTICES.md'))).toBe(true);
+    const directory = readFileSync(resolve(root, 'public', 'lessons', 'courses', 'index.html'), 'utf8');
     for (const lesson of simulations) expect(directory).toContain(`href="${lesson.slug}.html"`);
-    expect(lessonAsset(simulations[0].file!)).toContain('lessons/tongjiang/courses/');
+    expect(lessonAsset(simulations[0].file!)).toContain('lessons/courses/');
   });
 
   it('has a complete, ordered prerequisite graph and an actionable check for every lesson', () => {
@@ -367,7 +367,7 @@ describe('learning workspace', () => {
     await start();
     navigate('#lab/rate-step');
     const frame = document.querySelector('iframe')!;
-    expect(frame.getAttribute('src')).toContain('lessons/tongjiang/courses/rate-step.html');
+    expect(frame.getAttribute('src')).toContain('lessons/courses/rate-step.html');
     expect(frame.getAttribute('sandbox')).toBe('allow-scripts');
     expect(frame.title).toContain('反应速率');
     expect(document.querySelector('.page-lab')?.getAttribute('href')).toBe('#q/rate-step');
