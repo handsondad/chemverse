@@ -21,7 +21,9 @@ npm run build
 npm run preview
 ```
 
-构建产物在 `dist`，可以部署到任意静态服务器，或使用现有 Dockerfile（`nginx.conf` 开启 gzip，`assets/` 下带哈希的文件长期缓存）。页面采用 hash 路由，相对资源地址兼容子路径部署。所有课件、封面、配音和 3D 运行代码都在本地，不依赖外部站点；需要通过 HTTP 服务访问，不支持直接双击 `index.html`。
+推到 `main` 后，`.github/workflows/pages.yml` 会检查、测试、构建并发布到 GitHub Pages（仓库 Settings → Pages 的 Source 选「GitHub Actions」）：<https://handsondad.github.io/chemverse/>。
+
+构建产物在 `dist`，也可以部署到任意静态服务器，或使用现有 Dockerfile（`nginx.conf` 开启 gzip，`assets/` 下带哈希的文件长期缓存）。页面采用 hash 路由，相对资源地址兼容子路径部署。所有课件、封面、配音和 3D 运行代码都在本地，不依赖外部站点；需要通过 HTTP 服务访问，不支持直接双击 `index.html`。
 
 写文章、配音的工具（`story:*`、`voice`）和协作规范见 `AGENTS.md` 与 `.cursor/skills/chemverse-explainer/`。
 
