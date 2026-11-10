@@ -21,6 +21,9 @@ npm-debug.log*
 *.tmp
 .cache/
 .codegraph/
+.vite/
+# npm run story:frames 的联系表
+.story-preview/
 
 # 构建输出（如果将来添加构建工具）
 dist/

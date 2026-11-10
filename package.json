@@ -13,17 +13,27 @@
     "test": "vitest run",
     "test:watch": "vitest",
     "lint": "eslint .",
-    "check": "npm run lint && npm run test && npm run build"
+    "check": "npm run lint && npm run test && npm run build",
+    "story:todo": "vite-node scripts/story.ts todo",
+    "story:new": "vite-node scripts/story.ts new",
+    "story:check": "vite-node scripts/story.ts check",
+    "story:frames": "vite-node scripts/story.ts frames",
+    "voice": "vite-node scripts/voice.ts"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.5",
     "@types/node": "^22.0.0",
+    "@types/three": "^0.169.0",
     "eslint": "^9.39.5",
     "globals": "^16.5.0",
     "jsdom": "^26.1.0",
     "typescript": "^5.9.3",
     "typescript-eslint": "8.55.0",
     "vite": "^6.4.3",
+    "vite-node": "^3.2.4",
     "vitest": "^3.2.7"
+  },
+  "dependencies": {
+    "three": "^0.169.0"
   }
 }

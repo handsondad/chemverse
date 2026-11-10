@@ -1,15 +1,34 @@
 import catalog from '../data/lessons.json';
+import { autoArticle, storyArticle, type Article } from './article';
+import { lessonAsset } from './assets';
 import { lessonPlan, themes, units, type LessonPlan, type Theme, type ThemeId, type Unit } from './curriculum';
+import { getLessonDialogue, type DialogueTurn } from './dialogue';
+import { findStory, type Story } from './stories';
 
-export { themes, units, type Theme, type ThemeId };
+export { lessonAsset, themes, units, type Article, type DialogueTurn, type Story, type Theme, type ThemeId, type Unit };
 export interface Lesson extends LessonPlan {
   kind: 'native' | 'simulation';
   themes: ThemeId[];
   question: string;
   textbook: string[];
   steps: string[];
+  dialogue: DialogueTurn[];
+  /** 写成「小念 × 爸爸」问答、配了讲解动画的课 */
+  story?: Story;
+  /** 文章页真正渲染的内容：有 `story` 用它，没有就由 `dialogue` 自动装配 */
+  article: Article;
   file?: string;
   cover?: string;
+}
+
+function storyDialogue(story: Story): DialogueTurn[] {
+  return story.dialogue.map((turn, i) => ({
+    tag: story.film?.scenes.find(scene => scene.turn === i)?.title ?? `第 ${i + 1} 问`,
+    ask: turn.nian,
+    answer: turn.dad,
+    eq: turn.eq,
+    stepIndex: turn.show?.kind === 'lab' ? turn.show.step : undefined,
+  }));
 }
 
 const NATIVE_QUESTIONS: Record<string, string> = {
@@ -24,30 +43,33 @@ export const lessons: Lesson[] = lessonPlan.map(plan => {
   const cover = plan.cover ?? source?.cover;
   const isNative = Boolean(plan.native || plan.cards?.length);
   if (!isNative && !file) throw new Error(`Missing simulation or interactive content: ${plan.slug}`);
+  const question = plan.question ?? source?.question ?? NATIVE_QUESTIONS[plan.slug] ?? findUnit(plan.unit).question;
+  const story = findStory(plan.slug);
+  const dialogue = story ? storyDialogue(story) : getLessonDialogue({ ...plan, question });
   return {
     ...plan,
     themes: plan.themes ?? [],
     kind: isNative ? 'native' : 'simulation',
-    question: plan.question ?? source?.question ?? NATIVE_QUESTIONS[plan.slug] ?? findUnit(plan.unit).question,
+    question,
     textbook: plan.textbook ?? source?.textbook ?? ['生活中的化学 · 现象观察与微观解释'],
     steps: plan.cards?.map(item => item.tag) ?? source?.steps ?? ['观察模型', '改变条件', '解释现象', '检验理解'],
+    dialogue,
+    story,
+    article: story
+      ? storyArticle(story)
+      : autoArticle({
+        hook: plan.hook, question, takeaway: plan.takeaway, objectives: plan.objectives, simulation: !isNative,
+        cover: cover ? lessonAsset(cover) : undefined,
+      }, dialogue),
     file,
     cover,
   };
 });
 
-export function lessonAsset(path: string): string {
-  return `${import.meta.env.BASE_URL}lessons/tongjiang/${path}`;
-}
-
 export function findUnit(id: string): Unit {
   const unit = units.find(item => item.id === id);
   if (!unit) throw new Error(`Unknown unit: ${id}`);
   return unit;
-}
-
-export function findTheme(id: string): Theme | undefined {
-  return themes.find(item => item.id === id);
 }
 
 export function findLesson(slug: string): Lesson | undefined {
@@ -58,25 +80,29 @@ export function unitLessons(unitId: string): Lesson[] {
   return lessons.filter(lesson => lesson.unit === unitId);
 }
 
-export function themeLessons(themeId: ThemeId): Lesson[] {
-  return lessons.filter(lesson => lesson.themes.includes(themeId));
+export function labName(lesson: Lesson): string {
+  if (lesson.kind === 'simulation') return '3D 实验';
+  if (lesson.native === 'periodic') return '元素周期表';
+  return lesson.cards?.length ? '互动揭秘卡' : '互动模型';
 }
 
-export function randomLesson(excludeSlug?: string): Lesson {
-  const pool = excludeSlug && lessons.length > 1 ? lessons.filter(item => item.slug !== excludeSlug) : lessons;
-  return pool[Math.floor(Math.random() * pool.length)];
+/** 「🧪 3D 实验台」里只放真正有 3D 课件的课；互动卡、周期表这些不算 */
+export const labs: Lesson[] = lessons.filter(lesson => lesson.kind === 'simulation');
+
+export function findLab(slug: string): Lesson | undefined {
+  return labs.find(lesson => lesson.slug === slug);
 }
 
-export function filterLessons(unitId: string, query: string, themeId = 'all'): Lesson[] {
-  const search = query.trim().toLocaleLowerCase();
-  return lessons.filter(lesson =>
-    (unitId === 'all' || lesson.unit === unitId) &&
-    (themeId === 'all' || lesson.themes.includes(themeId as ThemeId)) &&
-    `${lesson.title} ${lesson.hook} ${lesson.topic} ${lesson.question} ${lesson.textbook.join(' ')} ${lesson.steps.join(' ')}`
-      .toLocaleLowerCase().includes(search),
-  );
+export function unitLabs(unitId: string): Lesson[] {
+  return labs.filter(lesson => lesson.unit === unitId);
 }
 
-export function nextLesson(completed: string[]): Lesson | undefined {
-  return lessons.find(lesson => !completed.includes(lesson.slug));
+/** 「小念还想问」：先接着往后问同一主题里的下一题，不够再从相邻主题补。 */
+export function relatedLessons(lesson: Lesson, limit = 3): Lesson[] {
+  const siblings = unitLessons(lesson.unit);
+  const at = siblings.indexOf(lesson);
+  const sameUnit = [...siblings.slice(at + 1), ...siblings.slice(0, at)];
+  const index = lessons.indexOf(lesson);
+  const nearby = [...lessons.slice(index + 1), ...lessons.slice(0, index)].filter(item => item.unit !== lesson.unit);
+  return [...sameUnit, ...nearby].slice(0, limit);
 }

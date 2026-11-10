@@ -1,0 +1,2382 @@
+{
+ "voices": {
+  "nian": {
+   "voice": "zh-CN-YunxiaNeural",
+   "rate": "+0%"
+  },
+  "dad": {
+   "voice": "zh-CN-YunxiNeural",
+   "rate": "-5%"
+  }
+ },
+ "clips": {
+  "ammonia-step/0-dad": {
+   "hash": "a7be0d001d15",
+   "seconds": 20.26
+  },
+  "ammonia-step/0-nian": {
+   "hash": "aacecb2fcc9a",
+   "seconds": 7.92
+  },
+  "ammonia-step/1-dad": {
+   "hash": "340438c329b7",
+   "seconds": 24.89
+  },
+  "ammonia-step/1-nian": {
+   "hash": "8c4cf3bc53de",
+   "seconds": 6.58
+  },
+  "ammonia-step/2-dad": {
+   "hash": "edeac4a5ca38",
+   "seconds": 22.49
+  },
+  "ammonia-step/2-nian": {
+   "hash": "af3c75ff4f2a",
+   "seconds": 5.74
+  },
+  "ammonia-step/3-dad": {
+   "hash": "69fb319dcb5c",
+   "seconds": 24
+  },
+  "ammonia-step/3-nian": {
+   "hash": "ccb4ea54287a",
+   "seconds": 7.1
+  },
+  "ammonia-step/4-dad": {
+   "hash": "3e5c18c19eb1",
+   "seconds": 20.83
+  },
+  "ammonia-step/4-nian": {
+   "hash": "0640ba5a2c0b",
+   "seconds": 4.46
+  },
+  "ammonia-step/5-dad": {
+   "hash": "8dc450a046f8",
+   "seconds": 23.93
+  },
+  "ammonia-step/5-nian": {
+   "hash": "29610ce1f5eb",
+   "seconds": 5.76
+  },
+  "ammonia-step/6-dad": {
+   "hash": "e606478aefea",
+   "seconds": 19.85
+  },
+  "ammonia-step/6-nian": {
+   "hash": "663043f52711",
+   "seconds": 14.4
+  },
+  "atomic-basics/0-dad": {
+   "hash": "e5ff93d97fe3",
+   "seconds": 26.66
+  },
+  "atomic-basics/0-nian": {
+   "hash": "f5bc6dc03449",
+   "seconds": 6.43
+  },
+  "atomic-basics/1-dad": {
+   "hash": "65a6fa8defd5",
+   "seconds": 23.54
+  },
+  "atomic-basics/1-nian": {
+   "hash": "a26555d31d78",
+   "seconds": 5.93
+  },
+  "atomic-basics/2-dad": {
+   "hash": "2d011edcd136",
+   "seconds": 23.35
+  },
+  "atomic-basics/2-nian": {
+   "hash": "d5e2200957ab",
+   "seconds": 7.99
+  },
+  "atomic-basics/3-dad": {
+   "hash": "38b40e38fefe",
+   "seconds": 22.99
+  },
+  "atomic-basics/3-nian": {
+   "hash": "a27e6cb2c6d5",
+   "seconds": 8.33
+  },
+  "atomic-basics/4-dad": {
+   "hash": "1f1f3becdc8b",
+   "seconds": 25.03
+  },
+  "atomic-basics/4-nian": {
+   "hash": "95be14480814",
+   "seconds": 6.1
+  },
+  "atomic-basics/5-dad": {
+   "hash": "6649e825dcf7",
+   "seconds": 24.94
+  },
+  "atomic-basics/5-nian": {
+   "hash": "4e7864e80a04",
+   "seconds": 7.97
+  },
+  "atomic-basics/6-dad": {
+   "hash": "680f51cf1f51",
+   "seconds": 11.42
+  },
+  "atomic-basics/6-nian": {
+   "hash": "501b560664bb",
+   "seconds": 15.17
+  },
+  "ball-stick-step/0-dad": {
+   "hash": "eea83effb2e1",
+   "seconds": 19.68
+  },
+  "ball-stick-step/0-nian": {
+   "hash": "e03dc8689d8f",
+   "seconds": 7.39
+  },
+  "ball-stick-step/1-dad": {
+   "hash": "9cf843790662",
+   "seconds": 23.78
+  },
+  "ball-stick-step/1-nian": {
+   "hash": "6fe6611dff2d",
+   "seconds": 6.86
+  },
+  "ball-stick-step/2-dad": {
+   "hash": "d23c74f00552",
+   "seconds": 22.97
+  },
+  "ball-stick-step/2-nian": {
+   "hash": "7973e9c18be7",
+   "seconds": 6.65
+  },
+  "ball-stick-step/3-dad": {
+   "hash": "93a179c909f1",
+   "seconds": 22.82
+  },
+  "ball-stick-step/3-nian": {
+   "hash": "a585acd69826",
+   "seconds": 8.69
+  },
+  "ball-stick-step/4-dad": {
+   "hash": "8aa828808b51",
+   "seconds": 20.83
+  },
+  "ball-stick-step/4-nian": {
+   "hash": "79182b80a734",
+   "seconds": 5.4
+  },
+  "ball-stick-step/5-dad": {
+   "hash": "2806d7257544",
+   "seconds": 27.46
+  },
+  "ball-stick-step/5-nian": {
+   "hash": "48f6a508bfca",
+   "seconds": 7.49
+  },
+  "ball-stick-step/6-dad": {
+   "hash": "1ff47a288987",
+   "seconds": 13.75
+  },
+  "ball-stick-step/6-nian": {
+   "hash": "dbbf16ccdd9b",
+   "seconds": 18.22
+  },
+  "blast-furnace-step/0-dad": {
+   "hash": "f90584c5695a",
+   "seconds": 20.57
+  },
+  "blast-furnace-step/0-nian": {
+   "hash": "36af85d32185",
+   "seconds": 6.46
+  },
+  "blast-furnace-step/1-dad": {
+   "hash": "0f8693866f61",
+   "seconds": 23.09
+  },
+  "blast-furnace-step/1-nian": {
+   "hash": "1ef264d4f8b0",
+   "seconds": 5.21
+  },
+  "blast-furnace-step/2-dad": {
+   "hash": "fdc84e97bdf8",
+   "seconds": 26.33
+  },
+  "blast-furnace-step/2-nian": {
+   "hash": "6956cabf2e41",
+   "seconds": 5.62
+  },
+  "blast-furnace-step/3-dad": {
+   "hash": "8cd6addcadf7",
+   "seconds": 19.73
+  },
+  "blast-furnace-step/3-nian": {
+   "hash": "64a77191db5b",
+   "seconds": 4.15
+  },
+  "blast-furnace-step/4-dad": {
+   "hash": "e454869308b7",
+   "seconds": 24.67
+  },
+  "blast-furnace-step/4-nian": {
+   "hash": "d4905582c1a4",
+   "seconds": 4.15
+  },
+  "blast-furnace-step/5-dad": {
+   "hash": "2bc6768822ad",
+   "seconds": 26.76
+  },
+  "blast-furnace-step/5-nian": {
+   "hash": "24302b7326c9",
+   "seconds": 5.28
+  },
+  "blast-furnace-step/6-dad": {
+   "hash": "450cd3725604",
+   "seconds": 9.98
+  },
+  "blast-furnace-step/6-nian": {
+   "hash": "bdff718afeef",
+   "seconds": 19.51
+  },
+  "bromine-step/0-dad": {
+   "hash": "bc0d0ff6b70f",
+   "seconds": 20.81
+  },
+  "bromine-step/0-nian": {
+   "hash": "1bb2ffdf87cb",
+   "seconds": 5.47
+  },
+  "bromine-step/1-dad": {
+   "hash": "70d1cb28b7ab",
+   "seconds": 23.78
+  },
+  "bromine-step/1-nian": {
+   "hash": "72e01a0b3585",
+   "seconds": 4.2
+  },
+  "bromine-step/2-dad": {
+   "hash": "259e0ff76158",
+   "seconds": 23.47
+  },
+  "bromine-step/2-nian": {
+   "hash": "a9364a951e02",
+   "seconds": 5.83
+  },
+  "bromine-step/3-dad": {
+   "hash": "9c43bb317d1e",
+   "seconds": 21.43
+  },
+  "bromine-step/3-nian": {
+   "hash": "bdf65fbc6c62",
+   "seconds": 7.78
+  },
+  "bromine-step/4-dad": {
+   "hash": "2f0ff7c1dd0d",
+   "seconds": 20.06
+  },
+  "bromine-step/4-nian": {
+   "hash": "d5395ccc8b2a",
+   "seconds": 4.73
+  },
+  "bromine-step/5-dad": {
+   "hash": "b8aebf762d60",
+   "seconds": 22.8
+  },
+  "bromine-step/5-nian": {
+   "hash": "315fd5567d99",
+   "seconds": 5.35
+  },
+  "bromine-step/6-dad": {
+   "hash": "f98848303c6a",
+   "seconds": 12.1
+  },
+  "bromine-step/6-nian": {
+   "hash": "1663d81e9922",
+   "seconds": 17.64
+  },
+  "cabbage-indicator/0-dad": {
+   "hash": "cb2326d44199",
+   "seconds": 23.18
+  },
+  "cabbage-indicator/0-nian": {
+   "hash": "37e2b5ffa7fd",
+   "seconds": 5.26
+  },
+  "cabbage-indicator/1-dad": {
+   "hash": "816c5efcd067",
+   "seconds": 20.11
+  },
+  "cabbage-indicator/1-nian": {
+   "hash": "1c5ebf79c933",
+   "seconds": 5.38
+  },
+  "cabbage-indicator/2-dad": {
+   "hash": "93ac170ee7a9",
+   "seconds": 25.56
+  },
+  "cabbage-indicator/2-nian": {
+   "hash": "8878890b3727",
+   "seconds": 5.16
+  },
+  "cabbage-indicator/3-dad": {
+   "hash": "e82b64fc4493",
+   "seconds": 23.42
+  },
+  "cabbage-indicator/3-nian": {
+   "hash": "4bfe2fd37bad",
+   "seconds": 6.5
+  },
+  "cabbage-indicator/4-dad": {
+   "hash": "c84181103470",
+   "seconds": 24.12
+  },
+  "cabbage-indicator/4-nian": {
+   "hash": "55185ffe1b58",
+   "seconds": 6.96
+  },
+  "cabbage-indicator/5-dad": {
+   "hash": "3aa4e31d1df1",
+   "seconds": 21.38
+  },
+  "cabbage-indicator/5-nian": {
+   "hash": "969380b93a59",
+   "seconds": 6.5
+  },
+  "cabbage-indicator/6-dad": {
+   "hash": "cd38468fd5dc",
+   "seconds": 12.1
+  },
+  "cabbage-indicator/6-nian": {
+   "hash": "5c8479f692f5",
+   "seconds": 14.74
+  },
+  "carbon-capture/0-dad": {
+   "hash": "c971cd57463e",
+   "seconds": 26.02
+  },
+  "carbon-capture/0-nian": {
+   "hash": "e3aa9d7fbbb7",
+   "seconds": 6
+  },
+  "carbon-capture/1-dad": {
+   "hash": "37e9b17a8d07",
+   "seconds": 23.86
+  },
+  "carbon-capture/1-nian": {
+   "hash": "9818207ed64b",
+   "seconds": 5.5
+  },
+  "carbon-capture/2-dad": {
+   "hash": "cc9bed11c5df",
+   "seconds": 23.35
+  },
+  "carbon-capture/2-nian": {
+   "hash": "0a6b84bc3367",
+   "seconds": 4.68
+  },
+  "carbon-capture/3-dad": {
+   "hash": "a2c6ce23e7e4",
+   "seconds": 26.52
+  },
+  "carbon-capture/3-nian": {
+   "hash": "a580789cf5eb",
+   "seconds": 4.54
+  },
+  "carbon-capture/4-dad": {
+   "hash": "73d78a07faa6",
+   "seconds": 19.06
+  },
+  "carbon-capture/4-nian": {
+   "hash": "d3814372125f",
+   "seconds": 5.5
+  },
+  "carbon-capture/5-dad": {
+   "hash": "e1d95c4fb0f5",
+   "seconds": 22.58
+  },
+  "carbon-capture/5-nian": {
+   "hash": "c0f50384ea8f",
+   "seconds": 4.85
+  },
+  "carbon-capture/6-dad": {
+   "hash": "06b4729c83b1",
+   "seconds": 7.78
+  },
+  "carbon-capture/6-nian": {
+   "hash": "08d05d8443cf",
+   "seconds": 23.66
+  },
+  "cement-step/0-dad": {
+   "hash": "06a502395225",
+   "seconds": 22.46
+  },
+  "cement-step/0-nian": {
+   "hash": "fd523c9fca1b",
+   "seconds": 5.33
+  },
+  "cement-step/1-dad": {
+   "hash": "0d525a39a37e",
+   "seconds": 22.85
+  },
+  "cement-step/1-nian": {
+   "hash": "a7e72d91a1a7",
+   "seconds": 3.65
+  },
+  "cement-step/2-dad": {
+   "hash": "0cad4141ea72",
+   "seconds": 25.58
+  },
+  "cement-step/2-nian": {
+   "hash": "6c3fd8349ad7",
+   "seconds": 4.58
+  },
+  "cement-step/3-dad": {
+   "hash": "9ad1945acb57",
+   "seconds": 24.74
+  },
+  "cement-step/3-nian": {
+   "hash": "11cb0f5ffcf0",
+   "seconds": 5.09
+  },
+  "cement-step/4-dad": {
+   "hash": "90d5e84b3d1a",
+   "seconds": 22.44
+  },
+  "cement-step/4-nian": {
+   "hash": "1e49f3aa9d92",
+   "seconds": 6.5
+  },
+  "cement-step/5-dad": {
+   "hash": "3077ba9496dc",
+   "seconds": 26.14
+  },
+  "cement-step/5-nian": {
+   "hash": "741a79f862a4",
+   "seconds": 4.18
+  },
+  "cement-step/6-dad": {
+   "hash": "78adf6368992",
+   "seconds": 8.9
+  },
+  "cement-step/6-nian": {
+   "hash": "266a96d2eacd",
+   "seconds": 18.82
+  },
+  "chemical-bonds/0-dad": {
+   "hash": "fd591426874f",
+   "seconds": 24.19
+  },
+  "chemical-bonds/0-nian": {
+   "hash": "0791f2256ad9",
+   "seconds": 6.77
+  },
+  "chemical-bonds/1-dad": {
+   "hash": "43709cea7b2c",
+   "seconds": 20.81
+  },
+  "chemical-bonds/1-nian": {
+   "hash": "f2fc6ef0c53e",
+   "seconds": 4.97
+  },
+  "chemical-bonds/2-dad": {
+   "hash": "860a91659f73",
+   "seconds": 22.63
+  },
+  "chemical-bonds/2-nian": {
+   "hash": "fd60a77c0f9c",
+   "seconds": 7.46
+  },
+  "chemical-bonds/3-dad": {
+   "hash": "babca78faf04",
+   "seconds": 22.73
+  },
+  "chemical-bonds/3-nian": {
+   "hash": "679c50772832",
+   "seconds": 8.54
+  },
+  "chemical-bonds/4-dad": {
+   "hash": "29ece8df9164",
+   "seconds": 26.57
+  },
+  "chemical-bonds/4-nian": {
+   "hash": "9c726787288d",
+   "seconds": 6.05
+  },
+  "chemical-bonds/5-dad": {
+   "hash": "98a8eeaed256",
+   "seconds": 22.44
+  },
+  "chemical-bonds/5-nian": {
+   "hash": "4bfcc1ab62d5",
+   "seconds": 6.26
+  },
+  "chemical-bonds/6-dad": {
+   "hash": "dd5716e618ee",
+   "seconds": 11.81
+  },
+  "chemical-bonds/6-nian": {
+   "hash": "966771a3ea45",
+   "seconds": 17.47
+  },
+  "chlor-alkali-step/0-dad": {
+   "hash": "09f33caaddb4",
+   "seconds": 22.58
+  },
+  "chlor-alkali-step/0-nian": {
+   "hash": "b71ad172015e",
+   "seconds": 7.49
+  },
+  "chlor-alkali-step/1-dad": {
+   "hash": "902095487229",
+   "seconds": 28.01
+  },
+  "chlor-alkali-step/1-nian": {
+   "hash": "1918693cb1f8",
+   "seconds": 5.33
+  },
+  "chlor-alkali-step/2-dad": {
+   "hash": "c7970567f67f",
+   "seconds": 24.14
+  },
+  "chlor-alkali-step/2-nian": {
+   "hash": "1cfec359884f",
+   "seconds": 5.26
+  },
+  "chlor-alkali-step/3-dad": {
+   "hash": "631353ac337c",
+   "seconds": 21.91
+  },
+  "chlor-alkali-step/3-nian": {
+   "hash": "511d382d66f8",
+   "seconds": 3.62
+  },
+  "chlor-alkali-step/4-dad": {
+   "hash": "2a945126398e",
+   "seconds": 18.6
+  },
+  "chlor-alkali-step/4-nian": {
+   "hash": "b18e834aca48",
+   "seconds": 6.48
+  },
+  "chlor-alkali-step/5-dad": {
+   "hash": "30a77aab93c0",
+   "seconds": 23.78
+  },
+  "chlor-alkali-step/5-nian": {
+   "hash": "dcae98588bc0",
+   "seconds": 6.43
+  },
+  "chlor-alkali-step/6-dad": {
+   "hash": "0f12a0a4715b",
+   "seconds": 11.33
+  },
+  "chlor-alkali-step/6-nian": {
+   "hash": "6bb97ca4fd2b",
+   "seconds": 17.23
+  },
+  "chlorine-step/0-dad": {
+   "hash": "784adb79f6d3",
+   "seconds": 23.09
+  },
+  "chlorine-step/0-nian": {
+   "hash": "03835d1d3c55",
+   "seconds": 6.17
+  },
+  "chlorine-step/1-dad": {
+   "hash": "b54840e9dee6",
+   "seconds": 24.77
+  },
+  "chlorine-step/1-nian": {
+   "hash": "422bee3f986b",
+   "seconds": 5.93
+  },
+  "chlorine-step/2-dad": {
+   "hash": "4ae386b5a6ff",
+   "seconds": 26.04
+  },
+  "chlorine-step/2-nian": {
+   "hash": "6d3912df6f82",
+   "seconds": 5.5
+  },
+  "chlorine-step/3-dad": {
+   "hash": "c7b44b5b94a2",
+   "seconds": 23.4
+  },
+  "chlorine-step/3-nian": {
+   "hash": "2c125a017d7a",
+   "seconds": 6.6
+  },
+  "chlorine-step/4-dad": {
+   "hash": "d61e8b886fff",
+   "seconds": 23.38
+  },
+  "chlorine-step/4-nian": {
+   "hash": "f20da439510b",
+   "seconds": 7.25
+  },
+  "chlorine-step/5-dad": {
+   "hash": "0477bb4131a6",
+   "seconds": 22.49
+  },
+  "chlorine-step/5-nian": {
+   "hash": "86c4cee3f990",
+   "seconds": 5.59
+  },
+  "chlorine-step/6-dad": {
+   "hash": "4fbb8360d64d",
+   "seconds": 14.86
+  },
+  "chlorine-step/6-nian": {
+   "hash": "90468b1160c3",
+   "seconds": 17.45
+  },
+  "coal-gas-step/0-dad": {
+   "hash": "55e3ce3980e3",
+   "seconds": 22.54
+  },
+  "coal-gas-step/0-nian": {
+   "hash": "aada403dc3d2",
+   "seconds": 5.06
+  },
+  "coal-gas-step/1-dad": {
+   "hash": "29978a9354ce",
+   "seconds": 23.74
+  },
+  "coal-gas-step/1-nian": {
+   "hash": "d3a1e628b15a",
+   "seconds": 5.11
+  },
+  "coal-gas-step/2-dad": {
+   "hash": "4e09ed9bf1c1",
+   "seconds": 22.87
+  },
+  "coal-gas-step/2-nian": {
+   "hash": "8b53b45d9ab7",
+   "seconds": 7.58
+  },
+  "coal-gas-step/3-dad": {
+   "hash": "5c4d9d39398b",
+   "seconds": 20.95
+  },
+  "coal-gas-step/3-nian": {
+   "hash": "6e089d74590c",
+   "seconds": 6.55
+  },
+  "coal-gas-step/4-dad": {
+   "hash": "7333f7ce1feb",
+   "seconds": 22.61
+  },
+  "coal-gas-step/4-nian": {
+   "hash": "0128efa9d3c1",
+   "seconds": 5.93
+  },
+  "coal-gas-step/5-dad": {
+   "hash": "a9abc1538940",
+   "seconds": 23.23
+  },
+  "coal-gas-step/5-nian": {
+   "hash": "48ac44744daf",
+   "seconds": 6.38
+  },
+  "coal-gas-step/6-dad": {
+   "hash": "46c0802f4176",
+   "seconds": 8.64
+  },
+  "coal-gas-step/6-nian": {
+   "hash": "a3efeeeb9bc1",
+   "seconds": 21.6
+  },
+  "conductivity-step/0-dad": {
+   "hash": "2ddaf90d7880",
+   "seconds": 21.5
+  },
+  "conductivity-step/0-nian": {
+   "hash": "695d895619c4",
+   "seconds": 4.63
+  },
+  "conductivity-step/1-dad": {
+   "hash": "80ec5b158744",
+   "seconds": 23.38
+  },
+  "conductivity-step/1-nian": {
+   "hash": "53c80a9af6df",
+   "seconds": 5.83
+  },
+  "conductivity-step/2-dad": {
+   "hash": "8b8b69ba6b1f",
+   "seconds": 23.69
+  },
+  "conductivity-step/2-nian": {
+   "hash": "fd0103911fcc",
+   "seconds": 6.17
+  },
+  "conductivity-step/3-dad": {
+   "hash": "677af21fb838",
+   "seconds": 20.52
+  },
+  "conductivity-step/3-nian": {
+   "hash": "82ebcb6bb37f",
+   "seconds": 5.42
+  },
+  "conductivity-step/4-dad": {
+   "hash": "c0895be556d1",
+   "seconds": 18.62
+  },
+  "conductivity-step/4-nian": {
+   "hash": "d506f655adba",
+   "seconds": 5.71
+  },
+  "conductivity-step/5-dad": {
+   "hash": "d6c43a694329",
+   "seconds": 22.03
+  },
+  "conductivity-step/5-nian": {
+   "hash": "59733751e0dd",
+   "seconds": 6.48
+  },
+  "conductivity-step/6-dad": {
+   "hash": "12ea8dbda14c",
+   "seconds": 10.87
+  },
+  "conductivity-step/6-nian": {
+   "hash": "5f4608ac92d5",
+   "seconds": 17.62
+  },
+  "corrosion-step/0-dad": {
+   "hash": "d922e33d5199",
+   "seconds": 21.84
+  },
+  "corrosion-step/0-nian": {
+   "hash": "421b252fcb70",
+   "seconds": 5.21
+  },
+  "corrosion-step/1-dad": {
+   "hash": "e1b5eb98a04a",
+   "seconds": 23.88
+  },
+  "corrosion-step/1-nian": {
+   "hash": "55af270d9c51",
+   "seconds": 6.62
+  },
+  "corrosion-step/2-dad": {
+   "hash": "0040a2178ee9",
+   "seconds": 23.4
+  },
+  "corrosion-step/2-nian": {
+   "hash": "4aa546a473b5",
+   "seconds": 6.41
+  },
+  "corrosion-step/3-dad": {
+   "hash": "3aff2be6a9d6",
+   "seconds": 23.69
+  },
+  "corrosion-step/3-nian": {
+   "hash": "237b08826801",
+   "seconds": 5.74
+  },
+  "corrosion-step/4-dad": {
+   "hash": "9fb5d120a64d",
+   "seconds": 25.51
+  },
+  "corrosion-step/4-nian": {
+   "hash": "c94c15a34089",
+   "seconds": 6.02
+  },
+  "corrosion-step/5-dad": {
+   "hash": "627d5deb663c",
+   "seconds": 22.18
+  },
+  "corrosion-step/5-nian": {
+   "hash": "b1b6fcadc1ae",
+   "seconds": 7.42
+  },
+  "corrosion-step/6-dad": {
+   "hash": "f6b2b0764fdd",
+   "seconds": 11.62
+  },
+  "corrosion-step/6-nian": {
+   "hash": "1057e2f473c4",
+   "seconds": 18.24
+  },
+  "diamond-graphite/0-dad": {
+   "hash": "41aa896ca540",
+   "seconds": 19.46
+  },
+  "diamond-graphite/0-nian": {
+   "hash": "35bab0450567",
+   "seconds": 8.81
+  },
+  "diamond-graphite/1-dad": {
+   "hash": "00623c3c7e98",
+   "seconds": 25.92
+  },
+  "diamond-graphite/1-nian": {
+   "hash": "3543188363ab",
+   "seconds": 6.41
+  },
+  "diamond-graphite/2-dad": {
+   "hash": "bd1d27946ebe",
+   "seconds": 22.3
+  },
+  "diamond-graphite/2-nian": {
+   "hash": "5c33b25dd85b",
+   "seconds": 7.13
+  },
+  "diamond-graphite/3-dad": {
+   "hash": "c8d043a4566a",
+   "seconds": 23.98
+  },
+  "diamond-graphite/3-nian": {
+   "hash": "d132c9bf712f",
+   "seconds": 8.26
+  },
+  "diamond-graphite/4-dad": {
+   "hash": "1a5cc5da2f1a",
+   "seconds": 27.36
+  },
+  "diamond-graphite/4-nian": {
+   "hash": "e8558870f3cf",
+   "seconds": 5.98
+  },
+  "diamond-graphite/5-dad": {
+   "hash": "ecb1c33b6cfc",
+   "seconds": 26.9
+  },
+  "diamond-graphite/5-nian": {
+   "hash": "e62bd8f797ec",
+   "seconds": 6.46
+  },
+  "diamond-graphite/6-dad": {
+   "hash": "fa915ff3a290",
+   "seconds": 13.61
+  },
+  "diamond-graphite/6-nian": {
+   "hash": "b7f8036fd7fa",
+   "seconds": 21.12
+  },
+  "electrolysis-step/0-dad": {
+   "hash": "02ab07e68dcf",
+   "seconds": 24.7
+  },
+  "electrolysis-step/0-nian": {
+   "hash": "4c239ad6534b",
+   "seconds": 5.88
+  },
+  "electrolysis-step/1-dad": {
+   "hash": "03c1db232fd0",
+   "seconds": 21.46
+  },
+  "electrolysis-step/1-nian": {
+   "hash": "f55de1a4ea0a",
+   "seconds": 5.69
+  },
+  "electrolysis-step/2-dad": {
+   "hash": "20f47db15dd4",
+   "seconds": 22.97
+  },
+  "electrolysis-step/2-nian": {
+   "hash": "01c475eace75",
+   "seconds": 4.27
+  },
+  "electrolysis-step/3-dad": {
+   "hash": "f4efc16790e8",
+   "seconds": 24.29
+  },
+  "electrolysis-step/3-nian": {
+   "hash": "79782b3d36cd",
+   "seconds": 6.53
+  },
+  "electrolysis-step/4-dad": {
+   "hash": "bf58573f2399",
+   "seconds": 26.64
+  },
+  "electrolysis-step/4-nian": {
+   "hash": "db9c2aba359b",
+   "seconds": 5.57
+  },
+  "electrolysis-step/5-dad": {
+   "hash": "5577dcbfe1af",
+   "seconds": 23.09
+  },
+  "electrolysis-step/5-nian": {
+   "hash": "0ec49bb19bbd",
+   "seconds": 9.24
+  },
+  "electrolysis-step/6-dad": {
+   "hash": "a141cdcd1bf0",
+   "seconds": 16.8
+  },
+  "electrolysis-step/6-nian": {
+   "hash": "7a96bd1b3d3b",
+   "seconds": 20.09
+  },
+  "equilibrium-step/0-dad": {
+   "hash": "13ac13fd3503",
+   "seconds": 21.82
+  },
+  "equilibrium-step/0-nian": {
+   "hash": "faf6d4f9cca6",
+   "seconds": 6.67
+  },
+  "equilibrium-step/1-dad": {
+   "hash": "7c68c30c144c",
+   "seconds": 21.96
+  },
+  "equilibrium-step/1-nian": {
+   "hash": "79512de4251f",
+   "seconds": 6.19
+  },
+  "equilibrium-step/2-dad": {
+   "hash": "f4580b7e86da",
+   "seconds": 23.16
+  },
+  "equilibrium-step/2-nian": {
+   "hash": "b60ceaa908ce",
+   "seconds": 5.78
+  },
+  "equilibrium-step/3-dad": {
+   "hash": "38ae7e76de0f",
+   "seconds": 23.26
+  },
+  "equilibrium-step/3-nian": {
+   "hash": "221e9a2de623",
+   "seconds": 7.06
+  },
+  "equilibrium-step/4-dad": {
+   "hash": "9b4628c0dbce",
+   "seconds": 22.34
+  },
+  "equilibrium-step/4-nian": {
+   "hash": "da1a178160a9",
+   "seconds": 6.6
+  },
+  "equilibrium-step/5-dad": {
+   "hash": "f1041a1ebc10",
+   "seconds": 21.94
+  },
+  "equilibrium-step/5-nian": {
+   "hash": "75ae5f8daf1d",
+   "seconds": 6.34
+  },
+  "equilibrium-step/6-dad": {
+   "hash": "959a36680e02",
+   "seconds": 10.51
+  },
+  "equilibrium-step/6-nian": {
+   "hash": "1b7409288d82",
+   "seconds": 15.84
+  },
+  "fart-smell/0-dad": {
+   "hash": "f04c7de2e71f",
+   "seconds": 21.98
+  },
+  "fart-smell/0-nian": {
+   "hash": "08c1ec0f88e3",
+   "seconds": 4.06
+  },
+  "fart-smell/1-dad": {
+   "hash": "0e7140d3aa3b",
+   "seconds": 19.3
+  },
+  "fart-smell/1-nian": {
+   "hash": "2f794cb1a24f",
+   "seconds": 4.9
+  },
+  "fart-smell/2-dad": {
+   "hash": "83dfea36d3da",
+   "seconds": 21.65
+  },
+  "fart-smell/2-nian": {
+   "hash": "d97536b05852",
+   "seconds": 5.33
+  },
+  "fart-smell/3-dad": {
+   "hash": "7986cc252e12",
+   "seconds": 25.61
+  },
+  "fart-smell/3-nian": {
+   "hash": "250bbeca49db",
+   "seconds": 3.72
+  },
+  "fart-smell/4-dad": {
+   "hash": "38586e799b01",
+   "seconds": 25.94
+  },
+  "fart-smell/4-nian": {
+   "hash": "1fba79c50529",
+   "seconds": 5.54
+  },
+  "fart-smell/5-dad": {
+   "hash": "d2ff235fae1a",
+   "seconds": 25.7
+  },
+  "fart-smell/5-nian": {
+   "hash": "353a77297525",
+   "seconds": 6.22
+  },
+  "fart-smell/6-dad": {
+   "hash": "8f6ccabedf85",
+   "seconds": 19.1
+  },
+  "fart-smell/6-nian": {
+   "hash": "59a16704a82f",
+   "seconds": 24.67
+  },
+  "flame-step/0-dad": {
+   "hash": "f5a47590f6de",
+   "seconds": 21.22
+  },
+  "flame-step/0-nian": {
+   "hash": "338cc7a14a8c",
+   "seconds": 7.46
+  },
+  "flame-step/1-dad": {
+   "hash": "ac460f272881",
+   "seconds": 21.38
+  },
+  "flame-step/1-nian": {
+   "hash": "42ddb179f89f",
+   "seconds": 4.85
+  },
+  "flame-step/2-dad": {
+   "hash": "120e3e8cd3fe",
+   "seconds": 24.98
+  },
+  "flame-step/2-nian": {
+   "hash": "75656748bf53",
+   "seconds": 6.77
+  },
+  "flame-step/3-dad": {
+   "hash": "996889ff2334",
+   "seconds": 23.76
+  },
+  "flame-step/3-nian": {
+   "hash": "94683e450449",
+   "seconds": 5.86
+  },
+  "flame-step/4-dad": {
+   "hash": "d7162c8c82c1",
+   "seconds": 25.68
+  },
+  "flame-step/4-nian": {
+   "hash": "a2d5bd1536fd",
+   "seconds": 7.39
+  },
+  "flame-step/5-dad": {
+   "hash": "658873538fea",
+   "seconds": 20.86
+  },
+  "flame-step/5-nian": {
+   "hash": "4573b428b6cf",
+   "seconds": 6.58
+  },
+  "flame-step/6-dad": {
+   "hash": "cc8170fef91a",
+   "seconds": 16.49
+  },
+  "flame-step/6-nian": {
+   "hash": "0235d6dce8b1",
+   "seconds": 15.22
+  },
+  "galvanic-step/0-dad": {
+   "hash": "3e4fbf79ae0a",
+   "seconds": 21.48
+  },
+  "galvanic-step/0-nian": {
+   "hash": "4f6ce1c76855",
+   "seconds": 6.41
+  },
+  "galvanic-step/1-dad": {
+   "hash": "a4ef5513bcd1",
+   "seconds": 23.69
+  },
+  "galvanic-step/1-nian": {
+   "hash": "7990d9393408",
+   "seconds": 4.51
+  },
+  "galvanic-step/2-dad": {
+   "hash": "151ab46036e4",
+   "seconds": 25.3
+  },
+  "galvanic-step/2-nian": {
+   "hash": "46f63f9a478c",
+   "seconds": 6.67
+  },
+  "galvanic-step/3-dad": {
+   "hash": "81117e3480ce",
+   "seconds": 20.09
+  },
+  "galvanic-step/3-nian": {
+   "hash": "217f4fbd8223",
+   "seconds": 6.62
+  },
+  "galvanic-step/4-dad": {
+   "hash": "c70cb7c2e638",
+   "seconds": 22.06
+  },
+  "galvanic-step/4-nian": {
+   "hash": "0713c5cb1735",
+   "seconds": 6.79
+  },
+  "galvanic-step/5-dad": {
+   "hash": "da0f64810978",
+   "seconds": 22.73
+  },
+  "galvanic-step/5-nian": {
+   "hash": "248573709335",
+   "seconds": 4.42
+  },
+  "galvanic-step/6-dad": {
+   "hash": "46ae1fe7a807",
+   "seconds": 13.82
+  },
+  "galvanic-step/6-nian": {
+   "hash": "22fb2c673e44",
+   "seconds": 15.96
+  },
+  "gasoline/0-dad": {
+   "hash": "34c558391e7a",
+   "seconds": 19.1
+  },
+  "gasoline/0-nian": {
+   "hash": "c2826d0558a5",
+   "seconds": 4.8
+  },
+  "gasoline/1-dad": {
+   "hash": "8746f7363fc7",
+   "seconds": 22.78
+  },
+  "gasoline/1-nian": {
+   "hash": "45d5f6336dad",
+   "seconds": 4.2
+  },
+  "gasoline/2-dad": {
+   "hash": "3d05127bad2d",
+   "seconds": 29.26
+  },
+  "gasoline/2-nian": {
+   "hash": "9c25909159bf",
+   "seconds": 5.02
+  },
+  "gasoline/3-dad": {
+   "hash": "e1c791846890",
+   "seconds": 20.76
+  },
+  "gasoline/3-nian": {
+   "hash": "e9b28ccf7f23",
+   "seconds": 6.43
+  },
+  "gasoline/4-dad": {
+   "hash": "f555562315b6",
+   "seconds": 24.36
+  },
+  "gasoline/4-nian": {
+   "hash": "c46a4ce4ee75",
+   "seconds": 5.66
+  },
+  "gasoline/5-dad": {
+   "hash": "409aec2e58f0",
+   "seconds": 24.29
+  },
+  "gasoline/5-nian": {
+   "hash": "a77bb5bc7090",
+   "seconds": 7.68
+  },
+  "gasoline/6-dad": {
+   "hash": "f57f25c427bc",
+   "seconds": 16.75
+  },
+  "gasoline/6-nian": {
+   "hash": "5242dc9f62b3",
+   "seconds": 17.21
+  },
+  "glow-stick/0-dad": {
+   "hash": "8b5dd71617ed",
+   "seconds": 22.94
+  },
+  "glow-stick/0-nian": {
+   "hash": "e211f48151ee",
+   "seconds": 5.35
+  },
+  "glow-stick/1-dad": {
+   "hash": "f075bb676df8",
+   "seconds": 23.78
+  },
+  "glow-stick/1-nian": {
+   "hash": "dedcb00fc4b8",
+   "seconds": 6
+  },
+  "glow-stick/2-dad": {
+   "hash": "158cf64f6403",
+   "seconds": 23.28
+  },
+  "glow-stick/2-nian": {
+   "hash": "559c6a9583c7",
+   "seconds": 7.1
+  },
+  "glow-stick/3-dad": {
+   "hash": "740bcdac7fda",
+   "seconds": 26.18
+  },
+  "glow-stick/3-nian": {
+   "hash": "2283a462cb4d",
+   "seconds": 5.28
+  },
+  "glow-stick/4-dad": {
+   "hash": "1d66cd24ee4d",
+   "seconds": 25.42
+  },
+  "glow-stick/4-nian": {
+   "hash": "a3ad010c5262",
+   "seconds": 5.3
+  },
+  "glow-stick/5-dad": {
+   "hash": "aa8efeaddfce",
+   "seconds": 14.45
+  },
+  "glow-stick/5-nian": {
+   "hash": "9fb4aa34acf4",
+   "seconds": 21.74
+  },
+  "haber-step/0-dad": {
+   "hash": "a540575f2be9",
+   "seconds": 20.66
+  },
+  "haber-step/0-nian": {
+   "hash": "806f1863cbe4",
+   "seconds": 6.24
+  },
+  "haber-step/1-dad": {
+   "hash": "d25433eb3b11",
+   "seconds": 25.2
+  },
+  "haber-step/1-nian": {
+   "hash": "5ab143367683",
+   "seconds": 4.87
+  },
+  "haber-step/2-dad": {
+   "hash": "b688f942a54a",
+   "seconds": 27.34
+  },
+  "haber-step/2-nian": {
+   "hash": "b3811341319f",
+   "seconds": 4.82
+  },
+  "haber-step/3-dad": {
+   "hash": "6518c01e8232",
+   "seconds": 27.14
+  },
+  "haber-step/3-nian": {
+   "hash": "5e4e0da20fab",
+   "seconds": 5.95
+  },
+  "haber-step/4-dad": {
+   "hash": "65ec742e726b",
+   "seconds": 22.87
+  },
+  "haber-step/4-nian": {
+   "hash": "483539b276f2",
+   "seconds": 6.46
+  },
+  "haber-step/5-dad": {
+   "hash": "bf6a24512aa5",
+   "seconds": 25.01
+  },
+  "haber-step/5-nian": {
+   "hash": "915e66489edb",
+   "seconds": 7.15
+  },
+  "haber-step/6-dad": {
+   "hash": "54899a4b4b9b",
+   "seconds": 8.69
+  },
+  "haber-step/6-nian": {
+   "hash": "a2af1921bafa",
+   "seconds": 21.12
+  },
+  "hou-soda-step/0-dad": {
+   "hash": "555ceb4e81ba",
+   "seconds": 25.73
+  },
+  "hou-soda-step/0-nian": {
+   "hash": "39e39bd3b7c4",
+   "seconds": 7.42
+  },
+  "hou-soda-step/1-dad": {
+   "hash": "cd27ca25ad4b",
+   "seconds": 23.81
+  },
+  "hou-soda-step/1-nian": {
+   "hash": "1f83f86463e4",
+   "seconds": 6.02
+  },
+  "hou-soda-step/2-dad": {
+   "hash": "0d50d5f4665f",
+   "seconds": 21.94
+  },
+  "hou-soda-step/2-nian": {
+   "hash": "dfaed5874ac0",
+   "seconds": 4.99
+  },
+  "hou-soda-step/3-dad": {
+   "hash": "dfc9fa5476f5",
+   "seconds": 22.61
+  },
+  "hou-soda-step/3-nian": {
+   "hash": "a395c9ee1a73",
+   "seconds": 4.37
+  },
+  "hou-soda-step/4-dad": {
+   "hash": "f1e1519333c7",
+   "seconds": 22.66
+  },
+  "hou-soda-step/4-nian": {
+   "hash": "bc4aaa29596a",
+   "seconds": 4.66
+  },
+  "hou-soda-step/5-dad": {
+   "hash": "4db91ee32345",
+   "seconds": 26.02
+  },
+  "hou-soda-step/5-nian": {
+   "hash": "7d64eccdbac1",
+   "seconds": 4.68
+  },
+  "hou-soda-step/6-dad": {
+   "hash": "5c00a95770a0",
+   "seconds": 13.63
+  },
+  "hou-soda-step/6-nian": {
+   "hash": "47e73f904bf9",
+   "seconds": 18.48
+  },
+  "hydrolysis-step/0-dad": {
+   "hash": "b38db9a32778",
+   "seconds": 24.31
+  },
+  "hydrolysis-step/0-nian": {
+   "hash": "d3b68ed9596e",
+   "seconds": 5.09
+  },
+  "hydrolysis-step/1-dad": {
+   "hash": "ac8f6556b7b7",
+   "seconds": 23.38
+  },
+  "hydrolysis-step/1-nian": {
+   "hash": "eb45aa4b19c6",
+   "seconds": 4.94
+  },
+  "hydrolysis-step/2-dad": {
+   "hash": "5b423c23bce6",
+   "seconds": 24.26
+  },
+  "hydrolysis-step/2-nian": {
+   "hash": "6104927769aa",
+   "seconds": 6.48
+  },
+  "hydrolysis-step/3-dad": {
+   "hash": "1c65993b78b3",
+   "seconds": 21.79
+  },
+  "hydrolysis-step/3-nian": {
+   "hash": "3d63cf5b0d09",
+   "seconds": 5.52
+  },
+  "hydrolysis-step/4-dad": {
+   "hash": "0c39908f060b",
+   "seconds": 19.25
+  },
+  "hydrolysis-step/4-nian": {
+   "hash": "938faa9f40ec",
+   "seconds": 5.42
+  },
+  "hydrolysis-step/5-dad": {
+   "hash": "c691e956144d",
+   "seconds": 21.7
+  },
+  "hydrolysis-step/5-nian": {
+   "hash": "bd800f8e83a6",
+   "seconds": 5.78
+  },
+  "hydrolysis-step/6-dad": {
+   "hash": "1a665ebfd293",
+   "seconds": 11.88
+  },
+  "hydrolysis-step/6-nian": {
+   "hash": "b0568b52863e",
+   "seconds": 18.65
+  },
+  "iron-step/0-dad": {
+   "hash": "4051de3b8fb8",
+   "seconds": 22.18
+  },
+  "iron-step/0-nian": {
+   "hash": "919cf8d0873a",
+   "seconds": 6.41
+  },
+  "iron-step/1-dad": {
+   "hash": "dcb985a3df4d",
+   "seconds": 23.83
+  },
+  "iron-step/1-nian": {
+   "hash": "5af4201a425f",
+   "seconds": 6.29
+  },
+  "iron-step/2-dad": {
+   "hash": "2144b8bb7b78",
+   "seconds": 22.15
+  },
+  "iron-step/2-nian": {
+   "hash": "284c25c434c7",
+   "seconds": 7.15
+  },
+  "iron-step/3-dad": {
+   "hash": "0b537d6b6672",
+   "seconds": 21.38
+  },
+  "iron-step/3-nian": {
+   "hash": "a0284641155a",
+   "seconds": 7.66
+  },
+  "iron-step/4-dad": {
+   "hash": "33761ae48a5f",
+   "seconds": 24.89
+  },
+  "iron-step/4-nian": {
+   "hash": "a5f90c4a3d84",
+   "seconds": 5.45
+  },
+  "iron-step/5-dad": {
+   "hash": "b4414669dc4c",
+   "seconds": 25.18
+  },
+  "iron-step/5-nian": {
+   "hash": "38d095a8ad17",
+   "seconds": 6.14
+  },
+  "iron-step/6-dad": {
+   "hash": "06d03d57b72a",
+   "seconds": 15.17
+  },
+  "iron-step/6-nian": {
+   "hash": "723964ddb9df",
+   "seconds": 14.64
+  },
+  "kettle-scale/0-dad": {
+   "hash": "3be885af9428",
+   "seconds": 22.13
+  },
+  "kettle-scale/0-nian": {
+   "hash": "652ecac7a575",
+   "seconds": 5.69
+  },
+  "kettle-scale/1-dad": {
+   "hash": "75f09ab56f76",
+   "seconds": 26.14
+  },
+  "kettle-scale/1-nian": {
+   "hash": "8720f7c6c293",
+   "seconds": 4.61
+  },
+  "kettle-scale/2-dad": {
+   "hash": "4228d3084284",
+   "seconds": 23.42
+  },
+  "kettle-scale/2-nian": {
+   "hash": "61aee7d73eee",
+   "seconds": 4.66
+  },
+  "kettle-scale/3-dad": {
+   "hash": "98eff5c3185c",
+   "seconds": 22.85
+  },
+  "kettle-scale/3-nian": {
+   "hash": "d65f34f742ff",
+   "seconds": 5.62
+  },
+  "kettle-scale/4-dad": {
+   "hash": "96af244a9d0c",
+   "seconds": 21.72
+  },
+  "kettle-scale/4-nian": {
+   "hash": "89264f7140a0",
+   "seconds": 6.17
+  },
+  "kettle-scale/5-dad": {
+   "hash": "676b6fb75502",
+   "seconds": 23.5
+  },
+  "kettle-scale/5-nian": {
+   "hash": "57ce3c4b7e54",
+   "seconds": 4.2
+  },
+  "kettle-scale/6-dad": {
+   "hash": "ae01e151ba91",
+   "seconds": 12.43
+  },
+  "kettle-scale/6-nian": {
+   "hash": "09c19254ffb6",
+   "seconds": 16.25
+  },
+  "lithium-rocking-chair/0-dad": {
+   "hash": "bb845ef925a0",
+   "seconds": 22.66
+  },
+  "lithium-rocking-chair/0-nian": {
+   "hash": "c24ed59a3333",
+   "seconds": 5.45
+  },
+  "lithium-rocking-chair/1-dad": {
+   "hash": "c9a4879c0b87",
+   "seconds": 23.3
+  },
+  "lithium-rocking-chair/1-nian": {
+   "hash": "4378a26386e8",
+   "seconds": 6.05
+  },
+  "lithium-rocking-chair/2-dad": {
+   "hash": "e1722e16bfbe",
+   "seconds": 22.92
+  },
+  "lithium-rocking-chair/2-nian": {
+   "hash": "6b10efa848c8",
+   "seconds": 5.18
+  },
+  "lithium-rocking-chair/3-dad": {
+   "hash": "2f487878c4da",
+   "seconds": 23.35
+  },
+  "lithium-rocking-chair/3-nian": {
+   "hash": "aa6cc984e3f5",
+   "seconds": 3.62
+  },
+  "lithium-rocking-chair/4-dad": {
+   "hash": "27c1b15fea23",
+   "seconds": 27.53
+  },
+  "lithium-rocking-chair/4-nian": {
+   "hash": "d66495ca80c7",
+   "seconds": 4.22
+  },
+  "lithium-rocking-chair/5-dad": {
+   "hash": "cbe65e21e97f",
+   "seconds": 22.18
+  },
+  "lithium-rocking-chair/5-nian": {
+   "hash": "45271578cc3c",
+   "seconds": 5.5
+  },
+  "lithium-rocking-chair/6-dad": {
+   "hash": "a4faf093e411",
+   "seconds": 10.42
+  },
+  "lithium-rocking-chair/6-nian": {
+   "hash": "86a3d957ac11",
+   "seconds": 19.22
+  },
+  "maillard-browning/0-dad": {
+   "hash": "2b50d3e6a3fc",
+   "seconds": 25.1
+  },
+  "maillard-browning/0-nian": {
+   "hash": "9b687e5469e4",
+   "seconds": 7.13
+  },
+  "maillard-browning/1-dad": {
+   "hash": "d444b0af1784",
+   "seconds": 23.5
+  },
+  "maillard-browning/1-nian": {
+   "hash": "5be0f05eb5ce",
+   "seconds": 6.74
+  },
+  "maillard-browning/2-dad": {
+   "hash": "186ee1cdb01b",
+   "seconds": 26.18
+  },
+  "maillard-browning/2-nian": {
+   "hash": "5b0c9cdf89a2",
+   "seconds": 6
+  },
+  "maillard-browning/3-dad": {
+   "hash": "711bab8946f8",
+   "seconds": 21.82
+  },
+  "maillard-browning/3-nian": {
+   "hash": "ca44f7a52e7b",
+   "seconds": 4.25
+  },
+  "maillard-browning/4-dad": {
+   "hash": "68099eb52a61",
+   "seconds": 24.77
+  },
+  "maillard-browning/4-nian": {
+   "hash": "ce5346e41e60",
+   "seconds": 7.7
+  },
+  "maillard-browning/5-dad": {
+   "hash": "266b696ec008",
+   "seconds": 24.36
+  },
+  "maillard-browning/5-nian": {
+   "hash": "766cf086f35a",
+   "seconds": 8.28
+  },
+  "maillard-browning/6-dad": {
+   "hash": "26599ab1a81f",
+   "seconds": 9.65
+  },
+  "maillard-browning/6-nian": {
+   "hash": "aaa20e9796bb",
+   "seconds": 18.41
+  },
+  "matter-basics/0-dad": {
+   "hash": "60570edb9c45",
+   "seconds": 23.28
+  },
+  "matter-basics/0-nian": {
+   "hash": "ae403552edc5",
+   "seconds": 7.1
+  },
+  "matter-basics/1-dad": {
+   "hash": "6f863ba46eff",
+   "seconds": 23.95
+  },
+  "matter-basics/1-nian": {
+   "hash": "f5a9fd70a55b",
+   "seconds": 5.45
+  },
+  "matter-basics/2-dad": {
+   "hash": "8d07defabffd",
+   "seconds": 22.42
+  },
+  "matter-basics/2-nian": {
+   "hash": "fc1fa37e0819",
+   "seconds": 7.51
+  },
+  "matter-basics/3-dad": {
+   "hash": "b465c77b2c97",
+   "seconds": 23.76
+  },
+  "matter-basics/3-nian": {
+   "hash": "934c8a775924",
+   "seconds": 7.42
+  },
+  "matter-basics/4-dad": {
+   "hash": "8005f3c655fa",
+   "seconds": 23.81
+  },
+  "matter-basics/4-nian": {
+   "hash": "e4a0e59fe195",
+   "seconds": 6.22
+  },
+  "matter-basics/5-dad": {
+   "hash": "a2d8c7976ecc",
+   "seconds": 27.31
+  },
+  "matter-basics/5-nian": {
+   "hash": "c548798d5d5e",
+   "seconds": 6.46
+  },
+  "matter-basics/6-dad": {
+   "hash": "4fe6844a9afa",
+   "seconds": 12.67
+  },
+  "matter-basics/6-nian": {
+   "hash": "dd16ad8f4509",
+   "seconds": 17.64
+  },
+  "mentos-cola/0-dad": {
+   "hash": "8bf6928e9f56",
+   "seconds": 23.64
+  },
+  "mentos-cola/0-nian": {
+   "hash": "3e3f1180f56b",
+   "seconds": 7.3
+  },
+  "mentos-cola/1-dad": {
+   "hash": "a4954310a8cd",
+   "seconds": 22.27
+  },
+  "mentos-cola/1-nian": {
+   "hash": "127928e8894f",
+   "seconds": 6.38
+  },
+  "mentos-cola/2-dad": {
+   "hash": "cddae0e39079",
+   "seconds": 26.45
+  },
+  "mentos-cola/2-nian": {
+   "hash": "7ebeef67d93a",
+   "seconds": 6.1
+  },
+  "mentos-cola/3-dad": {
+   "hash": "b4fb21f78e55",
+   "seconds": 27.12
+  },
+  "mentos-cola/3-nian": {
+   "hash": "cab27591c65b",
+   "seconds": 5.5
+  },
+  "mentos-cola/4-dad": {
+   "hash": "5b19c95b7485",
+   "seconds": 23.74
+  },
+  "mentos-cola/4-nian": {
+   "hash": "78c9bf9b850f",
+   "seconds": 7.22
+  },
+  "mentos-cola/5-dad": {
+   "hash": "4b6362fb42e0",
+   "seconds": 15.82
+  },
+  "mentos-cola/5-nian": {
+   "hash": "56d256faca1c",
+   "seconds": 19.34
+  },
+  "nitric-lab-step/0-dad": {
+   "hash": "4db61adcd2df",
+   "seconds": 22.66
+  },
+  "nitric-lab-step/0-nian": {
+   "hash": "26265463cc94",
+   "seconds": 6.02
+  },
+  "nitric-lab-step/1-dad": {
+   "hash": "e5e7ffd04857",
+   "seconds": 24.41
+  },
+  "nitric-lab-step/1-nian": {
+   "hash": "f13e150d6716",
+   "seconds": 5.78
+  },
+  "nitric-lab-step/2-dad": {
+   "hash": "bacfcb236010",
+   "seconds": 22.9
+  },
+  "nitric-lab-step/2-nian": {
+   "hash": "b22861ab9eab",
+   "seconds": 4.92
+  },
+  "nitric-lab-step/3-dad": {
+   "hash": "ed81bac2ab11",
+   "seconds": 20.38
+  },
+  "nitric-lab-step/3-nian": {
+   "hash": "b5d14da5ea0b",
+   "seconds": 6.7
+  },
+  "nitric-lab-step/4-dad": {
+   "hash": "6e8d2a58ec89",
+   "seconds": 23.23
+  },
+  "nitric-lab-step/4-nian": {
+   "hash": "de9dfb2b5744",
+   "seconds": 4.58
+  },
+  "nitric-lab-step/5-dad": {
+   "hash": "082a4c30f759",
+   "seconds": 25.1
+  },
+  "nitric-lab-step/5-nian": {
+   "hash": "d0a2d5193716",
+   "seconds": 6.58
+  },
+  "nitric-lab-step/6-dad": {
+   "hash": "c97063524acd",
+   "seconds": 11.9
+  },
+  "nitric-lab-step/6-nian": {
+   "hash": "fa9aa553963f",
+   "seconds": 17.93
+  },
+  "onion-tears/0-dad": {
+   "hash": "e787c4055687",
+   "seconds": 21.82
+  },
+  "onion-tears/0-nian": {
+   "hash": "274d55a53ac6",
+   "seconds": 5.11
+  },
+  "onion-tears/1-dad": {
+   "hash": "5af16a525fc9",
+   "seconds": 23.23
+  },
+  "onion-tears/1-nian": {
+   "hash": "0f7f546b8cd4",
+   "seconds": 7.06
+  },
+  "onion-tears/2-dad": {
+   "hash": "ce590121ead4",
+   "seconds": 25.99
+  },
+  "onion-tears/2-nian": {
+   "hash": "0a802ac0ac0f",
+   "seconds": 4.99
+  },
+  "onion-tears/3-dad": {
+   "hash": "b7e710ac8ca0",
+   "seconds": 25.54
+  },
+  "onion-tears/3-nian": {
+   "hash": "7b8fc8cbb0b5",
+   "seconds": 6.55
+  },
+  "onion-tears/4-dad": {
+   "hash": "f67c705356dc",
+   "seconds": 24.67
+  },
+  "onion-tears/4-nian": {
+   "hash": "41a020b76f5b",
+   "seconds": 6.89
+  },
+  "onion-tears/5-dad": {
+   "hash": "af752df83a6f",
+   "seconds": 15.07
+  },
+  "onion-tears/5-nian": {
+   "hash": "1faab8c47757",
+   "seconds": 18.53
+  },
+  "rate-step/0-dad": {
+   "hash": "6fba5b4863b6",
+   "seconds": 22.75
+  },
+  "rate-step/0-nian": {
+   "hash": "50deef55c341",
+   "seconds": 6.22
+  },
+  "rate-step/1-dad": {
+   "hash": "5bc66c2c5c13",
+   "seconds": 24.34
+  },
+  "rate-step/1-nian": {
+   "hash": "de16ae7f7f0f",
+   "seconds": 6.53
+  },
+  "rate-step/2-dad": {
+   "hash": "2c6b2378b1cc",
+   "seconds": 20.62
+  },
+  "rate-step/2-nian": {
+   "hash": "271f0ea4cf20",
+   "seconds": 4.92
+  },
+  "rate-step/3-dad": {
+   "hash": "d0222645f556",
+   "seconds": 26.16
+  },
+  "rate-step/3-nian": {
+   "hash": "b467ddc05e8d",
+   "seconds": 5.59
+  },
+  "rate-step/4-dad": {
+   "hash": "64890eda2c24",
+   "seconds": 26.57
+  },
+  "rate-step/4-nian": {
+   "hash": "2af1b3544222",
+   "seconds": 5.74
+  },
+  "rate-step/5-dad": {
+   "hash": "d48c8e2562b7",
+   "seconds": 24.72
+  },
+  "rate-step/5-nian": {
+   "hash": "d12ac772e0bc",
+   "seconds": 8.26
+  },
+  "rate-step/6-dad": {
+   "hash": "6f8d60381e96",
+   "seconds": 14.45
+  },
+  "rate-step/6-nian": {
+   "hash": "9d5b85f2e778",
+   "seconds": 14.86
+  },
+  "self-heating-pot/0-dad": {
+   "hash": "07e49f4239c6",
+   "seconds": 18.89
+  },
+  "self-heating-pot/0-nian": {
+   "hash": "3d9c45624fe7",
+   "seconds": 7.78
+  },
+  "self-heating-pot/1-dad": {
+   "hash": "9c49f648f78f",
+   "seconds": 23.95
+  },
+  "self-heating-pot/1-nian": {
+   "hash": "3b4e4e760621",
+   "seconds": 6.41
+  },
+  "self-heating-pot/2-dad": {
+   "hash": "60e357529bb3",
+   "seconds": 21.79
+  },
+  "self-heating-pot/2-nian": {
+   "hash": "5059d1db8f0b",
+   "seconds": 9.07
+  },
+  "self-heating-pot/3-dad": {
+   "hash": "9efe44a3a153",
+   "seconds": 27.82
+  },
+  "self-heating-pot/3-nian": {
+   "hash": "1ea143a0f8b3",
+   "seconds": 6.55
+  },
+  "self-heating-pot/4-dad": {
+   "hash": "bb56d10ee64b",
+   "seconds": 25.49
+  },
+  "self-heating-pot/4-nian": {
+   "hash": "27b3db23eedd",
+   "seconds": 6.31
+  },
+  "self-heating-pot/5-dad": {
+   "hash": "b69409d2370f",
+   "seconds": 18.62
+  },
+  "self-heating-pot/5-nian": {
+   "hash": "8329ade929f8",
+   "seconds": 13.92
+  },
+  "silver-tarnish/0-dad": {
+   "hash": "13aba5fbff89",
+   "seconds": 20.93
+  },
+  "silver-tarnish/0-nian": {
+   "hash": "94cee542d899",
+   "seconds": 5.3
+  },
+  "silver-tarnish/1-dad": {
+   "hash": "034e549b9277",
+   "seconds": 23.3
+  },
+  "silver-tarnish/1-nian": {
+   "hash": "f6170b2d0b8f",
+   "seconds": 5.5
+  },
+  "silver-tarnish/2-dad": {
+   "hash": "49a83fa37fab",
+   "seconds": 24.5
+  },
+  "silver-tarnish/2-nian": {
+   "hash": "1da78edef3a3",
+   "seconds": 6.94
+  },
+  "silver-tarnish/3-dad": {
+   "hash": "6397f05f385c",
+   "seconds": 27.48
+  },
+  "silver-tarnish/3-nian": {
+   "hash": "e3bf40a88902",
+   "seconds": 6.38
+  },
+  "silver-tarnish/4-dad": {
+   "hash": "524bd7d7c57e",
+   "seconds": 24.53
+  },
+  "silver-tarnish/4-nian": {
+   "hash": "a68539ef92a1",
+   "seconds": 5.98
+  },
+  "silver-tarnish/5-dad": {
+   "hash": "6c669543e1e2",
+   "seconds": 17.11
+  },
+  "silver-tarnish/5-nian": {
+   "hash": "ae7b8eca87e0",
+   "seconds": 18.48
+  },
+  "smelting-step/0-dad": {
+   "hash": "4748bd78f673",
+   "seconds": 25.85
+  },
+  "smelting-step/0-nian": {
+   "hash": "4bd9145f22ea",
+   "seconds": 7.97
+  },
+  "smelting-step/1-dad": {
+   "hash": "bfd8755b7927",
+   "seconds": 25.06
+  },
+  "smelting-step/1-nian": {
+   "hash": "dcfeeb5869ac",
+   "seconds": 3.34
+  },
+  "smelting-step/2-dad": {
+   "hash": "05ca9e958ff6",
+   "seconds": 29.4
+  },
+  "smelting-step/2-nian": {
+   "hash": "c9b050b83f4f",
+   "seconds": 4.46
+  },
+  "smelting-step/3-dad": {
+   "hash": "60c9296a6009",
+   "seconds": 27.29
+  },
+  "smelting-step/3-nian": {
+   "hash": "460a8c8650b5",
+   "seconds": 4.13
+  },
+  "smelting-step/4-dad": {
+   "hash": "0231c5f8fe13",
+   "seconds": 23.09
+  },
+  "smelting-step/4-nian": {
+   "hash": "9bbe74c661ab",
+   "seconds": 5.66
+  },
+  "smelting-step/5-dad": {
+   "hash": "9c53629e91e8",
+   "seconds": 21.38
+  },
+  "smelting-step/5-nian": {
+   "hash": "d8297d81c7e5",
+   "seconds": 7.68
+  },
+  "smelting-step/6-dad": {
+   "hash": "94fb55ca1017",
+   "seconds": 10.22
+  },
+  "smelting-step/6-nian": {
+   "hash": "14f6f8ca2c47",
+   "seconds": 21.1
+  },
+  "sodium-step/0-dad": {
+   "hash": "22bcd9d0cc78",
+   "seconds": 22.7
+  },
+  "sodium-step/0-nian": {
+   "hash": "6b54dff7d815",
+   "seconds": 7.85
+  },
+  "sodium-step/1-dad": {
+   "hash": "fd54853a3420",
+   "seconds": 21.48
+  },
+  "sodium-step/1-nian": {
+   "hash": "393acc563ca0",
+   "seconds": 5.66
+  },
+  "sodium-step/2-dad": {
+   "hash": "f10f4c6a7260",
+   "seconds": 18.77
+  },
+  "sodium-step/2-nian": {
+   "hash": "368c03c68376",
+   "seconds": 6.19
+  },
+  "sodium-step/3-dad": {
+   "hash": "4e678794d480",
+   "seconds": 23.33
+  },
+  "sodium-step/3-nian": {
+   "hash": "769e7d96757f",
+   "seconds": 6.98
+  },
+  "sodium-step/4-dad": {
+   "hash": "77b4d1222c70",
+   "seconds": 21.77
+  },
+  "sodium-step/4-nian": {
+   "hash": "a14e0e3a215f",
+   "seconds": 5.45
+  },
+  "sodium-step/5-dad": {
+   "hash": "9a9a53906bbf",
+   "seconds": 23.45
+  },
+  "sodium-step/5-nian": {
+   "hash": "226d9f9374a8",
+   "seconds": 5.42
+  },
+  "sodium-step/6-dad": {
+   "hash": "cb0f2d49ef38",
+   "seconds": 19.58
+  },
+  "sodium-step/6-nian": {
+   "hash": "11801a23cedc",
+   "seconds": 17.54
+  },
+  "starch-gelatinization/0-dad": {
+   "hash": "3add11c92a9d",
+   "seconds": 27.1
+  },
+  "starch-gelatinization/0-nian": {
+   "hash": "fb569f7544f7",
+   "seconds": 6.89
+  },
+  "starch-gelatinization/1-dad": {
+   "hash": "2365815e0efa",
+   "seconds": 22.51
+  },
+  "starch-gelatinization/1-nian": {
+   "hash": "f5949e8d0ef1",
+   "seconds": 6.19
+  },
+  "starch-gelatinization/2-dad": {
+   "hash": "9723aa53878a",
+   "seconds": 23.66
+  },
+  "starch-gelatinization/2-nian": {
+   "hash": "6a4c1dae237f",
+   "seconds": 4.63
+  },
+  "starch-gelatinization/3-dad": {
+   "hash": "87cc8a03b205",
+   "seconds": 22.27
+  },
+  "starch-gelatinization/3-nian": {
+   "hash": "fa8092975184",
+   "seconds": 6.62
+  },
+  "starch-gelatinization/4-dad": {
+   "hash": "10b6b25e45e7",
+   "seconds": 22.78
+  },
+  "starch-gelatinization/4-nian": {
+   "hash": "6b8dbb0db649",
+   "seconds": 6.43
+  },
+  "starch-gelatinization/5-dad": {
+   "hash": "289fe1e3620f",
+   "seconds": 21.65
+  },
+  "starch-gelatinization/5-nian": {
+   "hash": "0f25ba63ee0c",
+   "seconds": 6.12
+  },
+  "starch-gelatinization/6-dad": {
+   "hash": "870a95b30b0b",
+   "seconds": 12.17
+  },
+  "starch-gelatinization/6-nian": {
+   "hash": "16d69b50658a",
+   "seconds": 16.37
+  },
+  "sulfur-step/0-dad": {
+   "hash": "1b93ebf3c924",
+   "seconds": 26.04
+  },
+  "sulfur-step/0-nian": {
+   "hash": "f9e6749c54a1",
+   "seconds": 5.86
+  },
+  "sulfur-step/1-dad": {
+   "hash": "42c0af049a7b",
+   "seconds": 20.42
+  },
+  "sulfur-step/1-nian": {
+   "hash": "419dc081463a",
+   "seconds": 7.01
+  },
+  "sulfur-step/2-dad": {
+   "hash": "3fb1822ff4cf",
+   "seconds": 21.24
+  },
+  "sulfur-step/2-nian": {
+   "hash": "61c0e9a6dc1d",
+   "seconds": 6.41
+  },
+  "sulfur-step/3-dad": {
+   "hash": "ac20bcea203f",
+   "seconds": 23.86
+  },
+  "sulfur-step/3-nian": {
+   "hash": "bd0fbd4e2a53",
+   "seconds": 6.96
+  },
+  "sulfur-step/4-dad": {
+   "hash": "9cc558a6f80b",
+   "seconds": 21.94
+  },
+  "sulfur-step/4-nian": {
+   "hash": "e43f686aeb5e",
+   "seconds": 7.9
+  },
+  "sulfur-step/5-dad": {
+   "hash": "9faaf24f972d",
+   "seconds": 25.56
+  },
+  "sulfur-step/5-nian": {
+   "hash": "752ad8ef2e86",
+   "seconds": 6.36
+  },
+  "sulfur-step/6-dad": {
+   "hash": "4bb69365b2c1",
+   "seconds": 14.95
+  },
+  "sulfur-step/6-nian": {
+   "hash": "db93e1af03f2",
+   "seconds": 14.4
+  },
+  "sulfuric-step/0-dad": {
+   "hash": "03d080456e44",
+   "seconds": 24.46
+  },
+  "sulfuric-step/0-nian": {
+   "hash": "3ebd3858f35b",
+   "seconds": 5.4
+  },
+  "sulfuric-step/1-dad": {
+   "hash": "10b8617e0baa",
+   "seconds": 25.1
+  },
+  "sulfuric-step/1-nian": {
+   "hash": "fc730c09e400",
+   "seconds": 4.63
+  },
+  "sulfuric-step/2-dad": {
+   "hash": "d3ea1163aada",
+   "seconds": 25.44
+  },
+  "sulfuric-step/2-nian": {
+   "hash": "f767b9f3f842",
+   "seconds": 5.23
+  },
+  "sulfuric-step/3-dad": {
+   "hash": "54c67b38e1af",
+   "seconds": 26.42
+  },
+  "sulfuric-step/3-nian": {
+   "hash": "098d0fbff9ef",
+   "seconds": 5.66
+  },
+  "sulfuric-step/4-dad": {
+   "hash": "54c324cbef3f",
+   "seconds": 17.81
+  },
+  "sulfuric-step/4-nian": {
+   "hash": "082c1c4157a1",
+   "seconds": 6.02
+  },
+  "sulfuric-step/5-dad": {
+   "hash": "9dc0898f9c19",
+   "seconds": 23.88
+  },
+  "sulfuric-step/5-nian": {
+   "hash": "4a5c0bf26f12",
+   "seconds": 7.44
+  },
+  "sulfuric-step/6-dad": {
+   "hash": "38fc4db9e443",
+   "seconds": 9.41
+  },
+  "sulfuric-step/6-nian": {
+   "hash": "736302dfe118",
+   "seconds": 18.41
+  },
+  "surfactant-cleaning/0-dad": {
+   "hash": "947e0713d635",
+   "seconds": 25.13
+  },
+  "surfactant-cleaning/0-nian": {
+   "hash": "5ec31d5dad69",
+   "seconds": 7.37
+  },
+  "surfactant-cleaning/1-dad": {
+   "hash": "71c3783be7f0",
+   "seconds": 20.93
+  },
+  "surfactant-cleaning/1-nian": {
+   "hash": "ec7f60df6ce6",
+   "seconds": 5.52
+  },
+  "surfactant-cleaning/2-dad": {
+   "hash": "536a6af57587",
+   "seconds": 24.07
+  },
+  "surfactant-cleaning/2-nian": {
+   "hash": "8841946ac2d4",
+   "seconds": 5.02
+  },
+  "surfactant-cleaning/3-dad": {
+   "hash": "a4fc01ba273a",
+   "seconds": 22.63
+  },
+  "surfactant-cleaning/3-nian": {
+   "hash": "96d4d1667f3c",
+   "seconds": 6.53
+  },
+  "surfactant-cleaning/4-dad": {
+   "hash": "21ec12c2d6a8",
+   "seconds": 24.41
+  },
+  "surfactant-cleaning/4-nian": {
+   "hash": "81d803d7c790",
+   "seconds": 5.62
+  },
+  "surfactant-cleaning/5-dad": {
+   "hash": "82552960a8cd",
+   "seconds": 23.71
+  },
+  "surfactant-cleaning/5-nian": {
+   "hash": "da1094fe1986",
+   "seconds": 5.9
+  },
+  "surfactant-cleaning/6-dad": {
+   "hash": "32072747807d",
+   "seconds": 11.28
+  },
+  "surfactant-cleaning/6-nian": {
+   "hash": "1cfe4e8bede7",
+   "seconds": 16.39
+  },
+  "titration-step/0-dad": {
+   "hash": "c18694f46282",
+   "seconds": 22.8
+  },
+  "titration-step/0-nian": {
+   "hash": "b85a05732c32",
+   "seconds": 6.46
+  },
+  "titration-step/1-dad": {
+   "hash": "1944a9f87e85",
+   "seconds": 19.15
+  },
+  "titration-step/1-nian": {
+   "hash": "fbeec0cd39b7",
+   "seconds": 5.66
+  },
+  "titration-step/2-dad": {
+   "hash": "bdddc8ea0340",
+   "seconds": 26.04
+  },
+  "titration-step/2-nian": {
+   "hash": "4a6c61934934",
+   "seconds": 6.12
+  },
+  "titration-step/3-dad": {
+   "hash": "60a3d762eedb",
+   "seconds": 23.23
+  },
+  "titration-step/3-nian": {
+   "hash": "f40c8a23aa25",
+   "seconds": 5.02
+  },
+  "titration-step/4-dad": {
+   "hash": "290ff7d01ddc",
+   "seconds": 22.03
+  },
+  "titration-step/4-nian": {
+   "hash": "3151934e6ed2",
+   "seconds": 5.95
+  },
+  "titration-step/5-dad": {
+   "hash": "42b749ede882",
+   "seconds": 24.29
+  },
+  "titration-step/5-nian": {
+   "hash": "7e1703a1972c",
+   "seconds": 4.25
+  },
+  "titration-step/6-dad": {
+   "hash": "bb77b80ce2ab",
+   "seconds": 11.26
+  },
+  "titration-step/6-nian": {
+   "hash": "75e6d768217d",
+   "seconds": 15.31
+  }
+ }
+}

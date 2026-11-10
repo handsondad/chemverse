@@ -1,15 +1,19 @@
+/*
+ * 「奇遇记」系列的共用底色（与身体奇遇记 bodyverse 同一套：暖白纸面、棕色文字、手写体），
+ * 每个领域只换自己的强调色——化学奇遇记是深绿 #1f6b55。
+ */
 :root {
-  --cv-bg: #f5f4ef;
+  --cv-bg: #fff8f0;
   --cv-surface: #ffffff;
-  --cv-raised: #f1f0ea;
-  --cv-inset: #f4f3ee;
+  --cv-raised: #fff5ec;
+  --cv-inset: #fdf5ec;
   --cv-selected: #e5f0e9;
-  --cv-border: #e3e0d7;
-  --cv-border-strong: #cfcabd;
-  --cv-text: #1c2721;
-  --cv-text-2: #35433b;
-  --cv-muted: #5a6960;
-  --cv-subtle: #6c7a72;
+  --cv-border: #ffe0cc;
+  --cv-border-strong: #ffd0b0;
+  --cv-text: #5d4e37;
+  --cv-text-2: #6b5a42;
+  --cv-muted: #8b7a5c;
+  --cv-subtle: #9a8866;
   --cv-accent: #1f6b55;
   --cv-accent-hover: #185a47;
   --cv-accent-ink: #ffffff;
@@ -18,15 +22,16 @@
   --cv-success: #2c774a;
   --cv-success-soft: #e7f3eb;
   --cv-warning: #8f5710;
-  --cv-warning-soft: #fbf2e1;
-  --cv-warning-border: #ecd3a6;
+  --cv-warning-soft: #fff4e0;
+  --cv-warning-border: #f3d3a0;
   --cv-danger: #b03f38;
   --cv-danger-soft: #fbeae7;
-  --cv-font: 'Microsoft YaHei', 'PingFang SC', system-ui, sans-serif;
+  --cv-font: 'Comic Neue', 'Ma Shan Zheng', 'Microsoft YaHei', 'PingFang SC', cursive;
   --cv-mono: Consolas, ui-monospace, monospace;
-  --cv-radius-panel: 12px;
-  --cv-radius-control: 8px;
-  --cv-shadow-sm: 0 1px 2px #1c27210f, 0 2px 6px #1c27210a;
-  --cv-shadow: 0 12px 32px #1c272117;
+  --cv-radius-panel: 18px;
+  --cv-radius-control: 12px;
+  --cv-shadow-sm: 0 2px 6px rgba(255, 111, 107, 0.1);
+  --cv-shadow: 0 8px 20px rgba(255, 111, 107, 0.18);
+  --cv-page: linear-gradient(180deg, #fff8f0 0%, #f0f8ff 50%, #fff0e6 100%);
   color-scheme: light;
 }

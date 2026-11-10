@@ -9,8 +9,8 @@ const adapter = readFileSync(resolve(root, 'public', 'theme', 'lesson-adapter.js
 type State = Record<string, number | boolean>;
 
 const STEPS = [
-  { tag: '认识', q: '台面上有什么？', act: { kind: 'orbit' }, start: { V: 1, on: false }, expect: { text: '四站都在' }, concl: '变量控制', eq: 'v = Δc/Δt' },
-  { tag: '浓度', q: '为什么更慢？', act: { kind: 'slider', key: 'V', to: 1, demo: 3 }, start: { V: 2, on: false }, expect: { text: '时间变长' }, concl: '浓度减小速率减小' },
+  { tag: '认识', q: '台面上有什么？', act: { kind: 'orbit' }, start: { V: 1, on: false }, expect: { text: '四站都在（教材 p.34 的注意框）' }, concl: '教材原话：变量控制（教材原话）', eq: 'v = Δc/Δt' },
+  { tag: '浓度', q: '教材给了两杯，为什么更慢？', act: { kind: 'slider', key: 'V', to: 1, demo: 3 }, start: { V: 2, on: false }, expect: { text: '时间变长' }, concl: '浓度减小速率减小' },
   { tag: '催化剂', q: '为什么更快？', act: { kind: 'toggle', key: 'on', want: true }, start: { V: 1, on: false }, expect: { text: '气泡变密' }, concl: { text: '催化剂降低活化能' } },
   { tag: '考核', q: '考核', act: { kind: 'hold' }, start: {} },
 ];
@@ -99,7 +99,10 @@ describe('lesson adapter watch mode', () => {
     await vi.advanceTimersByTimeAsync(4600);
     expect(lab.S).toEqual({ V: 1, on: false });
     expect(text('.cvw-seen').hidden).toBe(false);
-    expect(text('.cvw-concl').textContent).toBe('所以：变量控制');
+    expect(text('.cvw-seen').textContent).toBe('👀 你看到四站都在');
+    expect(text('.cvw-concl').textContent).toBe('💡 所以变量控制');
+    expect(text('.is-nian .cvw-bubble').contains(text('.cvw-question'))).toBe(true);
+    expect(text('.is-dad .cvw-bubble').contains(text('.cvw-concl'))).toBe(true);
     expect(lab.reveal).toHaveBeenCalledTimes(1);
     expect(action('再看一遍').disabled).toBe(false);
 
@@ -109,6 +112,7 @@ describe('lesson adapter watch mode', () => {
 
     action('下一段').click();
     expect(lab.goto).toHaveBeenLastCalledWith(1);
+    expect(text('.cvw-question').textContent).toBe('实验台上摆了两杯，为什么更慢？');
     expect(text('.cvw-seen').hidden).toBe(true);
     await vi.advanceTimersByTimeAsync(1000);
     expect(lab.S.V).toBe(2);
@@ -120,7 +124,7 @@ describe('lesson adapter watch mode', () => {
     await vi.advanceTimersByTimeAsync(6000);
     expect(lab.S).toEqual({ V: 1, on: true });
     expect(lab.setSwitch).toHaveBeenCalledWith('on', true);
-    expect(text('.cvw-concl').textContent).toBe('所以：催化剂降低活化能');
+    expect(text('.cvw-concl').textContent).toBe('💡 所以催化剂降低活化能');
     expect(action('演示结束').disabled).toBe(true);
     expect(lab.goto).not.toHaveBeenCalledWith(3);
   });
@@ -140,6 +144,11 @@ describe('lesson adapter watch mode', () => {
 
     await load('?cv-mode=watch&cv-narration=1');
     expect(post).toHaveBeenCalledWith({ type: 'chemverse:ready' }, '*');
+    const avatars = { type: 'chemverse:avatars', nian: '<svg class="avatar"></svg>', dad: '<svg class="avatar"></svg>' };
+    window.dispatchEvent(new MessageEvent('message', { data: avatars, source: window }));
+    expect(card().querySelector('.cvw-avatar svg')).toBeNull();
+    window.dispatchEvent(new MessageEvent('message', { data: avatars, source: parent }));
+    expect(card().querySelectorAll('.cvw-avatar.has-art svg')).toHaveLength(2);
     expect(speak).toHaveBeenCalledWith(expect.objectContaining({ text: '台面上有什么？' }));
     expect(action('朗读').getAttribute('aria-pressed')).toBe('true');
 
@@ -158,8 +167,21 @@ describe('lesson adapter watch mode', () => {
     expect(document.documentElement.dataset.cvMode).toBe('watch');
 
     card().querySelectorAll<HTMLButtonElement>('.cvw-dot')[2].click();
-    action('去检验理解').click();
+    action('小念还想问').click();
     expect(post).toHaveBeenCalledWith({ type: 'chemverse:go-check' }, '*');
+  });
+
+  it('paints the sky dome and fog in the site warm paper colours, and nothing else', async () => {
+    const color = () => ({ isColor: true, set: vi.fn() });
+    const sky = { material: { side: 1, uniforms: { top: { value: color() }, mid: { value: color() }, hor: { value: color() } } } };
+    const beaker = { material: { side: 0, uniforms: { top: { value: color() }, hor: { value: color() } } } };
+    const fog = { color: color() };
+    Object.assign(lab, { scene: { fog, traverse: (visit: (node: unknown) => void) => [sky, beaker].forEach(visit) } });
+    await load('');
+    expect(sky.material.uniforms.top.value.set).toHaveBeenCalledWith('#ffe9c9');
+    expect(sky.material.uniforms.hor.value.set).toHaveBeenCalledWith('#fffaf2');
+    expect(beaker.material.uniforms.top.value.set).not.toHaveBeenCalled();
+    expect(fog.color.set).toHaveBeenCalledWith('#fbf0e3');
   });
 
   it('leaves standalone lessons as the original lab bench', async () => {
