@@ -1,3 +1,4 @@
+import { lessonAsset } from '../assets';
 import type { Story } from './types';
 
 const AMMONIA = '#bfe3ff';
@@ -15,6 +16,12 @@ export const ammoniaStep: Story = {
     {
       nian: '水明明在下面的烧杯里，为什么会自己往上冲进烧瓶？是烧瓶把水吸上去的吗？',
       dad: '不是「吸」，是「压」。烧瓶里原来装满了氨气，滴管挤进去的那一点水溶掉了一大片氨气，瓶里的气体一下子变少，压强跟着降低；烧杯的水面上却一直压着大气，外面的大气压比瓶里大，就把水沿着玻璃管压了上去，喷成了泉。',
+      figure: {
+        kind: 'image',
+        src: lessonAsset('covers/ammonia-step.webp'),
+        alt: '氨的制备与红色喷泉实验装置',
+        caption: '3D 实验台里的喷泉装置：一滴水溶掉大片氨气，外面的大气压就把酚酞水压进烧瓶喷成红泉。',
+      },
       show: { kind: 'lab', step: 6, label: '看做喷泉' },
     },
     {
@@ -25,12 +32,23 @@ export const ammoniaStep: Story = {
       nian: '那喷泉为什么是红色的？氨气溶进水里变成了什么？',
       dad: '氨气溶进水里，大部分和水结合成一水合氨，其中一小部分又会分出铵根离子和氢氧根离子。氢氧根离子让溶液显碱性，烧杯里预先滴的酚酞遇碱变红，喷出来的泉就是红色的。因为只有一小部分分出氢氧根，氨水是一种「弱碱」。',
       eq: 'NH₃ + H₂O ⇌ NH₃·H₂O ⇌ NH₄⁺ + OH⁻',
+      figure: {
+        kind: 'shells',
+        atoms: [7, 8, 1],
+        caption: '氨（NH₃）与水（H₂O）里的氮、氧、氢原子：氨溶进水后分出少量氢氧根离子，让酚酞变红。',
+      },
       show: { kind: 'lab', step: 7, label: '看进分子里' },
     },
     {
       nian: '氨气这么容易溶进水里，那做实验时，烧瓶里的氨气是怎么收集满的？',
       dad: '正因为它太容易溶于水，不能用排水法收集。实验室把氯化铵和熟石灰混在一起加热制氨气；氨气比空气轻，就把收集用的试管口朝下，让氨气从上往下把空气挤出去，这叫「向下排空气法」。干燥它要用碱石灰，不能用浓硫酸，因为氨气显碱性，会被酸吸收掉。',
       eq: '2NH₄Cl + Ca(OH)₂ =△= CaCl₂ + 2NH₃↑ + 2H₂O',
+      figure: {
+        kind: 'table',
+        focus: { by: 'atoms', values: [1, 7, 8, 17, 20] },
+        ring: [7, 20],
+        caption: '制氨气用到的五种元素：氯化铵（N、H、Cl）和熟石灰（Ca、O、H）加热反应，轻巧的氨气向上跑。',
+      },
       show: { kind: 'lab', step: 3, label: '看怎么收集' },
     },
     {
@@ -115,10 +133,10 @@ export const ammoniaStep: Story = {
         title: '验满：变蓝和白烟',
         duration: 11,
         cues: [
-          { kind: 'vessel', vessel: 'jar', at: [330, 300], size: [200, 300], from: 0 },
-          { kind: 'shape', shape: 'rect', at: [330, 540], size: [44, 150], color: '#ff9a8f', tint: { color: '#4f7fd9', at: 1.8, over: 1.6 }, from: 0.4 },
-          { kind: 'label', at: [350, 560], pos: [180, 760], text: '湿润红色石蕊试纸', from: 1, to: 5.4 },
-          { kind: 'text', at: [330, 110], text: '变蓝了！', size: 'm', color: '#2f5fb8', from: 3.4 },
+          { kind: 'vessel', vessel: 'jar', at: [330, 360], size: [200, 280], from: 0 },
+          { kind: 'shape', shape: 'rect', at: [330, 580], size: [44, 150], color: '#ff9a8f', tint: { color: '#4f7fd9', at: 1.8, over: 1.6 }, from: 0.4 },
+          { kind: 'label', at: [350, 595], pos: [180, 760], text: '湿润红色石蕊试纸', from: 1, to: 5.4 },
+          { kind: 'text', at: [330, 178], text: '变蓝了！', size: 'm', color: '#2f5fb8', from: 3.4 },
           { kind: 'atom', path: [[620, 470], [790, 470]], symbol: 'NH₃', color: AMMONIA, r: 38, travel: 1.4, from: 5.4, to: 7.2 },
           { kind: 'atom', path: [[1080, 470], [910, 470]], symbol: 'HCl', color: '#8fd19e', r: 38, travel: 1.4, from: 5.4, to: 7.2 },
           { kind: 'particles', box: [700, 360, 300, 180], count: 22, color: '#dfe3e8', motion: 'gas', size: 12, from: 6.9 },

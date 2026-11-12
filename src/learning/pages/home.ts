@@ -32,8 +32,8 @@ export function renderHome(content: HTMLElement): void {
         <h2 class="home-section-title" id="duo-title">小念和爸爸探索化学的奥秘</h2>
         <div class="home-planet" id="home-planet">
           <div class="home-planet-flat" aria-hidden="true"><span>${avatar('dad')}</span><span>${avatar('nian')}</span></div>
-          <button type="button" class="home-bubble is-dad" id="duo-dad" title="点一下，换一个问题"><b>爸爸</b><span></span></button>
           <button type="button" class="home-bubble is-nian" id="duo-nian" title="点一下，换一个问题"><b>小念</b><span></span></button>
+          <button type="button" class="home-bubble is-dad" id="duo-dad" title="点一下，换一个问题"><b>爸爸</b><span></span></button>
         </div>
         <div class="home-planet-actions">
           <a class="home-go" id="duo-go" href="#home">听爸爸讲完 →</a>

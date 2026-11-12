@@ -48,6 +48,23 @@
   // 有的课件换步骤时会重设雾色、换场景，所以隔一会儿再看一眼。
   const SKY = { top: '#ffe9c9', mid: '#fff3df', hor: '#fffaf2', lil: '#fff1e4', haze: '#fff1e4' };
   const FOG = '#fbf0e3';
+  const MAIN_UNITS = {
+    'blast-furnace-step': 't/d',
+    'bromine-step': '%',
+    'cement-step': '%',
+    'chlor-alkali-step': 't/d',
+    'chlorine-step': '%',
+    'coal-gas-step': '%',
+    'flame-step': 'nm',
+    'haber-step': 't/h',
+    'hou-soda-step': 't/h',
+    'iron-step': '%',
+    'rate-step': 's',
+    'smelting-step': 't/d',
+    'sodium-step': 'mmol',
+    'sulfuric-step': 't/d',
+  };
+  const courseSlug = () => location.pathname.match(/([\w-]+)\.html$/)?.[1] ?? '';
   function warmScene(lab) {
     const done = new WeakSet();
     const paint = () => {
@@ -88,7 +105,7 @@
     // 网站里打开（带 cv-mode）时，「自由实验台」只留孩子动手要用的：步骤、这一步做什么、几个旋钮和主读数。
     // 独立打开的完整课件不受影响。
     const simple = watchEnabled;
-    if (simple) simplify(left, right);
+    if (simple) simplify(lab, left, right);
     const nav = document.createElement('nav');
     nav.id = 'cv-views';
     nav.setAttribute('aria-label', '实验视图');
@@ -188,7 +205,10 @@
     resize();
     function syncStep() {
       const index = lab.step();
-      if (Number.isInteger(index) && index >= 0 && index < lab.STEPS.length) select.value = String(index);
+      if (Number.isInteger(index) && index >= 0 && index < lab.STEPS.length) {
+        select.value = String(index);
+        if (root.dataset.cvMode !== 'watch') post({ type: 'chemverse:step', step: index });
+      }
     }
     new MutationObserver(syncStep).observe(steps, { attributes: true, subtree: true, childList: true });
     syncStep();
@@ -203,19 +223,62 @@
     if (watchEnabled) installWatch(lab, syncPanels);
   }
 
-  function simplify(left, right) {
+  function simplify(lab, left, right) {
     document.documentElement.classList.add('cv-simple');
     const rename = (panel, text) => {
       const heading = panel.querySelector('.phead h2');
-      if (heading) heading.textContent = text;
+      if (heading && heading.textContent !== text) heading.textContent = text;
     };
     rename(left, '🧪 动手试试');
     rename(right, '🎛️ 调一调');
+    const mainUnit = MAIN_UNITS[courseSlug()];
+    const kpiVal = right.querySelector('.kpi .vv');
+    for (const slider of lab.CONSOLE?.sliders ?? []) {
+      if (!slider?.key || !slider.unit) continue;
+      const value = right.querySelector(`.sl[data-key="${slider.key}"] .slh b`);
+      if (value) value.dataset.cvUnit = slider.unit;
+    }
+    const friendlyActs = () => {
+      const consolePane = right.querySelector('#console');
+      if (!consolePane || consolePane.classList.contains('on')) rename(right, '🎛️ 调一调');
+      if (kpiVal && mainUnit) {
+        const numeric = /^[+-]?\d+(?:\.\d+)?$/.test(kpiVal.textContent.trim());
+        if (numeric && kpiVal.dataset.cvUnit !== mainUnit) kpiVal.dataset.cvUnit = mainUnit;
+        else if (!numeric && 'cvUnit' in kpiVal.dataset) delete kpiVal.dataset.cvUnit;
+      }
+      for (const button of right.querySelectorAll('.acts button')) {
+        for (const node of button.childNodes) {
+          if (node.nodeType === 3) {
+            const text = node.textContent.trim();
+            if (text === '参考工况') node.textContent = '恢复初始';
+            else if (text === '停车') node.textContent = '暂停';
+            else if (text === '开车') node.textContent = '继续';
+          } else if (node.nodeType === 1 && !node.childElementCount) {
+            const text = node.textContent.trim();
+            if (text === '参考工况') node.textContent = '恢复初始';
+            else if (text === '停车') node.textContent = '暂停';
+            else if (text === '开车') node.textContent = '继续';
+          }
+        }
+      }
+    };
+    new MutationObserver(friendlyActs).observe(right, { childList: true, subtree: true, characterData: true });
+    friendlyActs();
     // 左栏的问题、要做的事和结论也去掉给老师看的教材引注；课件换步骤会重写这几处，所以一直看着
+    const simpleReadable = text => readable(text)
+      .replace(/这就是教材[^，。；：]*里的/g, '这就是')
+      .replace(/教材的做法是/g, '科学实验的做法是')
+      .replace(/教材图\s*[\d-]+\s*的?/g, '')
+      .replace(/——这也是教材[^。]*/g, '')
+      .replace(/按教材选/g, '常选')
+      .replace(/教材注明/g, '注意')
+      .replace(/教材用/g, '常靠')
+      .replace(/\s{2,}/g, ' ')
+      .trim();
     const tidy = () => {
       for (const node of left.querySelectorAll('.cq, .atxt, .ev, .ctxt')) {
         if (node.childElementCount) continue;
-        const clean = readable(node.textContent);
+        const clean = simpleReadable(node.textContent);
         if (clean !== node.textContent) node.textContent = clean;
       }
     };
@@ -261,7 +324,8 @@
     const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
     // 和文章一样的两个声音：npm run voice 预先把每一段念好，文件名带着原文的指纹；
     // 对不上（课件改了字、还没配音）就退回无声，按原来的节奏停顿。
-    const slug = location.pathname.match(/([\w-]+)\.html$/)?.[1] ?? '';
+    const slug = courseSlug();
+    const mainUnit = MAIN_UNITS[slug];
     const fnv1a = text => {
       let hash = 0x811c9dc5;
       for (let i = 0; i < text.length; i++) {
@@ -353,7 +417,10 @@
       readingFrame = 0;
       const kpi = consolePanel.querySelector('.kpi');
       const label = kpi?.querySelector('.lb')?.textContent.trim();
-      const value = kpi?.querySelector('.vv')?.textContent.trim();
+      const rawValue = kpi?.querySelector('.vv')?.textContent.trim();
+      const value = rawValue && mainUnit && /^[+-]?\d+(?:\.\d+)?$/.test(rawValue)
+        ? `${rawValue} ${mainUnit}`
+        : rawValue;
       reading.hidden = !label || !value;
       readingLabel.textContent = label ?? '';
       readingValue.textContent = value ?? '';
@@ -456,7 +523,7 @@
       if (index < 0 || index >= segments.length) return;
       const token = ++run;
       current = index;
-      post({ type: 'chemverse:step', step: index });
+      post({ type: 'chemverse:step', step: segments[index].index });
       hush?.();
       const { step } = segments[index];
       progress.textContent = `第 ${index + 1} / ${segments.length} 段 · ${step.tag}`;
@@ -534,13 +601,26 @@
       }
       if (data?.type === 'chemverse:set-mode' && (data.mode === 'watch' || data.mode === 'lab')) setMode(data.mode, false);
       if (data?.type === 'chemverse:play-step' && Number.isInteger(data.step)) {
+        const segment = segments.findIndex(({ index }) => index === data.step);
+        if (segment === -1) {
+          if (data.step >= 0 && data.step < lab.STEPS.length) {
+            stop();
+            delete root.dataset.cvMode;
+            toWatch.hidden = false;
+            syncPanels();
+            lab.goto(data.step);
+            post({ type: 'chemverse:mode', mode: 'lab' });
+            post({ type: 'chemverse:step', step: data.step });
+          }
+          return;
+        }
         if (!watching()) {
           root.dataset.cvMode = 'watch';
           toWatch.hidden = true;
           syncPanels();
           post({ type: 'chemverse:mode', mode: 'watch' });
         }
-        play(data.step);
+        play(segment);
       }
     });
     toWatch.hidden = watching();

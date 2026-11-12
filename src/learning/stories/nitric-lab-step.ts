@@ -112,12 +112,12 @@ export const nitricLabStep: Story = {
         title: '看不见的一氧化氮',
         duration: 12,
         cues: [
-          { kind: 'vessel', vessel: 'beaker', at: [460, 470], size: [320, 320], liquid: '#eef4fb', level: 0.55, tint: { color: '#a5d0f5', at: 2, over: 3 }, label: '稀硝酸', from: 0 },
-          { kind: 'shape', shape: 'rect', at: [460, 500], size: [24, 240], color: COPPER, from: 0.4 },
-          { kind: 'particles', box: [320, 330, 280, 100], count: 8, color: NO, symbol: 'NO', motion: 'gas', size: 30, from: 1.6 },
+          { kind: 'vessel', vessel: 'beaker', at: [460, 415], size: [320, 290], liquid: '#eef4fb', level: 0.55, tint: { color: '#a5d0f5', at: 2, over: 3 }, label: '稀硝酸', from: 0 },
+          { kind: 'shape', shape: 'rect', at: [460, 445], size: [24, 215], color: COPPER, from: 0.4 },
+          { kind: 'particles', box: [320, 290, 280, 95], count: 8, color: NO, symbol: 'NO', motion: 'gas', size: 30, from: 1.6 },
           { kind: 'myth', wrong: '稀硝酸不冒气体', right: '冒的是无色的一氧化氮', from: 3.6, to: 8 },
-          { kind: 'particles', box: [320, 230, 280, 80], count: 6, color: NO2, symbol: 'NO₂', motion: 'gas', size: 28, from: 8.4 },
-          { kind: 'label', at: [600, 270], pos: [920, 240], text: '碰到空气就变红', from: 9 },
+          { kind: 'particles', box: [320, 195, 280, 80], count: 6, color: NO2, symbol: 'NO₂', motion: 'gas', size: 28, from: 8.4 },
+          { kind: 'label', at: [600, 235], pos: [920, 230], text: '碰到空气就变红', from: 9 },
         ],
       },
       {

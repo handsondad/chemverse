@@ -218,16 +218,19 @@ body #cv-startup-error { position: fixed; inset: 20px 20px auto; z-index: 999; p
 .cv-simple:not([data-cv-mode]) body #left .conclbox { padding: 10px 12px; border-radius: 16px; background: var(--cv-accent-soft); border: 0; }
 .cv-simple:not([data-cv-mode]) body #left .conclbox .ctxt { font-size: 14.5px; line-height: 1.7; color: var(--cv-text); }
 /* 右边「调一调」：一个大读数 + 旋钮 + 开关；曲线点开才看 */
-.cv-simple:not([data-cv-mode]) body #right :is(.subs, .risk, .kpi .cal, .slx:not(.ticks)) { display: none !important; }
+.cv-simple:not([data-cv-mode]) body #right :is(.subs, .risk, .kpi .cal, .kpi .st, .slx:not(.ticks)) { display: none !important; }
 .cv-simple:not([data-cv-mode]) body #right .chartwrap { display: none; }
 .cv-simple.cv-show-chart:not([data-cv-mode]) body #right .chartwrap { display: block; }
 .cv-simple:not([data-cv-mode]) body #right .pbody { gap: 12px; padding: 14px; }
 .cv-simple:not([data-cv-mode]) body #right .kpi { padding: 10px 14px; border: 0; border-radius: 16px; background: var(--cv-inset); }
 .cv-simple:not([data-cv-mode]) body #right .kpi .lb { font-size: 13px; color: var(--cv-muted); }
 .cv-simple:not([data-cv-mode]) body #right .kpi .vv { font-size: 34px; line-height: 1.2; color: var(--cv-text); }
+.cv-simple:not([data-cv-mode]) body #right .kpi .vv[data-cv-unit]:not(:empty)::after { content: ' ' attr(data-cv-unit); font-size: 16px; font-weight: 600; color: var(--cv-muted); }
 .cv-simple:not([data-cv-mode]) body #right :is(.sl, .sw) { font-size: 14px; border-radius: 14px; }
 .cv-simple:not([data-cv-mode]) body #right .slx.ticks { font-size: 12px; }
 .cv-simple:not([data-cv-mode]) body #right .slh b { font: 700 15px var(--cv-mono); color: var(--cv-accent); }
+.cv-simple:not([data-cv-mode]) body #right .slh b[data-cv-unit]:not(:empty)::after { content: ' ' attr(data-cv-unit); font-size: 12px; font-weight: 600; color: var(--cv-muted); }
+.cv-simple:not([data-cv-mode]) body :is(#tabL, #tabR) { font: 700 13px var(--cv-font); border: 2px solid var(--cv-border); background: var(--cv-surface); color: var(--cv-text-2); box-shadow: var(--cv-shadow-sm); }
 .cv-chart-toggle { display: none; }
 .cv-simple:not([data-cv-mode]) body .cv-chart-toggle {
   display: block; align-self: flex-start; padding: 4px 12px; border: 2px dashed var(--cv-border-strong); border-radius: 999px;

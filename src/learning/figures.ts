@@ -87,6 +87,17 @@ export interface DotGroup {
   readonly hot?: boolean;
 }
 
+/** 色阶横尺里的一档：一段温度区间或一档酸碱颜色 */
+export interface ScaleStop {
+  /** 色块里的短标签，≤7 字 */
+  readonly label: string;
+  /** 色块下方的说明，≤9 字 */
+  readonly note: string;
+  /** 代表色（#rrggbb） */
+  readonly color: string;
+  readonly hot?: boolean;
+}
+
 export type Figure =
   /** 小号周期表：按类别 / 半径 / 电负性 / 状态上色，可以只亮某几列、某几行，画出金属与非金属的分界线 */
   | {
@@ -111,6 +122,8 @@ export type Figure =
   | { readonly kind: 'tower'; readonly caption: string; readonly cuts: readonly TowerCut[] }
   /** 百点图：一个整体分成 10×10 个点，按组上色，看谁占了多少 */
   | { readonly kind: 'dots'; readonly caption: string; readonly groups: readonly DotGroup[] }
+  /** 色阶横尺：3–5 档温度区间或酸碱变色带横向排开对比 */
+  | { readonly kind: 'scale'; readonly caption: string; readonly axis?: string; readonly stops: readonly ScaleStop[] }
   /** 能拖着转的晶体球棍模型：金刚石、石墨（三层）、石墨烯（一层）、食盐 */
   | { readonly kind: 'crystal'; readonly caption: string; readonly structure: CrystalName }
   /** 真正的元素周期表，直接嵌在文章里（每篇最多一张） */
@@ -370,7 +383,9 @@ function chainsSvg(figure: Extract<Figure, { kind: 'chains' }>): string {
       y += rowH;
     }
   }
-  return `<svg class="fig-svg is-chains" viewBox="0 0 ${width} ${y - rowH + 26}" role="img" aria-label="${escapeText(figure.caption)}">${body}</svg>`;
+  const lastChains = after.length ? after : figure.chains;
+  const bottomPad = lastChains[lastChains.length - 1]?.double ? 36 : 26;
+  return `<svg class="fig-svg is-chains" viewBox="0 0 ${width} ${y - rowH + bottomPad}" role="img" aria-label="${escapeText(figure.caption)}">${body}</svg>`;
 }
 
 function towerSvg(figure: Extract<Figure, { kind: 'tower' }>, index: number): string {
@@ -439,6 +454,43 @@ function dotsSvg(figure: Extract<Figure, { kind: 'dots' }>): string {
   return `<svg class="fig-svg is-dots" viewBox="0 0 480 ${height}" role="img" aria-label="${escapeText(figure.caption)}">${dots}${legend}</svg>`;
 }
 
+function darkSwatch(hex: string): boolean {
+  const clean = hex.replace('#', '');
+  if (clean.length !== 6) return false;
+  const [r, g, b] = [0, 2, 4].map(i => Number.parseInt(clean.slice(i, i + 2), 16));
+  return 0.299 * r + 0.587 * g + 0.114 * b < 148;
+}
+
+function scaleSvg(figure: Extract<Figure, { kind: 'scale' }>): string {
+  const width = 560;
+  const padX = 14;
+  const gap = 10;
+  const count = figure.stops.length;
+  const cellW = (width - padX * 2 - gap * (count - 1)) / count;
+  const barTop = figure.axis ? 30 : 12;
+  const barH = 44;
+  const height = barTop + barH + 34;
+  const header = figure.axis
+    ? `<text x="${width / 2}" y="18" text-anchor="middle" class="fig-note">${escapeText(figure.axis)}</text>`
+    : '';
+  const body = figure.stops.map((stop, i) => {
+    const x = padX + i * (cellW + gap);
+    const cx = x + cellW / 2;
+    const ink = darkSwatch(stop.color) ? '#ffffff' : INK;
+    const ring = stop.hot
+      ? `<rect x="${fmt(x - 2.5)}" y="${barTop - 2.5}" width="${fmt(cellW + 5)}" height="${barH + 5}" rx="14" fill="none" stroke="${HOT}" stroke-width="2.5"/>`
+      : '';
+    const sep = i > 0
+      ? `<text x="${fmt(x - gap / 2)}" y="${barTop + barH / 2 + 4}" text-anchor="middle" class="fig-axis">›</text>`
+      : '';
+    return sep + ring
+      + `<rect x="${fmt(x)}" y="${barTop}" width="${fmt(cellW)}" height="${barH}" rx="11" fill="${stop.color}" stroke="#d8c9b0" stroke-width="1"/>`
+      + `<text x="${fmt(cx)}" y="${barTop + barH / 2 + 5}" text-anchor="middle" class="fig-scale-label" style="fill:${ink}">${escapeText(stop.label)}</text>`
+      + `<text x="${fmt(cx)}" y="${barTop + barH + 21}" text-anchor="middle" class="fig-scale-note"${stop.hot ? ` style="fill:${HOT};font-weight:700"` : ''}>${escapeText(stop.note)}</text>`;
+  }).join('');
+  return `<svg class="fig-svg is-scale" viewBox="0 0 ${width} ${height}" role="img" aria-label="${escapeText(figure.caption)}">${header}${body}</svg>`;
+}
+
 function linkButton(link?: TableLink): SafeHtml | '' {
   if (!link) return '';
   return html`<button type="button" class="fig-link" data-table-mode="${link.mode ?? 'default'}" data-table-category="${link.category ?? ''}">🔍 ${link.label}</button>`;
@@ -484,7 +536,8 @@ export function renderFigure(figure: Figure, index: number): SafeHtml {
         : figure.kind === 'sizes' ? sizesSvg(figure)
           : figure.kind === 'chains' ? chainsSvg(figure)
             : figure.kind === 'dots' ? dotsSvg(figure)
-              : towerSvg(figure, index);
+              : figure.kind === 'scale' ? scaleSvg(figure)
+                : towerSvg(figure, index);
   const link = 'link' in figure ? figure.link : undefined;
   return html`
     <figure class="fig fig-${figure.kind}" data-figure="${index}">

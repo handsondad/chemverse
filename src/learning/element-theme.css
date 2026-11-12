@@ -7,23 +7,8 @@
 }
 
 body { background: var(--cv-bg); color: var(--cv-text); }
-.bg-animation { display: none; }
 
 /* === 元素周期表外框与工具栏 === */
-.learning-app #learning-content > .elements-intro {
-  max-width: 1600px;
-  margin: 0 auto;
-  padding: 20px 30px 12px;
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: end;
-  gap: 2px 24px;
-}
-.learning-app .elements-intro .eyebrow { grid-column: 1 / -1; margin-bottom: 2px; }
-.learning-app .elements-intro h1 { font-size: clamp(20px, 2vw, 26px); margin: 0; }
-.learning-app .elements-intro p { grid-column: 1; margin: 2px 0 0; font-size: 13px; color: var(--cv-muted); }
-.learning-app .elements-intro > .text-action { grid-column: 2; grid-row: 2 / 4; margin: 0; white-space: nowrap; }
-
 #periodic-host { padding: 0 30px 32px; max-width: 1600px; margin: 0 auto; }
 #elements-view {
   width: 100%;
@@ -216,22 +201,27 @@ body { background: var(--cv-bg); color: var(--cv-text); }
 
 /* === 元素详情弹窗与 3D 电子云（全浅色统一） === */
 .modal-overlay, .expanded-atom-overlay {
-  background: #1c272152;
+  background: rgba(93, 78, 55, 0.38);
   backdrop-filter: blur(5px);
   color: var(--cv-text);
   color-scheme: light;
 }
 .hologram-card, .expanded-atom-card {
   background: var(--cv-surface);
-  border: 1px solid var(--cv-border);
-  border-radius: 16px;
+  border: 2px solid var(--cv-border);
+  border-radius: 24px;
   box-shadow: var(--cv-shadow);
   overflow: hidden;
+}
+.hologram-card :is(.big-name, .info-section h3, .tab-btn, .source-link, .load-media-btn),
+.expanded-atom-card .expanded-atom-name {
+  font-family: var(--cv-font);
 }
 .atom-visualizer, .expanded-atom-wrapper {
   background:
     radial-gradient(circle at 50% 48%, #ffffff 0%, #eef5f1 52%, #e1ece5 100%);
   border-color: var(--cv-border);
+  overflow: hidden;
 }
 .atom-visualizer .nucleus, .expanded-atom-container .nucleus {
   width: 15px;
@@ -278,22 +268,22 @@ body { background: var(--cv-bg); color: var(--cv-text); }
 .expanded-atom-header, .expanded-atom-info { background: var(--cv-surface); border-color: var(--cv-border); }
 .close-btn, .expand-btn {
   background: var(--cv-surface);
-  color: var(--cv-muted);
-  border-color: var(--cv-border);
-  border-radius: var(--cv-radius-control);
+  color: var(--cv-text-2);
+  border: 2px solid var(--cv-border);
+  border-radius: 999px;
   box-shadow: var(--cv-shadow-sm);
 }
 .close-btn:hover { background: var(--cv-danger-soft); color: var(--cv-danger); border-color: #e2b3ad; transform: none; }
 .expand-btn:hover { background: var(--cv-accent-soft); color: var(--cv-accent); border-color: var(--cv-accent-border); }
 
-.tab-nav { background: var(--cv-inset); border: 1px solid var(--cv-border); border-radius: 10px; padding: 4px; }
-.tab-btn { color: var(--cv-muted); border-radius: 7px; }
+.tab-nav { background: var(--cv-inset); border: 1.5px solid var(--cv-border); border-radius: 999px; padding: 4px; }
+.tab-btn { color: var(--cv-muted); border-radius: 999px; font-size: 13px; }
 .tab-btn.active { color: var(--cv-accent-ink); background: var(--cv-accent); box-shadow: none; }
 
 .summary-box, .config-box, .prop-item, .ionization-item {
   background: var(--cv-inset);
   border-color: var(--cv-border);
-  border-radius: 8px;
+  border-radius: 12px;
 }
 .summary-box, .prop-item { border-left: 3px solid var(--cv-accent-border); }
 .summary-box p, .appearance-text, .config-text { color: var(--cv-text); }
@@ -325,3 +315,21 @@ body { background: var(--cv-bg); color: var(--cv-text); }
 .load-media-btn.loading { color: var(--cv-accent); border-color: var(--cv-accent); }
 .hologram-card :is(button, a, [tabindex]):focus-visible,
 .expanded-atom-card :is(button, [tabindex]):focus-visible { outline: 2px solid var(--cv-accent); outline-offset: 3px; }
+
+@media (max-width: 900px) {
+  .atom-visualizer .atom-container { scale: 0.78; }
+}
+@media (max-width: 600px) {
+  .hologram-card { border-radius: 22px 22px 0 0; }
+  .expanded-atom-card { border-radius: 0; }
+  .atom-visualizer .atom-container { scale: 0.68; }
+  .expanded-atom-wrapper .expanded-atom-container { scale: 0.78; }
+}
+@media (max-height: 500px) and (orientation: landscape) {
+  .expanded-atom-card { flex-direction: column; }
+  .expanded-atom-header { padding: 10px 52px 10px 16px; }
+  .expanded-atom-symbol { font-size: 28px; }
+  .expanded-atom-name { font-size: 15px; }
+  .expanded-atom-wrapper .expanded-atom-container { scale: 0.65; }
+  .expanded-atom-info { padding: 8px 16px 10px; }
+}

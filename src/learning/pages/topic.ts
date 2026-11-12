@@ -39,8 +39,8 @@ export function renderTopic(content: HTMLElement, unit: Unit): void {
       </header>
 
       <div class="qlist-intro">
-        <p>${avatar('nian')}<b>小念：</b>${unit.kidHook}</p>
-        <p>${avatar('dad')}<b>爸爸：</b>这一类其实都在讲${unit.dadLens}。挑一个问题，我们从头聊到底。</p>
+        <p>${avatar('nian')}<span><b>小念：</b>${unit.kidHook}</span></p>
+        <p>${avatar('dad')}<span><b>爸爸：</b>这一类其实都在讲${unit.dadLens}。挑一个问题，我们从头聊到底。</span></p>
       </div>
 
       ${GROUPS.map(group => {

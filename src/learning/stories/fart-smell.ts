@@ -80,7 +80,7 @@ export const fartSmell: Story = {
           { kind: 'count', at: [240, 790], label: '没味的气体', start: 0, end: 99, unit: '%', over: 2.5, from: 1 },
           { kind: 'particles', box: [370, 250, 460, 340], count: 2, color: STINK, symbol: 'S', size: 24, motion: 'gas', from: 3.4 },
           { kind: 'count', at: [960, 790], label: '含硫的臭气', start: 0, end: 1, unit: '% 不到', over: 1.5, from: 3.8 },
-          { kind: 'text', at: [600, 120], text: '氮气 氢气 二氧化碳 甲烷', size: 's', from: 1.4 },
+          { kind: 'text', at: [600, 155], text: '氮气 氢气 二氧化碳 甲烷', size: 's', from: 1.4 },
         ],
       },
       {

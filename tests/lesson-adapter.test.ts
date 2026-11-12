@@ -188,6 +188,13 @@ describe('lesson adapter watch mode', () => {
     card().querySelectorAll<HTMLButtonElement>('.cvw-dot')[2].click();
     action('小念还想问').click();
     expect(post).toHaveBeenCalledWith({ type: 'chemverse:go-check' }, '*');
+
+    // 外面「分段看」点到没有演示的考核段（hold）时，自动切到自由实验台并跳到那一步
+    window.dispatchEvent(new MessageEvent('message', { data: { type: 'chemverse:play-step', step: 3 }, source: parent }));
+    expect(document.documentElement.dataset.cvMode).toBeUndefined();
+    expect(lab.goto).toHaveBeenLastCalledWith(3);
+    expect(post).toHaveBeenCalledWith({ type: 'chemverse:mode', mode: 'lab' }, '*');
+    expect(post).toHaveBeenCalledWith({ type: 'chemverse:step', step: 3 }, '*');
   });
 
   it('paints the sky dome and fog in the site warm paper colours, and nothing else', async () => {
@@ -212,21 +219,35 @@ describe('lesson adapter watch mode', () => {
     expect(lab.goto).not.toHaveBeenCalled();
   });
 
-  it('opens the free lab inside the site as a simple bench: friendly headings and the chart folded away', async () => {
+  it('opens the free lab inside the site as a simple bench: friendly headings, slider units and the chart folded away', async () => {
+    Object.assign(lab, { CONSOLE: { sliders: [{ key: 'V', unit: 'mL' }] } });
     document.querySelector('#left')!.insertAdjacentHTML('afterbegin', '<div class="phead"><h2>本步</h2></div>');
-    document.querySelector('#left .pbody')!.innerHTML = '<b class="cq">教材只给了用品，怎么填？</b><p class="ctxt">变量控制（教材原话）</p>';
+    document.querySelector('#left .pbody')!.innerHTML = '<b class="cq">教材只给了用品，怎么填？</b><p class="ctxt">教材的做法是变量控制（教材原话）</p>';
     document.querySelector('#right')!.insertAdjacentHTML('afterbegin', '<div class="phead"><h2>中控台</h2></div>');
-    document.querySelector('#right .pbody')!.insertAdjacentHTML('beforeend', '<div class="chartwrap"><canvas></canvas></div>');
+    document.querySelector('#right .vv')!.textContent = '40.0';
+    document.querySelector('#right .pbody')!.insertAdjacentHTML('beforeend', '<div class="sl" data-key="V"><div class="slh"><span class="lb">体积</span><b>1.0</b></div></div><div class="chartwrap"><canvas></canvas></div><div class="acts"><button class="btn">参考工况</button><button class="btn"><span>停车</span></button></div>');
     const resize = vi.fn();
     window.addEventListener('resize', resize);
-    await load('?cv-mode=lab&cv-narration=0');
+    window.history.replaceState(null, '', '/lessons/courses/rate-step.html?cv-mode=lab&cv-narration=0');
+    new Function(adapter)();
+    await vi.advanceTimersByTimeAsync(100);
     const html = document.documentElement;
     expect(html.dataset.cvMode).toBeUndefined();
     expect(html.classList.contains('cv-simple')).toBe(true);
     expect(document.querySelector('#left h2')!.textContent).toBe('🧪 动手试试');
     expect(document.querySelector('#right h2')!.textContent).toBe('🎛️ 调一调');
+    expect(document.querySelector<HTMLElement>('#right .kpi .vv')!.dataset.cvUnit).toBe('s');
+    expect(document.getElementById('cv-watch')!.querySelector('.cvw-reading strong')!.textContent).toBe('40.0 s');
+    document.querySelector('#right .vv')!.textContent = '—';
+    await vi.advanceTimersByTimeAsync(0);
+    expect(document.querySelector<HTMLElement>('#right .kpi .vv')!.dataset.cvUnit).toBeUndefined();
+    expect(document.querySelector<HTMLElement>('#right .sl[data-key="V"] .slh b')!.dataset.cvUnit).toBe('mL');
+    expect([...document.querySelectorAll('#right .acts button')].map(button => button.textContent)).toEqual(['恢复初始', '暂停']);
+    document.querySelector('#right .acts button:last-child span')!.textContent = '开车';
+    await vi.advanceTimersByTimeAsync(0);
+    expect(document.querySelector('#right .acts button:last-child')!.textContent).toBe('继续');
     expect(document.querySelector('#left .cq')!.textContent).toBe('实验台上只摆了用品，怎么填？');
-    expect(document.querySelector('#left .ctxt')!.textContent).toBe('变量控制');
+    expect(document.querySelector('#left .ctxt')!.textContent).toBe('科学实验的做法是变量控制');
     document.querySelector('#left .ctxt')!.textContent = '浓度减半（教材 p.35）';
     await vi.advanceTimersByTimeAsync(0);
     expect(document.querySelector('#left .ctxt')!.textContent).toBe('浓度减半');

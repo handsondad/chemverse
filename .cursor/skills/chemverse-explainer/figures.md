@@ -12,6 +12,7 @@
 - `chains` 每组 1–5 根链、每根 1–30 个碳，名字 ≤12 字，箭头上的字 ≤10 字。
 - `tower` 3–7 段出口，名称 ≤8 字、说明 ≤14 字。
 - `dots` 分 2–4 组，每组至少 1 份、合起来正好 100 份；图例「名称 · 份数」≤14 字、说明 ≤20 字。
+- `scale`（色阶横尺）画 3–5 档，顶栏 `axis` ≤14 字，每档标签 ≤7 字、说明 ≤9 字。
 - `crystal`（能转的晶体）每篇最多 3 张，`structure` 只能是 `diamond` / `graphite` / `graphene` / `salt`。
 
 ## 选哪种图
@@ -25,6 +26,7 @@
 | `chains` | 碳氢分子的长短（同一把尺子），以及长链断成短链（裂化） | `chains`、`then` |
 | `tower` | 分馏塔：按沸点从上到下接出不同产品 | `cuts` |
 | `dots` | 百点图：一样东西里谁占多少（屁里臭的不到 1 份、空气里氮气占 78 份） | `groups` |
+| `scale` | 色阶横尺：3–5 档温度区间或酸碱指示剂变色谱横向对比 | `axis`、`stops` |
 | `crystal` | 晶体里原子怎么排、每个原子拉几只手（金刚石的立体网、石墨的层、盐的离子交替），读者能拖着转 | `structure` |
 | `image` | 照片或课件截图（`public/` 下的文件） | `src`、`alt` |
 | `live` | 真正可点的元素周期表，全宽嵌在文章里 | `view` |
@@ -52,6 +54,8 @@
 **`tower`**：`cuts` 从塔顶往下排，`{ name: '汽油', note: '5–11 个碳 · 给汽车', hot: true }`；塔身上凉下热，底部有加热过的原油进料。
 
 **`dots`**：`groups: [{ label: '没味的气体', count: 99, amount: '99 份以上', note: '氮气、氢气……' }, { label: '含硫的臭气', count: 1, amount: '不到 1 份', hot: true }]`。10×10 个点按组依次上色，`hot` 那组是橙色并加圈；`amount` 不写就显示「N 份」。很小的比例（不到 1%）也至少给 1 份，用 `amount` 说清楚。样板见 `stories/fart-smell.ts`。
+
+**`scale`**：`{ kind: 'scale', axis: '锅温一路升高 →', stops: [{ label: '100 ℃ 水煮', note: '慢如蜗牛·灰白', color: '#e5ddd5' }, { label: '140～170 ℃', note: '美拉德·金黄', color: '#d9913b', hot: true }, { label: '超过 180 ℃', note: '烤成黑炭·发苦', color: '#3b2f26' }], caption: '…' }`。色块深浅自动切换白字/深棕字，`hot` 那一档加橙色外圈。适合温度台阶、酸碱变色谱。样板见 `stories/maillard-browning.ts`、`cabbage-indicator.ts`。
 
 **`crystal`**：`{ kind: 'crystal', caption: '…', structure: 'diamond' }`。原子位置按真实晶体结构算（`src/learning/crystal.ts`）：`diamond` 一个金刚石晶胞 18 个碳、虚线是晶胞的边；`graphite` 三层蜂窝错开叠放，层间距是层内键长的 2.36 倍，橙色虚线是层间的弱吸引；`graphene` 一层；`salt` 3×3×3 的钠离子（紫）和氯离子（绿）。一个原子的键画成橙色，一眼看出它拉了几只手。图本身是静态 SVG（没有脚本也能看），文章页用 `mountCrystals` 让它进入视野后慢慢自转、可以拖动和用方向键转（尊重「减少动态效果」），离开文章时停掉。图例和「👆 拖一拖，转着看」自动加，图注里写看什么就行。要新的结构，在 `crystal.ts` 里按晶体学数据写生成函数，再在 `figures.ts` 的 `CRYSTAL_KEYS` 里配图例。样板见 `stories/diamond-graphite.ts`、`chemical-bonds.ts`。
 

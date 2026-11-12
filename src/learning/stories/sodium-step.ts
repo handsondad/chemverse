@@ -1,3 +1,4 @@
+import { lessonAsset } from '../assets';
 import type { Story, Vec } from './types';
 
 const SODIUM = '#b48cff';
@@ -34,6 +35,12 @@ export const sodiumStep: Story = {
       nian: '推着它跑的气体是什么？钠和水反应到底生成了什么？',
       dad: '是氢气。钠把水分子里的氢「挤」了出来，自己和剩下的部分结合成氢氧化钠，溶进了水里。这个反应放热很猛，而钠的熔点不到 98 ℃，比水烧开的温度还低，所以它一边反应，一边被自己放出的热熔成了亮晶晶的小球。',
       eq: '2Na + 2H₂O = 2NaOH + H₂↑',
+      figure: {
+        kind: 'image',
+        src: lessonAsset('covers/sodium-step.webp'),
+        alt: '金属钠与水反应的 3D 实验台画面',
+        caption: '3D 实验台里的金属钠实验：钠浮在水面熔成亮晶晶的小球，反应生成的碱让酚酞变红。',
+      },
       show: { kind: 'lab', step: 4, label: '看浮熔游响红' },
     },
     {
@@ -43,12 +50,24 @@ export const sodiumStep: Story = {
     {
       nian: '同样是金属，铁和铜丢进冷水里都没动静，为什么钠和水反应这么猛？',
       dad: '秘密在原子的最外层。钠原子最外层只有 1 个电子，离原子核又比较远，被拉得很松，一碰到水就把这个电子交出去，自己变成钠离子。这种很容易把电子交给别人的本领，化学上叫「还原性」。钠的还原性特别强，所以连冷水都能和它反应。',
+      figure: {
+        kind: 'shells',
+        atoms: [11, 26, 29],
+        caption: '钠（Na，2·8·1）最外层只有 1 个电子，一碰冷水就交出去；铁（Fe）和铜（Cu）没这么急。',
+      },
       show: { kind: 'lab', step: 6, label: '看进原子里' },
     },
     {
       nian: '钠这么急着交出电子，那它放在空气里会不会也出事？',
       dad: '会。刚切开的钠是银白色的，几秒钟就变暗，那是它在和空气里的氧气反应，表面长出了一层氧化钠；它还会和空气里的水汽反应。所以实验室把钠泡在煤油里保存：煤油不和钠反应，钠又比煤油重，沉在瓶底正好被隔绝在空气外面。',
       eq: '4Na + O₂ = 2Na₂O',
+      figure: {
+        kind: 'table',
+        focus: { by: 'atoms', values: [8, 11] },
+        ring: [11, 8],
+        caption: '最左边的活泼金属钠（Na）遇上右上角的氧（O），切开后几秒钟就会反应变暗。',
+        link: { category: 0, label: '在周期表里看碱金属' },
+      },
       show: { kind: 'lab', step: 1, label: '看银白变暗' },
     },
     {
@@ -75,11 +94,11 @@ export const sodiumStep: Story = {
             kind: 'atom', symbol: 'Na', color: SODIUM, r: 38, travel: 8.5, from: 1,
             path: [[440, 512], [560, 506], [700, 516], [760, 504], [640, 512], [500, 506], [420, 514]],
           },
-          { kind: 'text', at: [240, 150], text: '浮', size: 'l', color: '#4a5568', from: 1.5 },
-          { kind: 'text', at: [420, 150], text: '熔', size: 'l', color: '#c2410c', from: 3 },
-          { kind: 'text', at: [600, 150], text: '游', size: 'l', color: '#1f6b55', from: 4.5 },
-          { kind: 'text', at: [780, 150], text: '响', size: 'l', color: '#7a6a55', from: 6 },
-          { kind: 'text', at: [960, 150], text: '红', size: 'l', color: '#d6336c', from: 7.5 },
+          { kind: 'text', at: [240, 175], text: '浮', size: 'l', color: '#4a5568', from: 1.5 },
+          { kind: 'text', at: [420, 175], text: '熔', size: 'l', color: '#c2410c', from: 3 },
+          { kind: 'text', at: [600, 175], text: '游', size: 'l', color: '#1f6b55', from: 4.5 },
+          { kind: 'text', at: [780, 175], text: '响', size: 'l', color: '#7a6a55', from: 6 },
+          { kind: 'text', at: [960, 175], text: '红', size: 'l', color: '#d6336c', from: 7.5 },
           { kind: 'sprite', icon: '🔊', path: [[960, 330]], size: 70, wobble: true, from: 6 },
         ],
       },
@@ -98,7 +117,7 @@ export const sodiumStep: Story = {
           { kind: 'atom', path: [[700, 380], [950, 230]], symbol: 'H', color: HYDROGEN, r: 24, travel: 1.5, from: 3.2 },
           { kind: 'label', at: [950, 230], pos: [990, 380], text: '两个 H 凑成氢气', from: 4.8, to: 7.2 },
           { kind: 'formula', at: [600, 780], text: '2Na + 2H₂O = 2NaOH + H₂↑', from: 6 },
-          { kind: 'text', at: [600, 130], text: '钠的熔点不到 98 ℃', size: 's', color: '#c2410c', from: 7.6 },
+          { kind: 'text', at: [600, 155], text: '钠的熔点不到 98 ℃', size: 's', color: '#c2410c', from: 7.6 },
         ],
       },
       {
@@ -109,7 +128,7 @@ export const sodiumStep: Story = {
           { kind: 'vessel', vessel: 'beaker', at: [600, 520], size: [460, 420], liquid: WATER, level: 0.78, tint: { color: PINK, at: 3.8, over: 2.4 }, label: '滴了酚酞的水', from: 0 },
           { kind: 'particles', box: [420, 420, 360, 250], count: 7, color: '#ffd6bf', symbol: 'OH⁻', motion: 'jitter', size: 36, from: 2.2 },
           { kind: 'label', at: [700, 560], pos: [960, 300], text: '酚酞：遇碱变红', color: '#d6336c', from: 4.4 },
-          { kind: 'text', at: [600, 110], text: '水变红 = 生成了碱', size: 's', from: 6 },
+          { kind: 'text', at: [600, 155], text: '水变红 = 生成了碱', size: 's', from: 6 },
         ],
       },
       {
@@ -141,7 +160,7 @@ export const sodiumStep: Story = {
           { kind: 'vessel', vessel: 'beaker', at: [880, 500], size: [300, 340], liquid: '#f6e7b0', level: 0.82, label: '煤油', from: 6 },
           { kind: 'shape', shape: 'rect', at: [880, 620], size: [130, 70], color: '#eceef4', text: '钠', from: 6.8 },
           { kind: 'formula', at: [600, 820], text: '4Na + O₂ = 2Na₂O', from: 4.6 },
-          { kind: 'text', at: [600, 110], text: '泡在煤油里，隔绝空气', size: 's', color: '#1f6b55', from: 8 },
+          { kind: 'text', at: [600, 155], text: '泡在煤油里，隔绝空气', size: 's', color: '#1f6b55', from: 8 },
         ],
       },
       {
@@ -152,7 +171,7 @@ export const sodiumStep: Story = {
           { kind: 'sprite', icon: '🔥', path: [[600, 440]], size: 160, wobble: true, from: 0.3, to: 6.8 },
           { kind: 'sprite', icon: '💧', path: [[230, 170], [520, 400]], size: 70, travel: 1.2, from: 1.4, to: 3 },
           { kind: 'pulse', at: [600, 440], color: '#e5484d', radius: 240, rate: 1.6, from: 2.6, to: 6.4 },
-          { kind: 'text', at: [600, 130], text: '越浇越旺！', size: 'm', color: '#c2410c', from: 3, to: 6.4 },
+          { kind: 'text', at: [600, 165], text: '越浇越旺！', size: 'm', color: '#c2410c', from: 3, to: 6.4 },
           { kind: 'myth', wrong: '着火了，赶紧用水浇', right: '用干燥的沙土盖住', from: 4 },
           { kind: 'shape', shape: 'rect', at: [600, 500], size: [440, 190], color: '#d9b77a', text: '干沙土', motion: 'grow', over: 1.4, from: 6.6 },
         ],

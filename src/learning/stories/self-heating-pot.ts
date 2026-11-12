@@ -15,6 +15,12 @@ export const selfHeatingPot: Story = {
       nian: '爸爸，这里面又没有火，也没插电，倒进去的明明是凉水，怎么一会儿就冒热气了？',
       dad: '热是从发热包里那包白色粉末来的。粉末的主力是生石灰，它一碰到水就和水反应，变成熟石灰，同时放出一大股热，几十秒就能把水烧得冒泡。这种一边反应一边往外放热的变化，化学上叫「放热反应」。',
       eq: 'CaO + H₂O = Ca(OH)₂',
+      figure: {
+        kind: 'table',
+        focus: { by: 'atoms', values: [1, 8, 20] },
+        ring: [20, 8],
+        caption: '生石灰由第 2 族的钙（Ca）和氧（O）组成，一遇冷水（H₂O）就剧烈放热变成熟石灰。',
+      },
       show: { kind: 'lab', step: 0, label: '看第一波升温' },
     },
     {
@@ -25,6 +31,11 @@ export const selfHeatingPot: Story = {
       nian: '可熟石灰一下子就生成了，热也是一下子放完的，那它怎么能撑着把一盒火锅煮上十几分钟？',
       dad: '你抓到关键了，生石灰只管「点火」。发热包里还配了铝粉和碳酸钠：熟石灰和碳酸钠在水里生成碱性很强的氢氧化钠，铝粉泡在这种碱液里会慢慢反应，一边放热一边冒出氢气。它像接力赛的第二棒，把高温撑上十几分钟。',
       eq: '2Al + 2NaOH + 6H₂O = 2Na[Al(OH)₄] + 3H₂↑',
+      figure: {
+        kind: 'shells',
+        atoms: [20, 13, 11],
+        caption: '发热包接力赛里的三种金属原子：打头阵的钙（Ca），以及碱液里持续放热的铝（Al）和钠（Na）。',
+      },
       show: { kind: 'lab', step: 1, label: '看铝粉接力' },
     },
     {
@@ -68,9 +79,9 @@ export const selfHeatingPot: Story = {
           { kind: 'shape', shape: 'circle', at: [870, 400], size: [160, 160], color: '#bfe3ff', text: 'H₂O', from: 0.6, to: 4.6 },
           { kind: 'arrow', path: [[450, 400], [560, 400]], color: '#7a6a55', from: 1.6, to: 4.6 },
           { kind: 'arrow', path: [[760, 400], [650, 400]], color: '#7a6a55', from: 1.8, to: 4.6 },
-          { kind: 'meter', at: [330, 175], label: '拆键花掉', start: 0, end: 0.35, color: '#b9c4cf', over: 1.6, from: 2.4 },
+          { kind: 'meter', at: [330, 200], label: '拆键花掉', start: 0, end: 0.35, color: '#b9c4cf', over: 1.6, from: 2.4 },
           { kind: 'shape', shape: 'circle', at: [600, 420], size: [250, 250], color: '#fff3d6', text: 'Ca(OH)₂', motion: 'pulse', from: 4.8 },
-          { kind: 'meter', at: [870, 175], label: '成键放出', start: 0, end: 0.9, color: HEAT, over: 2, from: 5 },
+          { kind: 'meter', at: [870, 200], label: '成键放出', start: 0, end: 0.9, color: HEAT, over: 2, from: 5 },
           { kind: 'pulse', at: [600, 420], color: HEAT, radius: 260, from: 5.4 },
           { kind: 'text', at: [600, 760], text: '放出的 > 花掉的 = 放热', size: 's', from: 7.6 },
         ],

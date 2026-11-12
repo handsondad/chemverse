@@ -149,7 +149,7 @@ export const houSodaStep: Story = {
           { kind: 'particles', box: [220, 560, 220, 80], count: 10, color: CRYSTAL, motion: 'jitter', size: 12, amount: { at: 3, over: 3, from: 0, to: 10 }, from: 2.8 },
           { kind: 'arrow', path: [[530, 560], [760, 560]], color: HOT, text: '氯化铵', from: 5.6 },
           { kind: 'shape', shape: 'pill', at: [930, 560], size: [260, 90], color: FERTILIZER, text: '庄稼的氮肥', from: 6.4 },
-          { kind: 'arrow', path: [[480, 330], [640, 200], [900, 200]], color: '#5b8fb9', text: '盐水回去造碱', from: 8 },
+          { kind: 'arrow', path: [[480, 330], [640, 225], [900, 225]], color: '#5b8fb9', text: '盐水回去造碱', from: 8 },
           { kind: 'text', at: [600, 830], text: '一举两得', size: 'm', from: 9.5 },
         ],
       },

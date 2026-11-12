@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { lessons } from '../src/learning/catalog';
+import { renderFigure } from '../src/learning/figures';
 import { cameraAt, envelope, pointAlong, sceneAt } from '../src/learning/film/engine';
 import { renderStage } from '../src/learning/film/stage';
 import { stories } from '../src/learning/stories';
@@ -31,6 +32,14 @@ describe('小念 × 爸爸 stories', () => {
 
   it('illustrate stories with figures', () => {
     expect(stories.flatMap(tagged(figureProblems))).toEqual([]);
+    expect(stories.filter(story => !story.dialogue.some(turn => turn.figure)).map(story => story.slug)).toEqual([]);
+    for (const story of stories) {
+      story.dialogue.forEach((turn, index) => {
+        if (!turn.figure || turn.figure.kind === 'live') return;
+        const markup = renderFigure(turn.figure, index).value;
+        expect(markup, `${story.slug} 第 ${index + 1} 轮配图`).not.toMatch(/NaN|undefined|Infinity/);
+      });
+    }
   });
 
   it('render every moment of every film without broken numbers or text', () => {

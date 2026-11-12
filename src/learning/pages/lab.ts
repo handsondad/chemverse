@@ -100,8 +100,8 @@ export function renderLabs(content: HTMLElement): void {
       </header>
 
       <div class="qlist-intro">
-        <p>${avatar('nian')}<b>小念：</b>听完爸爸讲，我想自己动手试一试！</p>
-        <p>${avatar('dad')}<b>爸爸：</b>这里的实验都是虚拟的，先「看懂原理」，再到「自由实验台」随便调条件。真实的药品可不能这样玩哦。</p>
+        <p>${avatar('nian')}<span><b>小念：</b>听完爸爸讲，我想自己动手试一试！</span></p>
+        <p>${avatar('dad')}<span><b>爸爸：</b>这里的实验都是虚拟的，先「看懂原理」，再到「自由实验台」随便调条件。真实的药品可不能这样玩哦。</span></p>
       </div>
 
       ${units.map(unit => {
@@ -214,5 +214,6 @@ export function renderLab(content: HTMLElement, lesson: Lesson): void {
     if (document.fullscreenElement) void document.exitFullscreen();
     else void player.requestFullscreen?.();
   });
+  state.highlightStep(0);
   mountPlayer();
 }

@@ -91,6 +91,13 @@ export function figureProblems(story: Story): string[] {
       if (figure.cuts.length < 3 || figure.cuts.length > 7) problems.push(`第 ${at} 轮：分馏塔画 3–7 段出口`);
       if (figure.cuts.some(cut => [...cut.name].length > 8 || [...cut.note].length > 14)) problems.push(`第 ${at} 轮：分馏塔出口名称最多 8 字、说明最多 14 字`);
     }
+    if (figure.kind === 'scale') {
+      if (figure.stops.length < 3 || figure.stops.length > 5) problems.push(`第 ${at} 轮：色阶尺画 3–5 档`);
+      if (figure.axis && [...figure.axis].length > 14) problems.push(`第 ${at} 轮：色阶尺顶栏文字最多 14 字`);
+      if (figure.stops.some(stop => [...stop.label].length > 7 || [...stop.note].length > 9)) {
+        problems.push(`第 ${at} 轮：色阶尺每档标签最多 7 字、说明最多 9 字`);
+      }
+    }
   }
   return problems;
 }
