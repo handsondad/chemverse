@@ -125,14 +125,12 @@ svg.avatar { display: inline-block; width: 1.6em; height: 1.6em; vertical-align:
 .home-title h1 span { -webkit-text-fill-color: initial; color: initial; }
 .learning-app .home-title p { margin-top: 6px; font-size: 1.05rem; color: var(--cv-muted); }
 .learning-app .home-section-title { margin: 26px 0 12px; font-size: 1.45rem; font-weight: 700; }
-.home-planet { position: relative; height: 380px; border-radius: 32px; overflow: hidden; background: radial-gradient(circle at 50% 35%, #fff8f0 0%, #ffe3d3 65%, #ffd2c2 100%); box-shadow: 0 4px 12px rgba(255, 111, 107, .15); }
-.duo-canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; touch-action: pan-y; }
-.home-planet-flat { position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center; gap: 26px; padding-bottom: 46px; }
-.home-planet-flat span { width: 120px; height: 120px; border-radius: 50%; overflow: hidden; border: 4px solid; box-shadow: var(--cv-shadow-sm); }
-.home-planet-flat span:first-child { width: 136px; height: 136px; background: #e5f0ff; border-color: #8db6f0; }
-.home-planet-flat span:last-child { background: #fff1d6; border-color: #ffb36b; }
-.home-planet-flat svg.avatar { display: block; width: 100%; height: 100%; }
-.home-planet.is-3d .home-planet-flat { display: none; }
+.home-planet { position: relative; height: 380px; border-radius: 32px; overflow: hidden; background: radial-gradient(circle at 50% 35%, #fff8f0 0%, #ffe3d3 65%, #ffd2c2 100%); box-shadow: 0 4px 12px rgba(255, 111, 107, .15); cursor: pointer; }
+.home-planet.is-3d { cursor: default; }
+.home-duo-poster { position: absolute; top: 0; left: 50%; height: 100%; width: auto; max-width: none; transform: translateX(-50%); pointer-events: none; user-select: none; transition: opacity .28s ease .12s; }
+.duo-canvas { position: absolute; inset: 0; display: block; width: 100%; height: 100%; touch-action: pan-y; opacity: 0; pointer-events: none; transition: opacity .3s ease; }
+.home-planet.is-3d .duo-canvas { opacity: 1; pointer-events: auto; }
+.home-planet.is-3d .home-duo-poster { opacity: 0; }
 .home-bubble { position: absolute; z-index: 2; max-width: 45%; padding: 10px 16px; border: 2px solid var(--cv-border); background: #fff; box-shadow: var(--cv-shadow-sm); text-align: left; font-size: .95rem; line-height: 1.45; color: var(--cv-text); transition: border-color .15s, box-shadow .15s; animation: bubble-float 3s ease-in-out infinite; }
 .home-bubble b { display: block; margin-bottom: 1px; font-size: .75rem; font-weight: 700; }
 .home-bubble span { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }

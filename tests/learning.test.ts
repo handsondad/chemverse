@@ -213,11 +213,10 @@ describe('learning workspace', () => {
     expect(document.querySelector('.learning-footer')?.textContent).not.toMatch(/铜匠实验室|CC BY-NC|仅限非商业使用/);
     expect(document.querySelector('.github-silent-link')).toBeNull();
     expect(document.querySelector('.app-bar')).toBeNull();
-    // 没有 WebGL 时，小星球上换成和 bodyverse 一样的平面头像
-    const flat = document.querySelectorAll('.home-planet-flat svg.avatar');
-    expect(flat).toHaveLength(2);
-    expect(flat[0].querySelector('ellipse')?.getAttribute('cx')).toBe('13.5');
-    expect(flat[1].querySelector('ellipse')?.getAttribute('cx')).toBe('12.5');
+    // 首屏及没有 WebGL 时，小星球直接展示同视角透明海报，3D 空闲加载完成后平滑接管
+    const poster = document.querySelector<HTMLImageElement>('#home-planet > img.home-duo-poster');
+    expect(poster?.getAttribute('src')).toContain('images/home-duo-poster.webp');
+    expect(existsSync(resolve(root, 'public', 'images', 'home-duo-poster.webp'))).toBe(true);
     expect(document.querySelector('.topic-card[href="#topic/periodic"]')?.textContent).toContain('元素周期表');
     expect(document.getElementById('periodic-host')?.hidden).toBe(true);
     expect(document.querySelectorAll('.element')).toHaveLength(0);

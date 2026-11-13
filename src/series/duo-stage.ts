@@ -155,12 +155,18 @@ function buildRig(gltf: GLTF, who: CharacterId, x: number, facing: number): Rig 
   root.position.set(x, 0.05, 0);
   root.rotation.y = facing;
   const neck = bone('Neck');
+  const headPose = head.quaternion.clone();
+  const neckPose = neck.quaternion.clone();
+  const gaze = new THREE.Vector2(THREE.MathUtils.clamp(0.1 - facing, -0.75, 0.75), 0.12);
+  neck.rotateY(gaze.x * 0.35);
+  head.rotateY(gaze.x * 0.65);
+  head.rotateX(-gaze.y);
   return {
     root, meshes, mixer, actions, oneShot: null, head, neck, torso: bone('Torso'),
     skin, face, faceBase: (face as THREE.MeshToonMaterial | null)?.color.clone() ?? new THREE.Color(),
-    nextBlink: 1 + Math.random() * 2, gaze: new THREE.Vector2(),
-    headPose: head.quaternion.clone(), neckPose: neck.quaternion.clone(), headScale: look.headScale, facing,
-    breath: Math.random() * Math.PI * 2,
+    nextBlink: 2.2 + (who === 'dad' ? 0.6 : 0), gaze,
+    headPose, neckPose, headScale: look.headScale, facing,
+    breath: 0,
   };
 }
 
@@ -406,8 +412,12 @@ export async function mountDuo(host: HTMLElement, options: DuoOptions): Promise<
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
-    // 页面在后台时动画循环不跑，先画一帧静止画面
-    if (!frame) renderer.render(scene, camera);
+    if (!frame) {
+      const portrait = width < height * 0.85;
+      camera.position.set(0.6, 1.5 + lift + (portrait ? 0.25 : 0), portrait ? 7.3 : 6.2);
+      camera.lookAt(target);
+      renderer.render(scene, camera);
+    }
   }
 
   const clock = new THREE.Clock();
@@ -422,7 +432,7 @@ export async function mountDuo(host: HTMLElement, options: DuoOptions): Promise<
     pointer.x = damp(pointer.x, reduced ? 0 : aim.x, 6, raw);
     pointer.y = damp(pointer.y, reduced ? 0 : aim.y, 6, raw);
 
-    const portrait = host.clientWidth < host.clientHeight * 0.95;
+    const portrait = host.clientWidth < host.clientHeight * 0.85;
     camera.position.set(
       damp(camera.position.x, 0.6 + pointer.x * 0.3, 3, raw),
       damp(camera.position.y, 1.5 + lift + pointer.y * 0.15 + (portrait ? 0.25 : 0), 3, raw),
@@ -477,6 +487,7 @@ export async function mountDuo(host: HTMLElement, options: DuoOptions): Promise<
   seen.observe(host);
   const onVisibility = (): void => play(inView);
   document.addEventListener('visibilitychange', onVisibility);
+  for (const update of updates) update(0, 0);
   resize();
   host.append(canvas);
   play(true);

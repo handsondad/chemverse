@@ -1,10 +1,11 @@
 import { labs, lessons, units } from '../catalog';
 import { firstSentence, topicCount } from '../components';
 import { html, setHtml } from '../html';
-import { avatar } from '../../series/avatar';
 import type { DuoStage } from '../../series/duo-stage';
 import { canUseWebGL } from '../../series/webgl';
 import { getElement, queryElement } from '../../utils/dom';
+
+const posterUrl = `${import.meta.env.BASE_URL}images/home-duo-poster.webp`;
 
 let stage: DuoStage | undefined;
 let alive = 0;
@@ -31,7 +32,7 @@ export function renderHome(content: HTMLElement): void {
       <section class="home-duo" aria-labelledby="duo-title">
         <h2 class="home-section-title" id="duo-title">小念和爸爸探索化学的奥秘</h2>
         <div class="home-planet" id="home-planet">
-          <div class="home-planet-flat" aria-hidden="true"><span>${avatar('dad')}</span><span>${avatar('nian')}</span></div>
+          <img class="home-duo-poster" src="${posterUrl}" width="1140" height="380" fetchpriority="high" decoding="async" alt="" aria-hidden="true">
           <button type="button" class="home-bubble is-nian" id="duo-nian" title="点一下，换一个问题"><b>小念</b><span></span></button>
           <button type="button" class="home-bubble is-dad" id="duo-dad" title="点一下，换一个问题"><b>爸爸</b><span></span></button>
         </div>
@@ -81,17 +82,40 @@ export function renderHome(content: HTMLElement): void {
   ['duo-nian', 'duo-dad', 'duo-next'].forEach(id => getElement(id).addEventListener('click', next));
   show();
 
-  if (!canUseWebGL()) return;
   const planet = getElement('home-planet');
-  void import('../home-planet')
-    .then(({ mountChemPlanet }) => mountChemPlanet(planet, next))
-    .then(duo => {
-      if (visit !== alive) {
-        duo.destroy();
-        return;
-      }
-      stage = duo;
-      planet.classList.add('is-3d');
-    })
-    .catch((error: unknown) => console.warn('化学小星球没能加载，先用平面头像。', error));
+  const saveData = Boolean((navigator as Navigator & { connection?: { saveData?: boolean } }).connection?.saveData);
+  let started = false;
+  function boot3d(): void {
+    if (started || visit !== alive || saveData || !canUseWebGL()) return;
+    started = true;
+    void import('../home-planet')
+      .then(({ mountChemPlanet }) => mountChemPlanet(planet, next))
+      .then(duo => {
+        if (visit !== alive) {
+          duo.destroy();
+          return;
+        }
+        stage = duo;
+        requestAnimationFrame(() => {
+          if (visit === alive) planet.classList.add('is-3d');
+        });
+      })
+      .catch((error: unknown) => console.warn('化学小星球没能加载，保留首屏海报。', error));
+  }
+
+  planet.addEventListener('pointerenter', boot3d, { once: true });
+  planet.addEventListener('click', event => {
+    if (!stage && event.target === planet) {
+      boot3d();
+      next();
+    }
+  });
+
+  if (!canUseWebGL() || saveData) return;
+  const win = window as Window & { requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number };
+  window.setTimeout(() => {
+    if (visit !== alive) return;
+    if (win.requestIdleCallback) win.requestIdleCallback(boot3d, { timeout: 1000 });
+    else boot3d();
+  }, 220);
 }
