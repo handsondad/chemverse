@@ -10,6 +10,54 @@
   }
  },
  "clips": {
+  "aluminum-oxide/0-dad": {
+   "hash": "df401c92d189",
+   "seconds": 23.64
+  },
+  "aluminum-oxide/0-nian": {
+   "hash": "b1dba4531bc3",
+   "seconds": 9
+  },
+  "aluminum-oxide/1-dad": {
+   "hash": "e83f8a481767",
+   "seconds": 25.3
+  },
+  "aluminum-oxide/1-nian": {
+   "hash": "02ccf3f747b3",
+   "seconds": 8.42
+  },
+  "aluminum-oxide/2-dad": {
+   "hash": "d923c7a34233",
+   "seconds": 25.58
+  },
+  "aluminum-oxide/2-nian": {
+   "hash": "9623a6aa8e8e",
+   "seconds": 7.8
+  },
+  "aluminum-oxide/3-dad": {
+   "hash": "bf4477efe348",
+   "seconds": 25.18
+  },
+  "aluminum-oxide/3-nian": {
+   "hash": "0324b7f45e8f",
+   "seconds": 7.08
+  },
+  "aluminum-oxide/4-dad": {
+   "hash": "f520e77b61a6",
+   "seconds": 23.59
+  },
+  "aluminum-oxide/4-nian": {
+   "hash": "fda7c14fcbe8",
+   "seconds": 7.82
+  },
+  "aluminum-oxide/5-dad": {
+   "hash": "a00e04bb7065",
+   "seconds": 14.69
+  },
+  "aluminum-oxide/5-nian": {
+   "hash": "9b25b7a6ef28",
+   "seconds": 16.68
+  },
   "ammonia-step/0-dad": {
    "hash": "a7be0d001d15",
    "seconds": 20.26
@@ -682,6 +730,54 @@
    "hash": "a3efeeeb9bc1",
    "seconds": 21.6
   },
+  "cold-pack/0-dad": {
+   "hash": "0073b94d1598",
+   "seconds": 20.28
+  },
+  "cold-pack/0-nian": {
+   "hash": "bc8251567dc2",
+   "seconds": 8.28
+  },
+  "cold-pack/1-dad": {
+   "hash": "60878039c6cc",
+   "seconds": 26.86
+  },
+  "cold-pack/1-nian": {
+   "hash": "d14f1d607caf",
+   "seconds": 7.25
+  },
+  "cold-pack/2-dad": {
+   "hash": "92869888b01d",
+   "seconds": 25.63
+  },
+  "cold-pack/2-nian": {
+   "hash": "136dd9c05f90",
+   "seconds": 7.61
+  },
+  "cold-pack/3-dad": {
+   "hash": "be72ed6463b2",
+   "seconds": 27.19
+  },
+  "cold-pack/3-nian": {
+   "hash": "5597c42cba2b",
+   "seconds": 7.46
+  },
+  "cold-pack/4-dad": {
+   "hash": "407b422cdbc4",
+   "seconds": 23.23
+  },
+  "cold-pack/4-nian": {
+   "hash": "b411a89577ba",
+   "seconds": 6.7
+  },
+  "cold-pack/5-dad": {
+   "hash": "3ba1ea732e8f",
+   "seconds": 15.55
+  },
+  "cold-pack/5-nian": {
+   "hash": "75d5042bd2e3",
+   "seconds": 18.5
+  },
   "conductivity-step/0-dad": {
    "hash": "2ddaf90d7880",
    "seconds": 21.5
@@ -849,6 +945,102 @@
   "diamond-graphite/6-nian": {
    "hash": "b7f8036fd7fa",
    "seconds": 21.12
+  },
+  "diaper-hydrogel/0-dad": {
+   "hash": "195adb5996ef",
+   "seconds": 23.3
+  },
+  "diaper-hydrogel/0-nian": {
+   "hash": "9073e9193a7f",
+   "seconds": 8.88
+  },
+  "diaper-hydrogel/1-dad": {
+   "hash": "5ed8267a972d",
+   "seconds": 25.8
+  },
+  "diaper-hydrogel/1-nian": {
+   "hash": "b133e64456f2",
+   "seconds": 8.21
+  },
+  "diaper-hydrogel/2-dad": {
+   "hash": "b6aaea7121d8",
+   "seconds": 26.93
+  },
+  "diaper-hydrogel/2-nian": {
+   "hash": "ae9779e53819",
+   "seconds": 5.71
+  },
+  "diaper-hydrogel/3-dad": {
+   "hash": "6d419e17f24f",
+   "seconds": 28.34
+  },
+  "diaper-hydrogel/3-nian": {
+   "hash": "37b6cbc577ae",
+   "seconds": 8.54
+  },
+  "diaper-hydrogel/4-dad": {
+   "hash": "bff5fb91e72a",
+   "seconds": 27.29
+  },
+  "diaper-hydrogel/4-nian": {
+   "hash": "1d76bb8d0a0a",
+   "seconds": 9.02
+  },
+  "diaper-hydrogel/5-dad": {
+   "hash": "ce797b9607e1",
+   "seconds": 19.32
+  },
+  "diaper-hydrogel/5-nian": {
+   "hash": "c95b014c7785",
+   "seconds": 16.85
+  },
+  "dry-ice/0-dad": {
+   "hash": "a347a117ee14",
+   "seconds": 26.74
+  },
+  "dry-ice/0-nian": {
+   "hash": "ab61d322a081",
+   "seconds": 6.72
+  },
+  "dry-ice/1-dad": {
+   "hash": "06d873902ead",
+   "seconds": 25.2
+  },
+  "dry-ice/1-nian": {
+   "hash": "ae2710477c1e",
+   "seconds": 8.02
+  },
+  "dry-ice/2-dad": {
+   "hash": "2fc3d0f92cbb",
+   "seconds": 22.49
+  },
+  "dry-ice/2-nian": {
+   "hash": "509720c041f0",
+   "seconds": 7.94
+  },
+  "dry-ice/3-dad": {
+   "hash": "aa74334f659d",
+   "seconds": 27.31
+  },
+  "dry-ice/3-nian": {
+   "hash": "d0fcb27aafe5",
+   "seconds": 8.5
+  },
+  "dry-ice/4-dad": {
+   "hash": "4cf906de4fcc",
+   "seconds": 24.84
+  },
+  "dry-ice/4-nian": {
+   "hash": "45349c84f9aa",
+   "seconds": 7.18
+  },
+  "dry-ice/5-dad": {
+   "hash": "47c5a72c2dcf",
+   "seconds": 14.26
+  },
+  "dry-ice/5-nian": {
+   "hash": "1f70c8fe07fc",
+   "seconds": 22.66
   },
   "electrolysis-step/0-dad": {
    "hash": "02ab07e68dcf",
@@ -1073,6 +1265,102 @@
   "flame-step/6-nian": {
    "hash": "0235d6dce8b1",
    "seconds": 15.22
+  },
+  "fluoride-teeth/0-dad": {
+   "hash": "4c20df37e206",
+   "seconds": 27.36
+  },
+  "fluoride-teeth/0-nian": {
+   "hash": "56c2461a8302",
+   "seconds": 7.22
+  },
+  "fluoride-teeth/1-dad": {
+   "hash": "dd6b7cc78ca3",
+   "seconds": 26.5
+  },
+  "fluoride-teeth/1-nian": {
+   "hash": "f506cb189cde",
+   "seconds": 6.46
+  },
+  "fluoride-teeth/2-dad": {
+   "hash": "2a9ab0fc8c60",
+   "seconds": 26.88
+  },
+  "fluoride-teeth/2-nian": {
+   "hash": "307fb9892b8c",
+   "seconds": 6.7
+  },
+  "fluoride-teeth/3-dad": {
+   "hash": "9ff656eb9ff8",
+   "seconds": 23.47
+  },
+  "fluoride-teeth/3-nian": {
+   "hash": "8e7213b1d97b",
+   "seconds": 8.11
+  },
+  "fluoride-teeth/4-dad": {
+   "hash": "ef212e99b8a8",
+   "seconds": 25.56
+  },
+  "fluoride-teeth/4-nian": {
+   "hash": "47a1b24bfd14",
+   "seconds": 6.22
+  },
+  "fluoride-teeth/5-dad": {
+   "hash": "a3d6a8bed6c9",
+   "seconds": 14.3
+  },
+  "fluoride-teeth/5-nian": {
+   "hash": "1115b9ae8d74",
+   "seconds": 18.98
+  },
+  "fuel-cell/0-dad": {
+   "hash": "4d00bf378f45",
+   "seconds": 24.19
+  },
+  "fuel-cell/0-nian": {
+   "hash": "f5a6affe3911",
+   "seconds": 7.32
+  },
+  "fuel-cell/1-dad": {
+   "hash": "14f23b00e36a",
+   "seconds": 26.18
+  },
+  "fuel-cell/1-nian": {
+   "hash": "ef68d1963d17",
+   "seconds": 7.03
+  },
+  "fuel-cell/2-dad": {
+   "hash": "a75233e608c2",
+   "seconds": 30.24
+  },
+  "fuel-cell/2-nian": {
+   "hash": "47489d08b204",
+   "seconds": 6.72
+  },
+  "fuel-cell/3-dad": {
+   "hash": "caca8c684c83",
+   "seconds": 24.72
+  },
+  "fuel-cell/3-nian": {
+   "hash": "340be42a768c",
+   "seconds": 7.39
+  },
+  "fuel-cell/4-dad": {
+   "hash": "5fc2e590c7e7",
+   "seconds": 25.58
+  },
+  "fuel-cell/4-nian": {
+   "hash": "9a9a1e9e2f30",
+   "seconds": 9
+  },
+  "fuel-cell/5-dad": {
+   "hash": "a06736994d8b",
+   "seconds": 17.33
+  },
+  "fuel-cell/5-nian": {
+   "hash": "18da39082b81",
+   "seconds": 17.62
   },
   "galvanic-step/0-dad": {
    "hash": "3e4fbf79ae0a",
@@ -1401,6 +1689,54 @@
   "hydrolysis-step/6-nian": {
    "hash": "b0568b52863e",
    "seconds": 18.65
+  },
+  "ice-floats/0-dad": {
+   "hash": "c18845e2649a",
+   "seconds": 22.42
+  },
+  "ice-floats/0-nian": {
+   "hash": "b5d64467374a",
+   "seconds": 8.4
+  },
+  "ice-floats/1-dad": {
+   "hash": "d7aea4e3cd33",
+   "seconds": 30.77
+  },
+  "ice-floats/1-nian": {
+   "hash": "92fef6d7d82c",
+   "seconds": 6.17
+  },
+  "ice-floats/2-dad": {
+   "hash": "041b4bbe95cd",
+   "seconds": 24.96
+  },
+  "ice-floats/2-nian": {
+   "hash": "2f126311316a",
+   "seconds": 7.73
+  },
+  "ice-floats/3-dad": {
+   "hash": "8fb92aaea020",
+   "seconds": 25.7
+  },
+  "ice-floats/3-nian": {
+   "hash": "8b72a54ecb23",
+   "seconds": 8.11
+  },
+  "ice-floats/4-dad": {
+   "hash": "605afd9a1580",
+   "seconds": 36.34
+  },
+  "ice-floats/4-nian": {
+   "hash": "7ac4cabca7ff",
+   "seconds": 10.42
+  },
+  "ice-floats/5-dad": {
+   "hash": "e0b5565f4d60",
+   "seconds": 14.11
+  },
+  "ice-floats/5-nian": {
+   "hash": "eaae11cdb658",
+   "seconds": 18.7
   },
   "iron-step/0-dad": {
    "hash": "4051de3b8fb8",
@@ -1786,6 +2122,54 @@
    "hash": "fa9aa553963f",
    "seconds": 17.93
   },
+  "nonstick-pan/0-dad": {
+   "hash": "a81d8e0f56f3",
+   "seconds": 24
+  },
+  "nonstick-pan/0-nian": {
+   "hash": "1a8156809984",
+   "seconds": 9.26
+  },
+  "nonstick-pan/1-dad": {
+   "hash": "52cb8e1bf0ef",
+   "seconds": 24.65
+  },
+  "nonstick-pan/1-nian": {
+   "hash": "67c67aa1ef4d",
+   "seconds": 6.38
+  },
+  "nonstick-pan/2-dad": {
+   "hash": "7b170ae6fd94",
+   "seconds": 24.84
+  },
+  "nonstick-pan/2-nian": {
+   "hash": "06a1acd05ba5",
+   "seconds": 7.2
+  },
+  "nonstick-pan/3-dad": {
+   "hash": "3ea4ce26be97",
+   "seconds": 23.86
+  },
+  "nonstick-pan/3-nian": {
+   "hash": "091073fb2541",
+   "seconds": 8.11
+  },
+  "nonstick-pan/4-dad": {
+   "hash": "22403690c1e2",
+   "seconds": 24
+  },
+  "nonstick-pan/4-nian": {
+   "hash": "ad1d2666e0a1",
+   "seconds": 5.83
+  },
+  "nonstick-pan/5-dad": {
+   "hash": "9661957345ff",
+   "seconds": 15
+  },
+  "nonstick-pan/5-nian": {
+   "hash": "038689ab704e",
+   "seconds": 17.09
+  },
   "onion-tears/0-dad": {
    "hash": "e787c4055687",
    "seconds": 21.82
@@ -1833,6 +2217,54 @@
   "onion-tears/5-nian": {
    "hash": "1faab8c47757",
    "seconds": 18.53
+  },
+  "plastics-polymer/0-dad": {
+   "hash": "da269ec51ece",
+   "seconds": 31.03
+  },
+  "plastics-polymer/0-nian": {
+   "hash": "b03199cb137e",
+   "seconds": 6.91
+  },
+  "plastics-polymer/1-dad": {
+   "hash": "a589016d2a67",
+   "seconds": 27.26
+  },
+  "plastics-polymer/1-nian": {
+   "hash": "0b7d63fa3777",
+   "seconds": 7.46
+  },
+  "plastics-polymer/2-dad": {
+   "hash": "ab135f9b661c",
+   "seconds": 27.5
+  },
+  "plastics-polymer/2-nian": {
+   "hash": "6bd3b37b1c78",
+   "seconds": 8.62
+  },
+  "plastics-polymer/3-dad": {
+   "hash": "009d4cd9d07b",
+   "seconds": 26.4
+  },
+  "plastics-polymer/3-nian": {
+   "hash": "b8ef7b2653e0",
+   "seconds": 9.19
+  },
+  "plastics-polymer/4-dad": {
+   "hash": "d1db3c7b3c68",
+   "seconds": 23.71
+  },
+  "plastics-polymer/4-nian": {
+   "hash": "0191cfdc853a",
+   "seconds": 9.79
+  },
+  "plastics-polymer/5-dad": {
+   "hash": "ff76bbebb6ca",
+   "seconds": 14.69
+  },
+  "plastics-polymer/5-nian": {
+   "hash": "66d7cf6bf08b",
+   "seconds": 16.92
   },
   "rate-step/0-dad": {
    "hash": "6fba5b4863b6",
@@ -1889,6 +2321,54 @@
   "rate-step/6-nian": {
    "hash": "9d5b85f2e778",
    "seconds": 14.86
+  },
+  "road-salt/0-dad": {
+   "hash": "b67c474d0fdd",
+   "seconds": 29.09
+  },
+  "road-salt/0-nian": {
+   "hash": "f82694d87061",
+   "seconds": 8.21
+  },
+  "road-salt/1-dad": {
+   "hash": "639eb96560d6",
+   "seconds": 25.92
+  },
+  "road-salt/1-nian": {
+   "hash": "a732a3bf09aa",
+   "seconds": 7.61
+  },
+  "road-salt/2-dad": {
+   "hash": "e6d8603be101",
+   "seconds": 27.74
+  },
+  "road-salt/2-nian": {
+   "hash": "ef3bc91657fa",
+   "seconds": 8.02
+  },
+  "road-salt/3-dad": {
+   "hash": "a5e84b0e2047",
+   "seconds": 31.2
+  },
+  "road-salt/3-nian": {
+   "hash": "bd4bcdf464bd",
+   "seconds": 8.59
+  },
+  "road-salt/4-dad": {
+   "hash": "20d58874995a",
+   "seconds": 25.9
+  },
+  "road-salt/4-nian": {
+   "hash": "57db19ae8916",
+   "seconds": 8.02
+  },
+  "road-salt/5-dad": {
+   "hash": "169db03fbb3b",
+   "seconds": 14.11
+  },
+  "road-salt/5-nian": {
+   "hash": "7943e9972412",
+   "seconds": 18.77
   },
   "self-heating-pot/0-dad": {
    "hash": "07e49f4239c6",
@@ -2377,6 +2857,54 @@
   "titration-step/6-nian": {
    "hash": "75e6d768217d",
    "seconds": 15.31
+  },
+  "tofu-colloid/0-dad": {
+   "hash": "6d1f9ccd68b9",
+   "seconds": 22.34
+  },
+  "tofu-colloid/0-nian": {
+   "hash": "48868a09c048",
+   "seconds": 7.25
+  },
+  "tofu-colloid/1-dad": {
+   "hash": "4e968af45b90",
+   "seconds": 27.89
+  },
+  "tofu-colloid/1-nian": {
+   "hash": "03bdb83286c3",
+   "seconds": 7.22
+  },
+  "tofu-colloid/2-dad": {
+   "hash": "8bcc8c52f8f5",
+   "seconds": 22.15
+  },
+  "tofu-colloid/2-nian": {
+   "hash": "0e77809e9c3c",
+   "seconds": 8.64
+  },
+  "tofu-colloid/3-dad": {
+   "hash": "623898a0b463",
+   "seconds": 24.77
+  },
+  "tofu-colloid/3-nian": {
+   "hash": "1de60fa7126d",
+   "seconds": 6.43
+  },
+  "tofu-colloid/4-dad": {
+   "hash": "88b4a13e4cfe",
+   "seconds": 26.9
+  },
+  "tofu-colloid/4-nian": {
+   "hash": "27b6d0f78e7e",
+   "seconds": 7.39
+  },
+  "tofu-colloid/5-dad": {
+   "hash": "16736c584654",
+   "seconds": 18.43
+  },
+  "tofu-colloid/5-nian": {
+   "hash": "891a9b822b9e",
+   "seconds": 18.58
   }
  }
 }

@@ -372,6 +372,7 @@ function chainsSvg(figure: Extract<Figure, { kind: 'chains' }>): string {
     y += rowH;
   }
   if (figure.then) {
+    if (figure.chains[figure.chains.length - 1]?.double) y += 14;
     const top = y - rowH + 22;
     const ax = x0 + 6;
     body += `<line x1="${ax}" y1="${top}" x2="${ax}" y2="${top + 22}" stroke="${HOT}" stroke-width="3.5" stroke-linecap="round"/>`
