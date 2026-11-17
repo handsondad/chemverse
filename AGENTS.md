@@ -21,7 +21,7 @@
 4. **3D 实验默认「看懂原理」，随时可切「自由实验台」**
    - 复杂实验先通过「看懂原理（`watch`）」自动演示步骤、现象与结论，降低操作门槛；用户想自己动手时可一键切到「自由实验台（`lab`）」。
 5. **做成系列，方便扩展到别的领域**
-   - 角色、头像和 3D 小星球放在与领域无关的 `src/series/`，每个领域只通过 `decorate` 摆自己的道具（化学是烧瓶、晶体和分子，见 `src/learning/home-planet.ts`）。改角色长相时两边一起改，和 bodyverse 保持一模一样。
+   - 角色、头像和 3D 小星球放在与领域无关的 `src/series/`，每个领域只通过 `decorate` 摆自己的道具（化学是烧瓶、晶体和分子，见 `src/learning/home-planet.ts`）。改角色长相时几个仓库一起改，和 bodyverse、phyverse（物理奇遇记）保持一模一样。
 
 ---
 
@@ -111,12 +111,13 @@
 4. **版权红线**：`public/lessons/` 下的第三方原始课件脚本与许可文件（CC BY-NC 4.0）严禁篡改，所有样式与交互适配统一在 `public/theme/lesson.css` 和 `public/theme/lesson-adapter.js` 中完成。目录名和代码里不用上游项目名；来源、署名与改动说明只写在 `README.md` 的「参考与致谢」，`public/lessons/LICENSE` 和 `THIRD_PARTY_NOTICES.md` 要一直跟着课件走。
 
 ### 选题与资料（新题都要走一遍）
+- 候选题记在 `.cursor/skills/chemverse-explainer/question-bank.md`，资料分级和许可红线见同目录 `sources.md`（OpenStax 不读不用；百科、知乎、公众号、短视频、AI 生成的文字不当来源）。
 - 题目从孩子真遇到过的事出发，一个题只回答一个「为什么」，放进最贴的主题；新条目插在同主题最后一篇后面，先修课排在前面。
 - 事实和数字以教材、大学 / 科学馆的演示实验说明、学会科普、同行评议论文、政府数据库为准，至少对上两处；对不上就不写数字。出处、口径和安全须知写进文章的 `tip`。
 - **外部素材**：网上的图片、动画、视频、课件没有明确开放许可（或写着「需申请授权」，如「美丽化学」）就不搬，只当灵感，按真实数据自己画，并在 `tip` 里写一句受谁启发。
 
 ### 形态 D：把一节课写成「小念 × 爸爸」图文问答（推荐；带讲解动画的样板见 `self-heating-pot.ts`、`sodium-step.ts`、`flame-step.ts`、`gasoline.ts`、`diamond-graphite.ts`（带能转的晶体图），纯图文样板见 `stories/why-periodic.ts`、`atom-size-trend.ts`）
-在已有课程（A 或 C）之上，新建 `src/learning/stories/<slug>.ts` 并登记到 `stories/index.ts`。完整写法见 skill `.cursor/skills/chemverse-explainer/`（`SKILL.md` 总流程与选题查资料，`dialogue.md` 问答，`figures.md` 配图与怎么加新图，`film.md` 动画，`design.md` 系列风格）；这几个命令帮你走流程：
+在已有课程（A 或 C）之上，新建 `src/learning/stories/<slug>.ts` 并登记到 `stories/index.ts`。完整写法见 skill `.cursor/skills/chemverse-explainer/`（`SKILL.md` 总流程，`question-bank.md` 候选题，`sources.md` 资料与许可，`dialogue.md` 问答，`figures.md` 配图与怎么加新图，`film.md` 动画，`design.md` 系列风格）；这几个命令帮你走流程：
 - `npm run story:todo`：按主题列出哪些课已手写、哪些还是自动装配；
 - `npm run story:new -- <slug>`：生成草稿（预填课件的对话、方程式和实验台跳转）并登记；
 - `npm run story:check -- [slug...]`：逐条检查下面的规矩，用中文指出第几轮差在哪；另用 ⚠️ 提醒哪几句配音过期、哪句里有念不顺的符号；

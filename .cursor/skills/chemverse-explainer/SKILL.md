@@ -5,10 +5,11 @@ description: >-
   article where 爸爸 explains with figures (mini periodic tables, trend charts, electron shells,
   atom sizes, rotatable 3D crystal models, the live periodic table) and a voiced explainer film in
   the right column, one to three scenes per turn. Use when adding or rewriting a chemistry question
-  or lesson, researching new everyday-chemistry topics, writing a story in src/learning/stories,
+  or lesson, researching new everyday-chemistry topics, picking questions from the question bank,
+  checking sources and licensing, writing a story in src/learning/stories,
   adding figures, a new figure kind or a film, adding a topic (unit), styling chemverse pages or the
   3D lab, or extending the 奇遇记 series to a new domain, or when the user mentions 小念, 爸爸,
-  新课程, 新问题, 配图, 讲解动画, 晶体结构, 化学主题 or 奇遇记.
+  新课程, 新问题, 题库, 参考来源, 配图, 讲解动画, 晶体结构, 化学主题 or 奇遇记.
 ---
 
 # 化学奇遇记：写一篇「小念 × 爸爸」
@@ -18,6 +19,8 @@ description: >-
 ## 先弄清楚
 
 - 仓库结构、命令、硬性规矩：根目录 `AGENTS.md`（第 3 节讲怎么新增一节课的数据）。
+- 选题：[question-bank.md](question-bank.md)（候选题、要破的误会、查证去处）
+- 资料和许可：[sources.md](sources.md)（先读，里面有不能碰的红线）
 - 问答怎么写：[dialogue.md](dialogue.md)
 - 配图怎么选、怎么写：[figures.md](figures.md)
 - 右栏的讲解动画：[film.md](film.md)
@@ -28,7 +31,7 @@ description: >-
 照这个清单走，每一步过了检查再走下一步：
 
 ```
-- [ ] 1. 选题：npm run story:todo 看哪些课还是「⏳ 自动装配」；全新的题先查资料（见下面「选题与资料」）
+- [ ] 1. 选题：从 question-bank.md 挑一题，npm run story:todo 看哪些课已写；全新的题先查资料（sources.md 和下面「选题与资料」）
 - [ ] 2. 新课先进 curriculum.ts：按 AGENTS.md 第 3 节写一条（形态 A 要写 3–5 张 cards，show.lab.step 就数它们），放进对的主题、先修课排在前面
 - [ ] 3. 生成草稿：npm run story:new -- <slug>（写好 src/learning/stories/<slug>.ts 并登记到 index.ts）
 - [ ] 4. 改写问答：照 dialogue.md 重写成小念的口吻和追问链
