@@ -13,6 +13,13 @@ import { getElement, queryElement } from './utils/dom';
 import { TabId } from './types/app';
 import { initLearningApp } from './learning/app';
 
+// 字体表先用 media="print" 拿，不挡首屏；连不上 Google Fonts 时就一直用系统字体
+const fontSheet = document.querySelector<HTMLLinkElement>('link#google-fonts');
+if (fontSheet) {
+  if (fontSheet.sheet) fontSheet.media = 'all';
+  else fontSheet.addEventListener('load', () => { fontSheet.media = 'all'; }, { once: true });
+}
+
 function setLanguage(lang: 'zh' | 'en'): void {
   const state = getState();
   state.currentLanguage = lang;
@@ -152,9 +159,12 @@ function initKeyboard(): void {
   document.addEventListener('keydown', (e) => {
     trapDialogFocus(e);
     if (e.key === 'Escape') {
+      // 关掉一层就算处理过了，文章里弹出的周期表看到 defaultPrevented 就不跟着关
       if (expandedAtomModal.classList.contains('open')) {
+        e.preventDefault();
         closeExpandedAtom();
       } else if (getElement('modal').classList.contains('open')) {
+        e.preventDefault();
         closeModal();
       }
     }
