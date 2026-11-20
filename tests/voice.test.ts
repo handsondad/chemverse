@@ -142,6 +142,74 @@ describe('小念和爸爸的配音', () => {
     host.remove();
   });
 
+  it('fetches the next line while one is speaking and plays it from that warmed element', () => {
+    localStorage.removeItem('chemverse-film-voice');
+    const loaded: string[] = [];
+    const played: HTMLMediaElement[] = [];
+    const srcSetter = Object.getOwnPropertyDescriptor(HTMLMediaElement.prototype, 'src')!.set!;
+    vi.spyOn(HTMLMediaElement.prototype, 'src', 'set').mockImplementation(function (this: HTMLMediaElement, value: string) {
+      loaded.push(value.replace(/.*\//, ''));
+      srcSetter.call(this, value);
+    });
+    vi.spyOn(HTMLMediaElement.prototype, 'play').mockImplementation(function (this: HTMLMediaElement) {
+      played.push(this);
+      return Promise.resolve();
+    });
+    vi.spyOn(HTMLMediaElement.prototype, 'pause').mockImplementation(() => undefined);
+    const film: Film = { scenes: [scene(0, 6), scene(1, 6)] };
+    const voice: FilmVoice = { turnCount: 2, lengthOf: () => 3, src: (turn, who) => `/voice/demo/${turn}-${who}.mp3` };
+    const lines = narrateFilm(film, 2, voice.lengthOf)!.lines;
+    const host = document.createElement('div');
+    document.body.append(host);
+    const handle = mountFilm(host, film, { voice });
+    const range = host.querySelector<HTMLInputElement>('.film-range')!;
+
+    range.value = String(lines[0].start + 0.1);
+    range.dispatchEvent(new Event('input'));
+    host.querySelector<HTMLButtonElement>('.film-play')!.click();
+    expect(loaded).toEqual(['0-nian.mp3', '0-dad.mp3']);
+
+    range.value = String(lines[1].start + 0.1);
+    range.dispatchEvent(new Event('input'));
+    expect(loaded, '下一句早就拿好了，不再重新加载').toEqual(['0-nian.mp3', '0-dad.mp3', '1-nian.mp3']);
+    expect(played).toHaveLength(2);
+    expect(played[1]).not.toBe(played[0]);
+    expect(played[1].src).toMatch(/0-dad\.mp3$/);
+    handle.destroy();
+    host.remove();
+  });
+
+  it('lets a line whose clip cannot load pass silently instead of retrying it', async () => {
+    localStorage.removeItem('chemverse-film-voice');
+    const tries: string[] = [];
+    vi.spyOn(HTMLMediaElement.prototype, 'play').mockImplementation(function (this: HTMLMediaElement) {
+      tries.push(this.src.replace(/.*\//, ''));
+      return Promise.reject(new DOMException('missing', 'NotSupportedError'));
+    });
+    vi.spyOn(HTMLMediaElement.prototype, 'pause').mockImplementation(() => undefined);
+    const film: Film = { scenes: [scene(0, 6), scene(1, 6)] };
+    const voice: FilmVoice = { turnCount: 2, lengthOf: () => 3, src: (turn, who) => `/voice/demo/${turn}-${who}.mp3` };
+    const lines = narrateFilm(film, 2, voice.lengthOf)!.lines;
+    const host = document.createElement('div');
+    document.body.append(host);
+    const handle = mountFilm(host, film, { voice });
+    const range = host.querySelector<HTMLInputElement>('.film-range')!;
+    const seek = (at: number): void => {
+      range.value = String(at);
+      range.dispatchEvent(new Event('input'));
+    };
+
+    seek(lines[1].start + 0.1);
+    host.querySelector<HTMLButtonElement>('.film-play')!.click();
+    await Promise.resolve();
+    seek(lines[1].start + 0.5);
+    seek(lines[2].start + 0.1);
+    expect(tries).toEqual(['0-dad.mp3', '1-nian.mp3']);
+    expect(host.querySelector('.film-play')?.getAttribute('aria-label'), '没声音也接着播').toBe('暂停');
+    handle.destroy();
+    host.remove();
+  });
+
   it('narrates every film without shortening a scene or overlapping two lines', () => {
     for (const story of stories) {
       if (!story.film) continue;

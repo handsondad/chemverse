@@ -99,6 +99,19 @@ export function mountFilm(host: HTMLElement, film: Film, options: Options = {}):
   let destroyed = false;
   let audio: HTMLAudioElement | undefined;
   let audioSrc = '';
+  // 放这一句时，另一个播放器先把下一句拿下来，换句时不用等网络
+  let spare: HTMLAudioElement | undefined;
+  let spareSrc = '';
+  // 拿不到的配音（404、断网）记下来，这一句就无声走过去，不要每一帧都重试
+  const broken = new Set<string>();
+  const newClip = (): HTMLAudioElement => {
+    const element = Object.assign(new Audio(), { preload: 'auto' });
+    element.addEventListener('error', () => {
+      const src = element.getAttribute('src');
+      if (src) broken.add(src);
+    });
+    return element;
+  };
   /** 正在放的那句配音；放着的时候动画的时钟跟着声音走 */
   let clip: SpokenLine | null = null;
 
@@ -164,21 +177,40 @@ export function mountFilm(host: HTMLElement, film: Film, options: Options = {}):
       stopVoice();
       return;
     }
-    audio ??= Object.assign(new Audio(), { preload: 'auto' });
-    const player = audio;
     const src = voice.src(found.line.turn, found.line.who);
-    if (src !== audioSrc) {
-      audioSrc = src;
-      player.src = src;
+    if (broken.has(src)) {
+      stopVoice();
+      return;
     }
+    if (src !== audioSrc) {
+      audio?.pause();
+      if (spare && spareSrc === src) {
+        [audio, spare] = [spare, audio];
+        spareSrc = '';
+      } else {
+        audio ??= newClip();
+        audio.src = src;
+      }
+      audioSrc = src;
+    }
+    const player = audio!;
     clip = found.line;
     player.currentTime = Math.max(at - found.line.start, 0);
     claimVoice(playerId);
     player.play()?.catch((error: unknown) => {
-      if (!(error instanceof DOMException) || error.name !== 'NotAllowedError' || destroyed) return;
+      if (!(error instanceof DOMException) || destroyed) return;
+      if (error.name === 'NotSupportedError') broken.add(src);
+      if (error.name !== 'NotAllowedError') return;
       pause();
       needTap(true);
     });
+    const after = lines[lines.indexOf(found.line) + 1];
+    const nextSrc = after ? voice.src(after.turn, after.who) : '';
+    if (nextSrc && nextSrc !== spareSrc && nextSrc !== audioSrc && !broken.has(nextSrc)) {
+      spare ??= newClip();
+      spare.src = nextSrc;
+      spareSrc = nextSrc;
+    }
   };
 
   /** 时间线走到下一句时换上那句的声音 */
@@ -194,7 +226,7 @@ export function mountFilm(host: HTMLElement, film: Film, options: Options = {}):
     if (!playing || destroyed) return;
     const dt = last ? Math.min((stamp - last) / 1000, MAX_FRAME_SECONDS) : 0;
     last = stamp;
-    if (clip && audio && !audio.paused && !audio.ended) {
+    if (clip && audio && !audio.paused && !audio.ended && !audio.error) {
       if (audio.readyState >= HTMLMediaElement.HAVE_FUTURE_DATA) now = Math.min(clip.start + audio.currentTime, total);
     } else {
       now = Math.min(now + dt, total);
@@ -326,6 +358,7 @@ export function mountFilm(host: HTMLElement, film: Film, options: Options = {}):
       caf(frame);
       stopVoice();
       audio?.removeAttribute('src');
+      spare?.removeAttribute('src');
       resize?.disconnect();
       autoplay?.disconnect();
       thisTab.delete(onThisTab);
