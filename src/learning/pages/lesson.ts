@@ -155,7 +155,7 @@ export function renderLesson(content: HTMLElement, lesson: Lesson): void {
     returnFocus?.focus({ preventScroll: true });
   }
   function onKey(event: KeyboardEvent): void {
-    if (event.key !== 'Escape' || !sheet || sheet.hidden) return;
+    if (event.key !== 'Escape' || event.defaultPrevented || !sheet || sheet.hidden) return;
     if (document.querySelector('#modal.open, #expandedAtomModal.open')) return;
     closeSheet();
   }

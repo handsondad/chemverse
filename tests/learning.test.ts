@@ -252,7 +252,13 @@ describe('learning workspace', () => {
     await vi.dynamicImportSettled();
     expect(document.querySelector('#table-host #elements-view')).not.toBeNull();
     expect(document.getElementById('table')?.classList.contains('heatmap-active')).toBe(true);
-    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape' }));
+    Object.defineProperty(window, 'matchMedia', { configurable: true, value: vi.fn(() => ({ matches: true })) });
+    document.querySelector<HTMLElement>('#table-host .element')!.click();
+    expect(document.getElementById('modal')?.classList.contains('open')).toBe(true);
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', cancelable: true }));
+    expect(document.getElementById('modal')?.classList.contains('open')).toBe(false);
+    expect(document.getElementById('table-sheet')?.hidden, 'Esc 一次只关一层').toBe(false);
+    document.dispatchEvent(new KeyboardEvent('keydown', { key: 'Escape', cancelable: true }));
     expect(document.getElementById('table-sheet')?.hidden).toBe(true);
     navigate('#topic/periodic');
     expect(document.querySelector('#periodic-host > #elements-view')).not.toBeNull();
@@ -398,6 +404,13 @@ describe('learning workspace', () => {
     expect(document.querySelector('iframe')).toBeNull();
     expect(document.title).toContain('页面未找到');
     expect(document.querySelector('.empty-state a')?.getAttribute('href')).toBe('#home');
+
+    navigate('#q/titration-step');
+    document.querySelector<HTMLAnchorElement>('.skip-link')!.click();
+    expect(location.hash, '跳到正文不改地址').toBe('#q/titration-step');
+    expect(document.activeElement?.id).toBe('learning-content');
+    navigate('#learning-content');
+    expect(document.querySelector('.home-title h1')?.textContent, '旧的跳转地址打开首页，不是空白页').toContain('化学奇遇记');
   });
 
   it('only accepts messages from the currently mounted lesson frame', async () => {
@@ -428,14 +441,20 @@ describe('learning workspace', () => {
     expect(watch.getAttribute('aria-pressed')).toBe('true');
     const post = vi.spyOn(frame.contentWindow!, 'postMessage');
     lab.click();
-    expect(post).toHaveBeenCalledWith({ type: 'chemverse:set-mode', mode: 'lab' }, '*');
     expect(lab.getAttribute('aria-pressed')).toBe('true');
+    expect(post, '课件还没就绪，切换先记下来').not.toHaveBeenCalledWith({ type: 'chemverse:set-mode', mode: 'lab' }, '*');
+    window.dispatchEvent(new MessageEvent('message', { data: { type: 'chemverse:ready' }, source: frame.contentWindow }));
+    expect(post).toHaveBeenCalledWith({ type: 'chemverse:set-mode', mode: 'lab' }, '*');
+    expect(document.getElementById('player-status')?.textContent).toContain('自己调');
     window.dispatchEvent(new MessageEvent('message', { data: { type: 'chemverse:mode', mode: 'watch' }, source: window }));
     expect(lab.getAttribute('aria-pressed')).toBe('true');
     window.dispatchEvent(new MessageEvent('message', { data: { type: 'chemverse:mode', mode: 'watch' }, source: frame.contentWindow }));
     expect(watch.getAttribute('aria-pressed')).toBe('true');
-    window.dispatchEvent(new MessageEvent('message', { data: { type: 'chemverse:ready' }, source: frame.contentWindow }));
     expect(document.getElementById('player-status')?.textContent).toContain('说明卡');
+    lab.click();
+    expect(post).toHaveBeenLastCalledWith({ type: 'chemverse:set-mode', mode: 'lab' }, '*');
+    watch.click();
+    expect(post).toHaveBeenLastCalledWith({ type: 'chemverse:set-mode', mode: 'watch' }, '*');
 
     // 实验台和文章的讲解动画共用一个声音开关
     window.dispatchEvent(new MessageEvent('message', { data: { type: 'chemverse:narration', on: false }, source: frame.contentWindow }));

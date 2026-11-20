@@ -28,7 +28,7 @@ const notFound = html`
   </section>`;
 
 /** 旧链接（追问地图、问题库、足迹页）都回到首页；`#elements` 现在就是「元素周期表」这个问题。 */
-const LEGACY_HOME = new Set(['home', 'path', 'courses', 'progress']);
+const LEGACY_HOME = new Set(['home', 'path', 'courses', 'progress', 'learning-content']);
 const ELEMENTS_LESSON = 'periodic-table';
 
 export function initLearningApp(loadPeriodicTable: () => Promise<void>): void {
@@ -44,6 +44,11 @@ export function initLearningApp(loadPeriodicTable: () => Promise<void>): void {
   periodicHost.append(periodic);
   registerPeriodic(periodic, periodicHost, loadPeriodicTable);
   const notice = getElement('storage-notice');
+  // 跳到正文只挪焦点、不改地址：改了 hash 会被当成路由，刷新后正文是空的
+  root.querySelector('.skip-link')?.addEventListener('click', event => {
+    event.preventDefault();
+    content.focus();
+  });
 
   initProgressStore({
     onError(error) {
@@ -55,10 +60,6 @@ export function initLearningApp(loadPeriodicTable: () => Promise<void>): void {
   });
 
   function route(focus = false): void {
-    if (location.hash === '#learning-content') {
-      content.focus();
-      return;
-    }
     if (getElement('expandedAtomModal').classList.contains('open')) closeExpandedAtom();
     if (getElement('modal').classList.contains('open')) closeModal();
     leaveLesson();

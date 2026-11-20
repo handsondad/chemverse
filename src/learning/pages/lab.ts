@@ -25,6 +25,7 @@ let activePlayer: {
   ready: boolean;
   mode: LabMode;
   pendingStep?: number;
+  pendingMode?: LabMode;
   showMode(mode: LabMode): void;
   highlightStep(stepIndex: number): void;
 } | undefined;
@@ -57,6 +58,11 @@ export function handleLabMessage(event: MessageEvent<unknown>): void {
     if (activePlayer) {
       activePlayer.ready = true;
       getElement('player-status').textContent = READY_STATUS[activePlayer.mode];
+      if (activePlayer.pendingMode !== undefined) {
+        const mode = activePlayer.pendingMode;
+        activePlayer.pendingMode = undefined;
+        frame.contentWindow?.postMessage({ type: 'chemverse:set-mode', mode }, '*');
+      }
       if (activePlayer.pendingStep !== undefined) {
         const step = activePlayer.pendingStep;
         activePlayer.pendingStep = undefined;
@@ -67,7 +73,10 @@ export function handleLabMessage(event: MessageEvent<unknown>): void {
   if (data.type === 'chemverse:step' && 'step' in data && typeof data.step === 'number') {
     activePlayer?.highlightStep(data.step);
   }
-  if (data.type === 'chemverse:mode' && 'mode' in data && isMode(data.mode)) activePlayer?.showMode(data.mode);
+  if (data.type === 'chemverse:mode' && 'mode' in data && isMode(data.mode) && activePlayer) {
+    activePlayer.pendingMode = undefined;
+    activePlayer.showMode(data.mode);
+  }
   if (data.type === 'chemverse:go-check' && currentLab) location.hash = `q/${currentLab.slug}`;
   if (data.type === 'chemverse:narration' && 'on' in data && typeof data.on === 'boolean') saveVoicePreference(data.on);
   if (data.type === 'chemverse:error') {
@@ -176,7 +185,9 @@ export function renderLab(content: HTMLElement, lesson: Lesson): void {
     const mode = button.dataset.mode;
     if (!isMode(mode) || mode === state.mode) return;
     state.showMode(mode);
-    frame()?.contentWindow?.postMessage({ type: 'chemverse:set-mode', mode }, '*');
+    // 课件还没就绪时收不到消息，等它报 ready 再切
+    if (state.ready) frame()?.contentWindow?.postMessage({ type: 'chemverse:set-mode', mode }, '*');
+    else state.pendingMode = mode;
   }));
 
   stepButtons.forEach((button, step) => button.addEventListener('click', () => {
@@ -193,6 +204,7 @@ export function renderLab(content: HTMLElement, lesson: Lesson): void {
     clearTimeout(frameTimeout);
     const player = getElement('lesson-player');
     state.ready = false;
+    state.pendingMode = undefined;
     player.replaceChildren();
     status.textContent = '正在启动三维实验…';
     const iframe = document.createElement('iframe');
