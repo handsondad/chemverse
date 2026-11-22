@@ -1,5 +1,4 @@
 @import './tokens.css';
-@import url('https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&family=Ma+Shan+Zheng&display=swap');
 
 /* The upstream runtime inserts its own stylesheet after startup. Keep token
    overrides authoritative without changing lesson scripts or scene colors.
@@ -355,3 +354,6 @@ body #cv-to-watch[hidden], #cv-watch [hidden] { display: none !important; }
 @media (prefers-reduced-motion: reduce) {
   body *, body *::before, body *::after { transition: none !important; animation: none !important; }
 }
+
+/* 手写体到齐前先不露出说明卡和动手面板（见 lesson-adapter.js 开头的 cv-font-wait），免得半手写半雅黑 */
+html.cv-font-wait :is(#cv-watch, #left, #right, #steps) { visibility: hidden; }

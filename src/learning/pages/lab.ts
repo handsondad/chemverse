@@ -4,6 +4,7 @@ import { html, setHtml, type SafeHtml } from '../html';
 import { icon } from '../visuals';
 import { getElement } from '../../utils/dom';
 import { avatar } from '../../series/avatar';
+import { answerFontRequest } from '../lab-fonts';
 import { readVoicePreference, saveVoicePreference } from '../film/player';
 
 /**
@@ -49,6 +50,7 @@ export function handleLabMessage(event: MessageEvent<unknown>): void {
   if (!frame || event.source !== frame.contentWindow || !event.data || typeof event.data !== 'object') return;
   const data = event.data;
   if (!('type' in data)) return;
+  if (answerFontRequest(data, 'chemverse', frame.contentWindow)) return;
   if (data.type === 'chemverse:open-lesson' && 'slug' in data && typeof data.slug === 'string' && findLesson(data.slug)) {
     location.hash = `q/${data.slug}`;
   }
