@@ -46,8 +46,8 @@ export const metalStaircase: Story = {
         paint: 'en',
         staircase: true,
         arrows: [
-          { from: [4, 4], to: [1.4, 6.4], text: '金属性变强' },
-          { from: [15, 4], to: [17, 2.2], text: '非金属性变强' },
+          { from: [4, 4], to: [1.4, 6.4], text: '金属性变强', label: [0.55, 7.85], align: 'start' },
+          { from: [15, 4], to: [17, 2.2], text: '非金属性变强', label: [17.4, 1], align: 'end' },
         ],
       },
     },

@@ -50,11 +50,13 @@ export interface TableFocus {
   readonly by: 'group' | 'period' | 'category' | 'atoms';
   readonly values: readonly number[];
 }
-/** 周期表上的箭头，坐标是 [列, 行]（可以是小数） */
+/** 周期表上的箭头，坐标是 [列, 行]（可以是小数）；`label` 把文字挪到空白处，`align` 是文字从那一点往哪边排 */
 export interface TableArrow {
   readonly from: readonly [number, number];
   readonly to: readonly [number, number];
   readonly text: string;
+  readonly label?: readonly [number, number];
+  readonly align?: 'start' | 'middle' | 'end';
 }
 
 /** 一根碳链：碳原子连成一串，四周挂满氢 */
@@ -165,16 +167,20 @@ function focused(atom: Atom, focus?: TableFocus): boolean {
   return atom.row <= 7 && focus.values.includes(atom.col);
 }
 
-function arrowMarkup(from: readonly [number, number], to: readonly [number, number], text: string): string {
+function arrowMarkup({ from, to, text, label, align }: TableArrow): string {
   const [x1, y1] = [colX(from[0]) + CELL / 2, rowY(from[1]) + CELL / 2];
   const [x2, y2] = [colX(to[0]) + CELL / 2, rowY(to[1]) + CELL / 2];
   const angle = Math.atan2(y2 - y1, x2 - x1);
   const head = [angle + 2.6, angle - 2.6].map(a => `${fmt(x2 + Math.cos(a) * 11)},${fmt(y2 + Math.sin(a) * 11)}`).join(' ');
   const [mx, my] = [(x1 + x2) / 2, (y1 + y2) / 2];
   const vertical = Math.abs(y2 - y1) > Math.abs(x2 - x1);
+  // 放在空白处时不走镧系锕系那半格的挪动，行号就是表上看到的位置
+  const [tx, ty, anchor] = label
+    ? [colX(label[0]) + CELL / 2, TOP + (label[1] - 1) * PITCH + CELL / 2 + 5, align ?? 'middle']
+    : [vertical ? mx + 10 : mx, vertical ? my : my - 9, vertical ? 'start' : 'middle'];
   return `<line x1="${fmt(x1)}" y1="${fmt(y1)}" x2="${fmt(x2)}" y2="${fmt(y2)}" stroke="${HOT}" stroke-width="3.5" stroke-linecap="round"/>`
     + `<polygon points="${fmt(x2)},${fmt(y2)} ${head}" fill="${HOT}"/>`
-    + `<text x="${fmt(vertical ? mx + 10 : mx)}" y="${fmt(vertical ? my : my - 9)}" text-anchor="${vertical ? 'start' : 'middle'}" class="fig-callout">${escapeText(text)}</text>`;
+    + `<text x="${fmt(tx)}" y="${fmt(ty)}" text-anchor="${anchor}" class="fig-callout">${escapeText(text)}</text>`;
 }
 
 function escapeText(text: string): string {
@@ -221,14 +227,14 @@ function tableSvg(figure: Extract<Figure, { kind: 'table' }>): string {
     ? `<polyline points="${[[12, 1], [12, 2], [13, 2], [13, 3], [14, 3], [14, 4], [15, 4], [15, 5], [16, 5], [16, 7]]
       .map(([c, r]) => `${LEFT + c * PITCH - 1},${TOP + r * PITCH - 1}`).join(' ')}" fill="none" stroke="${HOT}" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>`
     : '';
-  const arrows = (figure.arrows ?? []).map(arrow => arrowMarkup(arrow.from, arrow.to, arrow.text)).join('');
+  const arrows = (figure.arrows ?? []).map(arrowMarkup).join('');
   return `<svg class="fig-svg" viewBox="0 0 600 324" role="img" aria-label="${escapeText(figure.caption)}">${heads}${cells}${rings}${stair}${arrows}</svg>`;
 }
 
 function tableLegend(figure: Extract<Figure, { kind: 'table' }>): SafeHtml {
   const paint = figure.paint ?? 'category';
   if (paint === 'radius' || paint === 'en') {
-    return html`<p class="fig-scale"><span>${paint === 'radius' ? '原子小' : '抢电子弱'}</span><i></i><span>${paint === 'radius' ? '原子大' : '抢电子强'}</span></p>`;
+    return html`<p class="fig-ramp"><span>${paint === 'radius' ? '原子小' : '抢电子弱'}</span><i></i><span>${paint === 'radius' ? '原子大' : '抢电子强'}</span></p>`;
   }
   if (paint === 'phase') {
     return html`<ul class="fig-legend"><li><i style="background:#cfe8ff"></i>常温是气体</li><li><i style="background:#ffd59a"></i>液体</li><li><i style="background:#f1e7d6"></i>固体</li></ul>`;
@@ -462,34 +468,18 @@ function darkSwatch(hex: string): boolean {
   return 0.299 * r + 0.587 * g + 0.114 * b < 148;
 }
 
-function scaleSvg(figure: Extract<Figure, { kind: 'scale' }>): string {
-  const width = 560;
-  const padX = 14;
-  const gap = 10;
-  const count = figure.stops.length;
-  const cellW = (width - padX * 2 - gap * (count - 1)) / count;
-  const barTop = figure.axis ? 30 : 12;
-  const barH = 44;
-  const height = barTop + barH + 34;
-  const header = figure.axis
-    ? `<text x="${width / 2}" y="18" text-anchor="middle" class="fig-note">${escapeText(figure.axis)}</text>`
-    : '';
-  const body = figure.stops.map((stop, i) => {
-    const x = padX + i * (cellW + gap);
-    const cx = x + cellW / 2;
-    const ink = darkSwatch(stop.color) ? '#ffffff' : INK;
-    const ring = stop.hot
-      ? `<rect x="${fmt(x - 2.5)}" y="${barTop - 2.5}" width="${fmt(cellW + 5)}" height="${barH + 5}" rx="14" fill="none" stroke="${HOT}" stroke-width="2.5"/>`
-      : '';
-    const sep = i > 0
-      ? `<text x="${fmt(x - gap / 2)}" y="${barTop + barH / 2 + 4}" text-anchor="middle" class="fig-axis">›</text>`
-      : '';
-    return sep + ring
-      + `<rect x="${fmt(x)}" y="${barTop}" width="${fmt(cellW)}" height="${barH}" rx="11" fill="${stop.color}" stroke="#d8c9b0" stroke-width="1"/>`
-      + `<text x="${fmt(cx)}" y="${barTop + barH / 2 + 5}" text-anchor="middle" class="fig-scale-label" style="fill:${ink}">${escapeText(stop.label)}</text>`
-      + `<text x="${fmt(cx)}" y="${barTop + barH + 21}" text-anchor="middle" class="fig-scale-note"${stop.hot ? ` style="fill:${HOT};font-weight:700"` : ''}>${escapeText(stop.note)}</text>`;
-  }).join('');
-  return `<svg class="fig-svg is-scale" viewBox="0 0 ${width} ${height}" role="img" aria-label="${escapeText(figure.caption)}">${header}${body}</svg>`;
+/** 色阶横尺用 HTML 排：宽的时候横着一排，窄到放不下就竖着一档一行，字不会被缩小到看不清 */
+function scaleHtml(figure: Extract<Figure, { kind: 'scale' }>): SafeHtml {
+  const axis = figure.axis?.replace(/\s*→\s*$/, '');
+  const directed = axis !== figure.axis;
+  return html`
+    ${axis ? html`<p class="fig-stops-axis ${directed ? 'is-directed' : ''}">${axis}</p>` : ''}
+    <ol class="fig-stops" style="--n:${figure.stops.length}">
+      ${figure.stops.map(stop => html`
+        <li class="${stop.hot ? 'is-hot' : ''}" style="--stop:${stop.color};--ink:${darkSwatch(stop.color) ? '#ffffff' : INK}">
+          <b>${stop.label}</b><small>${stop.note}</small>
+        </li>`)}
+    </ol>`;
 }
 
 function linkButton(link?: TableLink): SafeHtml | '' {
@@ -531,14 +521,20 @@ export function renderFigure(figure: Figure, index: number): SafeHtml {
         <figcaption>${figure.caption}</figcaption>
       </figure>`;
   }
+  if (figure.kind === 'scale') {
+    return html`
+      <figure class="fig fig-scale" data-figure="${index}">
+        ${scaleHtml(figure)}
+        <figcaption>${figure.caption}</figcaption>
+      </figure>`;
+  }
   const svg = figure.kind === 'table' ? tableSvg(figure)
     : figure.kind === 'trend' ? trendSvg(figure)
       : figure.kind === 'shells' ? shellsSvg(figure)
         : figure.kind === 'sizes' ? sizesSvg(figure)
           : figure.kind === 'chains' ? chainsSvg(figure)
             : figure.kind === 'dots' ? dotsSvg(figure)
-              : figure.kind === 'scale' ? scaleSvg(figure)
-                : towerSvg(figure, index);
+              : towerSvg(figure, index);
   const link = 'link' in figure ? figure.link : undefined;
   return html`
     <figure class="fig fig-${figure.kind}" data-figure="${index}">

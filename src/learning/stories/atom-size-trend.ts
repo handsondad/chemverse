@@ -41,7 +41,7 @@ export const atomSizeTrend: Story = {
         caption: '两股力量：往下多一层电子，原子变大；往右核电荷增加，原子变小。',
         paint: 'radius',
         arrows: [
-          { from: [1, 2], to: [1, 6.4], text: '往下变大' },
+          { from: [1, 2], to: [1, 6.4], text: '往下变大', label: [0.55, 7.85], align: 'start' },
           { from: [2.2, 3], to: [16.4, 3], text: '往右变小' },
         ],
       },
